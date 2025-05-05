@@ -1,4 +1,5 @@
 import tailwindcss from "@tailwindcss/vite";
+import { fileURLToPath, URL } from 'node:url'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -13,7 +14,7 @@ export default defineNuxtConfig({
 
   modules: [
     '@nuxt/eslint',
-    '@nuxt/fonts',
+    '@nuxtjs/google-fonts',
     '@nuxt/icon',
     '@nuxt/image',
     'shadcn-nuxt',
@@ -23,5 +24,21 @@ export default defineNuxtConfig({
   shadcn: {
     prefix: '',
     componentDir: './components/ui',
-  }
+  },
+
+  googleFonts: {
+    families: {
+      'Red Hat Text': [400, 500, 700]
+    },
+    display: 'swap',
+    preload: true,
+    prefetch: true,
+    preconnect: true,
+    useStylesheet: true,
+    subsets: ['latin']
+  },
+
+  alias: {
+    '@sheet': fileURLToPath(new URL('./components/ui/sheet', import.meta.url)),
+  },
 })

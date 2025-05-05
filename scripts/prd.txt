@@ -1,6 +1,6 @@
 # Product Requirements Document: Personal Portfolio with AI Chatbot Guide
 
-**Version:** 1.0
+**Version:** 1.2
 **Date:** 2025-05-04
 **Author:** [Your Name/T3 Chat]
 
@@ -28,19 +28,44 @@ This document outlines the requirements for a personal portfolio website designe
 
 *   **FR-C1:** **Text Input:** Users must be able to type questions into a chat input field.
 *   **FR-C2:** **Speech Input:** Users must be able to activate microphone input (via a button) to ask questions using voice. Browser-based Speech-to-Text (STT) will convert audio to text for processing.
-*   **FR-C3:** **LLM Integration:** The chatbot backend must integrate with the Gemini API to understand user queries and generate relevant responses.
+*   **FR-C3:** **LLM Integration:** The chatbot backend must integrate with the Gemini LLM through LangChain to understand user queries and generate relevant responses. Using LangChain will provide a higher-level abstraction for working with the model.
 *   **FR-C4:** **Retrieval-Augmented Generation (RAG):**
     *   The system must use a vector database (Pinecone) populated with embedded personal data (CV, project details, skills, bio, etc.).
-    *   When a user asks a question, the system must retrieve relevant data chunks from Pinecone to provide context to the LLM for generating accurate answers about the engineer.
-*   **FR-C5:** **Tool Calling / API Integration:** The chatbot must be able to trigger server-side functions to fetch real-time data from external services when relevant to the user's query:
+    *   LangChain will orchestrate the RAG pipeline, retrieving relevant data chunks from Pinecone to provide context for generating accurate answers about the engineer.
+    *   The system will leverage LangChain's document processing and chunking capabilities for optimal content embedding.
+*   **FR-C5:** **Tool Calling / API Integration:** The chatbot must leverage LangChain's tool calling framework to trigger server-side functions fetching real-time data when relevant to the user's query:
     *   **GitHub:** Fetch public repository information, recent activity summaries.
     *   **Spotify:** Fetch currently playing track or recent top tracks/artists (requires secure handling of authentication/tokens).
     *   **Strava:** Fetch recent activity summaries or stats (requires secure handling of authentication/tokens).
-*   **FR-C6:** **Natural Language Response:** The chatbot must provide responses in a conversational, natural language format. The personality should be configurable via system prompts (e.g., professional yet approachable).
-*   **FR-C7:** **Context Awareness:** The chatbot should maintain conversational context within a single session (e.g., remember the last few exchanges).
+*   **FR-C6:** **Natural Language Response:** The chatbot must provide responses in a conversational, natural language format. The personality should be configurable via LangChain's prompt templates and system message configurations.
+*   **FR-C7:** **Context Awareness:** The chatbot should maintain conversational context within a single session using LangChain's memory components to remember the last few exchanges.
 *   **FR-C8:** **Loading/Processing Indication:** Clear visual indicators must be displayed while the chatbot is processing a request or waiting for API responses.
-*   **FR-C9:** **Error Handling:** The chatbot interface must gracefully handle and communicate errors (e.g., "I couldn't fetch GitHub data right now," "Sorry, I didn't understand that.").
-*   **FR-C10:** **Chat History Display:** The conversation history (user queries and chatbot responses) must be displayed clearly in a scrollable chat window.
+*   **FR-C9:** **Error Handling:** The chatbot interface must gracefully handle and communicate errors (e.g., "I couldn't fetch GitHub data right now," "Sorry, I didn't understand that."). LangChain's structured error handling will help manage various failure modes.
+*   **FR-C10:** **Chat History Display:** The conversation history (user queries and chatbot responses) must be displayed clearly in a scrollable chat window. The responses will be markdown compatible and streamed.
+
+### 4.1.1 Chatbot UI/UX Implementation
+
+*   **FR-C11:** **Persistent Widget Design:** The chatbot must be implemented as an accessible, persistent floating widget available from any page on the site.
+    *   The widget should be minimized by default with a clear prompt inviting interaction.
+    *   When expanded, it should present a well-designed chat interface that doesn't obstruct the main site content.
+    *   The widget must be easily dismissible/minimizable and remember its state during site navigation.
+*   **FR-C12:** **Interactive Site Navigation:** The chatbot must be able to interact with the site's content and structure:
+    *   Ability to programmatically scroll to relevant sections when answering questions about specific content.
+    *   Capability to temporarily highlight relevant elements on the page when referenced in responses.
+    *   Support for triggering UI state changes (such as expanding a project's details) when appropriate to the conversation.
+*   **FR-C13:** **Developer Insights & Meta-Information:** The chatbot must be able to answer questions about its own implementation and the site's architecture when queried:
+    *   Provide high-level explanations of how features work (RAG, API connections, etc.).
+    *   Potentially display simplified code snippets when appropriate for technical audiences.
+    *   Explain technology choices when asked (why Vue/Nuxt, why LangChain with Gemini, etc.).
+*   **FR-C14:** **Live API Demonstration:** The chatbot must visually showcase API integrations:
+    *   Display in-message loading states when fetching external data.
+    *   Present dynamically fetched information (GitHub activity, Spotify tracks, Strava workouts) in well-formatted, visual components within the chat.
+    *   Clearly identify when information is being fetched in real-time vs. from static data.
+*   **FR-C15:** **Guided Exploration:** The chatbot must facilitate exploration of portfolio content:
+    *   Suggest relevant follow-up questions based on the conversation context.
+    *   Offer quick-action buttons for common queries ("Show projects", "See experience", etc.).
+    *   Include visual assets (project screenshots, skill logos) directly in responses when contextually relevant.
+*   **FR-C16:** **Context Demonstration:** The chat interface should visually indicate when it's using previous conversation context to answer a question, demonstrating the contextual awareness feature.
 
 ### 4.2 Standard Portfolio Sections
 
@@ -59,6 +84,7 @@ This document outlines the requirements for a personal portfolio website designe
 *   **FR-G1:** **Responsive Design:** The website layout must adapt seamlessly to various screen sizes, prioritizing mobile devices (mobile-first).
 *   **FR-G2:** **Navigation:** Simple, intuitive, and accessible navigation linking to all main sections of the site.
 *   **FR-G3:** **Accessibility:** The website should adhere to WCAG 2.1 Level AA guidelines where feasible, including keyboard navigation, semantic HTML, sufficient color contrast, and ARIA attributes for dynamic components (like the chatbot).
+*   **FR-G4:** **Chatbot Integration:** The chatbot widget must be designed responsively for all device sizes, with appropriate placement and interaction patterns for mobile vs. desktop users.
 
 ## 5. Non-Functional Requirements
 
@@ -66,13 +92,16 @@ This document outlines the requirements for a personal portfolio website designe
     *   Fast initial page load times (target LCP < 2.5s).
     *   Responsive UI interactions (< 100ms response time for UI feedback).
     *   Efficient backend processing for chatbot responses. Minimize latency where possible.
+    *   Smooth animations for chatbot widget expansion/minimization and site interaction features.
 *   **NFR2:** **Usability:**
     *   Intuitive and easy-to-use interface, especially the chatbot.
     *   Clear information hierarchy.
     *   Minimal friction for visitors to find information.
+    *   The chatbot widget should not significantly impede normal browsing experience when minimized.
 *   **NFR3:** **Reliability:**
     *   High availability (leveraging Vercel's infrastructure).
     *   Graceful degradation if external APIs (GitHub, Spotify, Strava, Gemini) are unavailable.
+    *   The chatbot must maintain functionality even if specific integrations (like site navigation features) fail.
 *   **NFR4:** **Security:**
     *   All traffic served over HTTPS (handled by Vercel).
     *   API keys and sensitive credentials stored securely server-side (environment variables) and never exposed client-side.
@@ -82,6 +111,7 @@ This document outlines the requirements for a personal portfolio website designe
     *   Clean, well-documented (comments, README), and modular code (Vue Composition API, TypeScript).
     *   Consistent coding style (use Prettier).
     *   Leverage reusable components (Shadcn Vue).
+    *   Clear separation between chatbot UI, conversation logic, and site interaction capabilities.
 *   **NFR6:** **Scalability:** While high scalability isn't a primary goal, the serverless architecture (Vercel Functions) and managed services (Pinecone, Gemini API) provide inherent scalability.
 
 ## 6. Technical Stack & Architecture
@@ -91,8 +121,8 @@ This document outlines the requirements for a personal portfolio website designe
 *   **State Management:** `Pinia`
 *   **UI/UX Utilities:** `VueUse`
 *   **AI Model:** Google Gemini API (`gemini-1.5-flash` or similar for chat, `text-embedding-004` or similar for embeddings)
-*   **AI Orchestration:** Direct Gemini API calls via `@google/generative-ai` SDK (potentially LlamaIndex or LangChain if complexity increases)
-*   **Vector Database (RAG):** Pinecone (`@pinecone-database/pinecone` SDK)
+*   **AI Orchestration:** LangChain.js as the primary framework for LLM application development, integrating with Gemini models
+*   **Vector Database (RAG):** Pinecone (`@pinecone-database/pinecone` SDK), integrated through LangChain's vector store interfaces
 *   **Backend Logic:** Nuxt 3 Server Routes / API Endpoints (`Node.js` environment via Nitro)
 *   **Deployment:** Vercel
 *   **Speech-to-Text:** Web Speech API (`SpeechRecognition`) or other browser-compatible library.
@@ -103,10 +133,30 @@ This document outlines the requirements for a personal portfolio website designe
 2.  **Backend (Nuxt Server/Vercel Functions):**
     *   API endpoints to handle client requests (e.g., `/api/chat`).
     *   Securely stores API keys (Gemini, Pinecone, GitHub, Spotify, Strava) using Nuxt `runtimeConfig`.
-    *   Orchestrates chatbot logic (RAG retrieval from Pinecone, optional tool calls, prompt construction, Gemini API call).
-    *   Handles external API calls (GitHub, Spotify, Strava) via dedicated server routes/functions.
+    *   Orchestrates chatbot logic using LangChain.js (RAG retrieval from Pinecone, optional tool calls, prompt construction, interaction with Gemini).
+    *   Uses LangChain agents and chains for complex workflows involving multiple steps and services.
+    *   Handles external API calls (GitHub, Spotify, Strava) via dedicated server routes/functions, integrated as LangChain tools.
 3.  **Services:**
-    *   **Pinecone:** Stores vector embeddings of personal data.
-    *   **Gemini API:** Provides LLM and embedding capabilities.
+    *   **Pinecone:** Stores vector embeddings of personal data, accessed through LangChain's vector store abstractions.
+    *   **Gemini API:** Provides LLM and embedding capabilities, accessed through LangChain's model interfaces.
     *   **GitHub/Spotify/Strava APIs:** Provide real-time external data.
     *   **Vercel:** Hosting, deployment, serverless functions, CDN, HTTPS.
+
+### 6.1 Chatbot-Site Integration Architecture:
+
+The chatbot and site integration will be built using:
+
+1. **DOM Interaction Layer:**
+   * A dedicated service to handle scrolling, highlighting, and interactive manipulation of the main site based on chatbot outputs.
+   * Uses `VueUse` utilities for smooth animations and interactions.
+   * Maintains state mappings between content identifiers and DOM elements.
+
+2. **Tool Functions Architecture:**
+   * Custom LangChain tools registered for different site interactions.
+   * Parser to translate LangChain tool outputs into frontend actions.
+   * Pinia store to track interaction state and coordinate between chatbot and site components.
+
+3. **Interactive Features Logic:**
+   * Component-based system for rendering rich media in chat responses.
+   * Event bus for communication between chatbot and page components.
+   * Type-safe interfaces for all interaction patterns. 
