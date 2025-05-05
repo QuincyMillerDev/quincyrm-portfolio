@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import HeroInfo from '~/components/HeroInfo.vue'
+import ProjectsContainer from '~/components/ProjectsContainer.vue'
 
 // Keep the data definition
 const name = "Quincy Miller"
@@ -18,6 +19,17 @@ const links = [
   { name: 'Twitch', url: 'https://twitch.tv/your-handle', icon: 'simple-icons:twitch' },
 ]
 
+// Projects data
+interface Project {
+  title: string
+  description: string
+  link: string
+}
+const projects: Project[] = [
+  { title: 'Project One', description: 'Description for project one.', link: 'https://github.com/username/project-one' },
+  { title: 'Project Two', description: 'Description for project two.', link: 'https://github.com/username/project-two' },
+  // Add more projects here
+]
 </script>
 
 <template>
@@ -29,5 +41,6 @@ const links = [
       :description-md="descriptionMd"
       :links="links"
     />
+    <ProjectsContainer :projects="projects" />
   </div>
 </template> 
