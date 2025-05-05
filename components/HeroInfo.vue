@@ -42,7 +42,7 @@ const brandColorClasses: Record<string, string> = {
         height="288"
         format="webp"
         quality="80"
-        class="rounded-full shadow-lg object-cover"
+        class="aspect-square rounded-full shadow-lg object-cover"
       />
     </div>
     <!-- Text Column -->
