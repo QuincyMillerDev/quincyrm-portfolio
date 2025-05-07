@@ -5,7 +5,9 @@ import { onMounted, ref } from 'vue'
 interface ImageItem {
   src: string
   alt: string
-  description: string
+  shortDescription: string
+  location?: string
+  date?: string
 }
 
 const props = defineProps<{ 
@@ -62,7 +64,14 @@ onMounted(() => {
           
           <!-- Description overlay -->
           <div class="absolute inset-0 flex items-end p-3 opacity-0 group-hover:opacity-100 is-active:opacity-100 transition-all duration-300 ease-out bg-gradient-to-t from-black/70 to-transparent translate-y-2 group-hover:translate-y-0 is-active:translate-y-0">
-            <p class="text-white text-xs font-medium">{{ image.description }}</p>
+            <div class="text-white text-xs font-medium">
+              <p>{{ image.shortDescription }}</p>
+              <p v-if="image.location || image.date" class="text-xs opacity-80 mt-0.5">
+                <span v-if="image.location">{{ image.location }}</span>
+                <span v-if="image.location && image.date"> &middot; </span>
+                <span v-if="image.date">{{ image.date }}</span>
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -107,10 +116,15 @@ onMounted(() => {
               
               <!-- Description overlay with enhanced animation -->
               <div class="absolute inset-0 flex items-end justify-center p-3 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-out bg-gradient-to-t from-black/80 via-black/40 to-transparent translate-y-2 group-hover:translate-y-0">
-                <p class="text-white text-xs sm:text-sm font-medium text-center max-w-[90%] relative">
-                  <span class="relative z-10">{{ image.description }}</span>
+                <div class="text-white text-xs sm:text-sm font-medium text-center max-w-[90%] relative">
+                  <p class="relative z-10">{{ image.shortDescription }}</p>
+                  <p v-if="image.location || image.date" class="text-xs opacity-80 mt-0.5 relative z-10">
+                    <span v-if="image.location">{{ image.location }}</span>
+                    <span v-if="image.location && image.date"> &middot; </span>
+                    <span v-if="image.date">{{ image.date }}</span>
+                  </p>
                   <span class="absolute bottom-0 left-0 h-[2px] w-0 bg-primary/70 group-hover:w-full transition-all duration-500 ease-out-expo" style="transition-delay: 200ms;" />
-                </p>
+                </div>
               </div>
               
               <!-- Subtle border effect -->

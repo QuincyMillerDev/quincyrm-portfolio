@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import { Icon } from '@iconify/vue'
+// import { Icon } from '@iconify/vue' // Removed as it's no longer used directly here
+import TimelineItem from './TimelineItem.vue'
 
 defineOptions({ name: 'AboutTimeline' })
 
-interface TimelineItem {
+interface TimelineItemData {
   year: string
   title: string
   company?: string
@@ -14,7 +15,7 @@ interface TimelineItem {
   type: 'work' | 'education' | 'project' | 'achievement'
 }
 
-const props = defineProps<{ items: TimelineItem[] }>()
+const props = defineProps<{ items: TimelineItemData[] }>()
 
 // For animation
 const isVisible = ref(false)
@@ -49,50 +50,28 @@ const typeConfig: Record<string, { icon: string; color: string; border: string }
   }
 };
 
-// Mock data for demonstration
-const mockItems: TimelineItem[] = [
-  {
-    year: '2022 - Present',
-    title: 'Senior Software Engineer',
-    company: 'Tech Innovations Inc.',
-    location: 'Remote',
-    description: 'Leading development of cloud-native applications using Vue.js, TypeScript, and serverless architecture. Implemented CI/CD pipelines and mentored junior developers.',
-    skills: ['Vue.js', 'TypeScript', 'AWS', 'CI/CD'],
-    type: 'work'
-  },
-  {
-    year: '2020 - 2022',
-    title: 'Frontend Developer',
-    company: 'Digital Solutions Co.',
-    location: 'Boston, MA',
-    description: 'Developed responsive web applications and contributed to the company\'s design system. Worked closely with UX designers to implement pixel-perfect interfaces.',
-    skills: ['React', 'JavaScript', 'CSS', 'Design Systems'],
-    type: 'work'
-  },
-  {
-    year: '2019',
-    title: 'Open Source Contribution',
-    description: 'Major contributor to a popular open-source UI library, implementing accessibility improvements and performance optimizations.',
-    type: 'project'
-  },
-  {
-    year: '2016 - 2020',
-    title: 'B.S. Computer Science',
-    company: 'University of Technology',
-    location: 'Cambridge, MA',
-    description: 'Graduated with honors. Focus on software engineering and human-computer interaction.',
-    type: 'education'
-  },
-  {
-    year: '2018',
-    title: 'Hackathon Winner',
-    description: 'First place in the University Tech Challenge for developing an innovative accessibility tool for visually impaired users.',
-    type: 'achievement'
-  }
-]
+const timelineItems: TimelineItemData[] = props.items?.length ? props.items : []
 
-// Use provided items or mock data
-const timelineItems: TimelineItem[] = props.items?.length ? props.items : mockItems
+// Color mapping for skills
+const skillColorMap: Record<string, { bg: string; text: string; border: string }> = {
+  'vue.js': { bg: 'bg-emerald-500/10', text: 'text-emerald-600', border: 'border-emerald-500/30' },
+  'typescript': { bg: 'bg-blue-500/10', text: 'text-blue-600', border: 'border-blue-500/30' },
+  'aws': { bg: 'bg-orange-500/10', text: 'text-orange-600', border: 'border-orange-500/30' },
+  'ci/cd': { bg: 'bg-indigo-500/10', text: 'text-indigo-600', border: 'border-indigo-500/30' },
+  'react': { bg: 'bg-sky-500/10', text: 'text-sky-600', border: 'border-sky-500/30' },
+  'javascript': { bg: 'bg-yellow-400/10', text: 'text-yellow-600', border: 'border-yellow-400/30' },
+  'css': { bg: 'bg-cyan-500/10', text: 'text-cyan-600', border: 'border-cyan-500/30' },
+  'design systems': { bg: 'bg-pink-500/10', text: 'text-pink-600', border: 'border-pink-500/30' },
+  'nuxt.js': { bg: 'bg-green-500/10', text: 'text-green-600', border: 'border-green-500/30' },
+  'python': { bg: 'bg-teal-500/10', text: 'text-teal-600', border: 'border-teal-500/30' },
+  'default': { bg: 'bg-slate-500/10', text: 'text-slate-600', border: 'border-slate-500/30' }
+};
+
+const getSkillColors = (skillName: string) => {
+  const lowerSkillName = skillName.toLowerCase();
+  return skillColorMap[lowerSkillName] || skillColorMap.default;
+};
+
 </script>
 
 <template>
@@ -110,63 +89,15 @@ const timelineItems: TimelineItem[] = props.items?.length ? props.items : mockIt
       
       <!-- Timeline items -->
       <div class="space-y-12">
-        <div 
-          v-for="(item, idx) in timelineItems" 
+        <TimelineItem
+          v-for="(item, idx) in timelineItems"
           :key="idx"
-          class="relative pl-10"
-          :class="{ 'translate-y-0 opacity-100': isVisible, 'translate-y-4 opacity-0': !isVisible }"
-          :style="{ transition: `all 0.5s ease-out ${idx * 100 + 200}ms` }"
-        >
-          <!-- Timeline dot with icon -->
-          <div 
-            class="absolute left-0 top-0 w-[30px] h-[30px] rounded-full flex items-center justify-center shadow-sm"
-            :class="(typeConfig as any)[item.type].color"
-          >
-            <Icon :icon="(typeConfig as any)[item.type].icon" class="w-4 h-4" />
-          </div>
-          
-          <!-- Year label -->
-          <div class="text-sm font-medium text-muted-foreground mb-2">{{ item.year }}</div>
-          
-          <!-- Content card -->
-          <div 
-            class="bg-background/50 backdrop-blur-sm rounded-lg border border-border/40 shadow-sm overflow-hidden transition-all duration-200 hover:shadow-md hover:ring-1"
-            :class="[(typeConfig as any)[item.type].border, `hover:ring-${(typeConfig as any)[item.type].color.split(' ')[1].split('-')[1]}/20`]"
-          >
-            <!-- Header section -->
-            <div class="p-4 pb-0">
-              <h3 class="text-base font-medium">{{ item.title }}</h3>
-              
-              <!-- Company and location if available -->
-              <div v-if="item.company || item.location" class="flex items-center gap-3 mt-1 text-sm text-muted-foreground">
-                <div v-if="item.company" class="flex items-center">
-                  <Icon icon="lucide:building" class="w-3 h-3 mr-1 opacity-70" />
-                  {{ item.company }}
-                </div>
-                <div v-if="item.location" class="flex items-center">
-                  <Icon icon="lucide:map-pin" class="w-3 h-3 mr-1 opacity-70" />
-                  {{ item.location }}
-                </div>
-              </div>
-            </div>
-            
-            <!-- Description -->
-            <div class="p-4 text-sm text-muted-foreground">
-              {{ item.description }}
-            </div>
-            
-            <!-- Skills tags if available -->
-            <div v-if="item.skills && item.skills.length" class="px-4 pb-4 flex flex-wrap gap-1.5">
-              <span 
-                v-for="skill in item.skills" 
-                :key="skill"
-                class="inline-flex items-center px-2 py-0.5 rounded-full text-xs bg-background border border-border/60"
-              >
-                {{ skill }}
-              </span>
-            </div>
-          </div>
-        </div>
+          :item="item"
+          :type-config="typeConfig"
+          :get-skill-colors="getSkillColors"
+          :is-visible="isVisible"
+          :animation-delay="`${idx * 100 + 200}ms`"
+        />
       </div>
     </div>
   </section>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import ProfileContainer from '~/components/ProfileContainer.vue'
 import ProjectsContainer from '~/components/ProjectsContainer.vue'
 // Keep the data definition
@@ -34,14 +34,21 @@ const projects: Project[] = [
 ]
 
 const activeSection = ref<string | null>(null)
+const projectsContainerVisible = ref(false)
 
 const setHoveredSection = (section: string | null) => {
   activeSection.value = section
 }
+
+onMounted(() => {
+  setTimeout(() => {
+    projectsContainerVisible.value = true;
+  }, 300); // Delay before animation starts
+});
 </script>
 
 <template>
-  <div class="container mx-auto px-4 py-12 space-y-12">
+  <div class="space-y-12">
     <TypewriterHeader 
       :text="`Hello, I'm Quincy Miller.`" 
       class="text-xl md:text-2xl font-bold" 
@@ -67,16 +74,26 @@ const setHoveredSection = (section: string | null) => {
       />
     </div>
     
+    <!-- Wrapper for entry animation -->
     <div
-      class="transition-all duration-300 ease-out relative"
-      :class="{
-        'scale-101 z-10': activeSection === 'projects',
-        'opacity-85 brightness-98 scale-99': activeSection !== null && activeSection !== 'projects'
-      }"
-      @mouseenter="setHoveredSection('projects')"
-      @mouseleave="setHoveredSection(null)"
+      :class="[
+        'relative',
+        projectsContainerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+      ]"
+      style="transition-property: opacity, transform; transition-duration: 0.6s; transition-timing-function: ease-out;"
     >
-      <ProjectsContainer :projects="projects" />
+      <!-- Original wrapper for hover effects -->
+      <div
+        class="transition-all duration-300 ease-out relative"
+        :class="{
+          'scale-101 z-10': activeSection === 'projects',
+          'opacity-85 brightness-98 scale-99': activeSection !== null && activeSection !== 'projects'
+        }"
+        @mouseenter="setHoveredSection('projects')"
+        @mouseleave="setHoveredSection(null)"
+      >
+        <ProjectsContainer :projects="projects" />
+      </div>
     </div>
   </div>
 </template>

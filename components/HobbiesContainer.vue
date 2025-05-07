@@ -44,74 +44,8 @@ const toggleActive = (id: string) => {
   }
 }
 
-// Sample hobbies data
-const sampleHobbies: Hobby[] = [
-  {
-    id: 'fitness',
-    name: 'Fitness & Nutrition',
-    icon: 'lucide:dumbbell',
-    description: 'Dedicated to maintaining a balanced lifestyle through regular strength training, cardio, and mindful nutrition. I track my workouts and nutrition to continuously improve my fitness level.',
-    stats: [
-      { label: 'Weekly Workouts', value: '5', icon: 'lucide:activity' },
-      { label: 'Running', value: '15 mi/week', icon: 'lucide:timer' },
-      { label: 'Strength Training', value: '3x week', icon: 'lucide:weight' }
-    ],
-    color: 'emerald',
-    link: {
-      url: '#',
-      label: 'Strava Profile'
-    }
-  },
-  {
-    id: 'skiing',
-    name: 'Backcountry Skiing',
-    icon: 'lucide:mountain-snow',
-    description: 'Passionate about exploring remote mountain terrain on skis. I prioritize avalanche safety education and enjoy the solitude and beauty of winter backcountry.',
-    stats: [
-      { label: 'Seasons', value: '8+', icon: 'lucide:calendar' },
-      { label: 'Vertical Feet', value: '50K+/season', icon: 'lucide:arrow-up' },
-      { label: 'Favorite Terrain', value: 'Alpine', icon: 'lucide:mountain' }
-    ],
-    color: 'sky',
-    link: {
-      url: '#',
-      label: 'Trip Reports'
-    }
-  },
-  {
-    id: 'finance',
-    name: 'Personal Finance',
-    icon: 'lucide:bar-chart-2',
-    description: 'Interested in financial independence and long-term investing strategies. I enjoy analyzing market trends and optimizing personal financial systems.',
-    stats: [
-      { label: 'Investment Style', value: 'Long-term', icon: 'lucide:trending-up' },
-      { label: 'Focus Areas', value: 'Index Funds, Real Estate', icon: 'lucide:landmark' }
-    ],
-    color: 'amber',
-    link: {
-      url: '#',
-      label: 'Resources'
-    }
-  },
-  {
-    id: 'content',
-    name: 'Content Creation',
-    icon: 'lucide:video',
-    description: 'Creating educational content about technology and software development. I enjoy sharing knowledge and building a community around technical topics.',
-    stats: [
-      { label: 'Medium', value: 'Video & Writing', icon: 'lucide:pen-tool' },
-      { label: 'Topics', value: 'Web Dev, AI, Design', icon: 'lucide:layers' }
-    ],
-    color: 'violet',
-    link: {
-      url: '#',
-      label: 'View Content'
-    }
-  }
-]
-
 // Use provided hobbies or sample data
-const displayHobbies = props.hobbies?.length ? props.hobbies : sampleHobbies
+const displayHobbies = props.hobbies?.length ? props.hobbies : []
 </script>
 
 <template>
