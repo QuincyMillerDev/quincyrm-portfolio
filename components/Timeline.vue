@@ -97,7 +97,7 @@ const timelineItems: TimelineItem[] = props.items?.length ? props.items : mockIt
 
 <template>
   <section class="mt-12 relative">
-    <h2 class="text-xl font-medium mb-6">Professional Timeline</h2>
+    <h2 class="text-xl font-medium mb-6">Timeline</h2>
     
     <!-- Timeline container -->
     <div 
@@ -130,8 +130,8 @@ const timelineItems: TimelineItem[] = props.items?.length ? props.items : mockIt
           
           <!-- Content card -->
           <div 
-            class="bg-background/50 backdrop-blur-sm rounded-lg border border-border/40 shadow-sm overflow-hidden"
-            :class="[(typeConfig as any)[item.type].border]"
+            class="bg-background/50 backdrop-blur-sm rounded-lg border border-border/40 shadow-sm overflow-hidden transition-all duration-200 hover:shadow-md hover:ring-1"
+            :class="[(typeConfig as any)[item.type].border, `hover:ring-${(typeConfig as any)[item.type].color.split(' ')[1].split('-')[1]}/20`]"
           >
             <!-- Header section -->
             <div class="p-4 pb-0">

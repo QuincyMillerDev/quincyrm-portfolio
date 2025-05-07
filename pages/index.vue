@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import ProfileContainer from '~/components/ProfileContainer.vue'
 import ProjectsContainer from '~/components/ProjectsContainer.vue'
 // Keep the data definition
@@ -30,6 +31,12 @@ const projects: Project[] = [
   { title: 'Project Two', description: 'Description for project two.', link: 'https://github.com/username/project-two' },
   // Add more projects here
 ]
+
+const activeSection = ref<string | null>(null)
+
+const setHoveredSection = (section: string | null) => {
+  activeSection.value = section
+}
 </script>
 
 <template>
@@ -39,17 +46,35 @@ const projects: Project[] = [
       class="text-xl md:text-2xl font-bold" 
     />
     
-    <ProfileContainer 
-      :name="name" 
-      :desktop-picture-url="desktopPictureUrl" 
-      :mobile-picture-url="mobilePictureUrl"
-      :subtitle="subtitle"
-      :description-md="descriptionMd"
-      :links="links"
-      location="Coventry, CT"
-    />
+    <div
+      class="transition-all duration-200 ease-out relative"
+      :class="{
+        'scale-101 z-10': activeSection === 'profile',
+        'opacity-85 brightness-98 scale-99': activeSection !== null && activeSection !== 'profile'
+      }"
+      @mouseenter="setHoveredSection('profile')"
+      @mouseleave="setHoveredSection(null)"
+    >
+      <ProfileContainer 
+        :name="name" 
+        :desktop-picture-url="desktopPictureUrl" 
+        :mobile-picture-url="mobilePictureUrl"
+        :subtitle="subtitle"
+        :description-md="descriptionMd"
+        :links="links"
+        location="Coventry, CT"
+      />
+    </div>
     
-    <div>
+    <div
+      class="transition-all duration-200 ease-out relative"
+      :class="{
+        'scale-101 z-10': activeSection === 'projects',
+        'opacity-85 brightness-98 scale-99': activeSection !== null && activeSection !== 'projects'
+      }"
+      @mouseenter="setHoveredSection('projects')"
+      @mouseleave="setHoveredSection(null)"
+    >
       <ProjectsContainer :projects="projects" />
     </div>
   </div>
