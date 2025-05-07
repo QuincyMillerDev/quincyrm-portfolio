@@ -14,9 +14,9 @@ export default defineNuxtConfig({
 
   modules: [
     '@nuxt/eslint',
-    '@nuxtjs/google-fonts',
     '@nuxt/icon',
     '@nuxt/image',
+    '@nuxt/fonts',
     'shadcn-nuxt',
     '@pinia/nuxt',
     '@vueuse/nuxt'
@@ -26,16 +26,27 @@ export default defineNuxtConfig({
     componentDir: './components/ui',
   },
 
-  googleFonts: {
-    families: {
-      'Red Hat Text': [400, 500, 700]
-    },
-    display: 'swap',
-    preload: true,
-    prefetch: true,
-    preconnect: true,
-    useStylesheet: true,
-    subsets: ['latin']
+  fonts: {
+    families: [
+      {
+        name: 'Ubuntu',
+        provider: 'google',
+        weights: [400, 700],
+        styles: ['normal', 'italic']
+      },
+      {
+        name: 'Red Hat Display',
+        provider: 'google',
+        weights: [400, 700],
+        styles: ['normal', 'italic']
+      },
+      {
+        name: 'Noto Sans Display',
+        provider: 'google',
+        weights: [400, 700],
+        styles: ['normal', 'italic']
+      }
+    ],
   },
 
   alias: {

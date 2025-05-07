@@ -72,7 +72,6 @@ const currentTypeConfig = computed(() => {
         <!-- Company and location if available -->
         <div v-if="item.company || item.location" class="flex items-center gap-3 mt-1 text-sm text-muted-foreground">
           <div v-if="item.company" class="flex items-center">
-            <Icon icon="lucide:building" class="w-3 h-3 mr-1 opacity-70" />
             {{ item.company }}
           </div>
           <div v-if="item.location" class="flex items-center">
@@ -107,13 +106,6 @@ const currentTypeConfig = computed(() => {
 </template>
 
 <style scoped>
-/* Custom hover effect for timeline items can remain if specific to item structure */
-/* For example, if .timeline-item:hover was used before, it can be scoped here */
-/* If it was a generic class in the parent, it might be adjusted or removed. */
-
-/* The styles like .timeline-item:hover { transform: translateX(3px); } */
-/* are specific to the interaction of the item within the timeline context, */
-/* but since the structure is moved here, it's fine to keep it or similar style scoped. */
 .timeline-item:hover { /* This class isn't used in the new template, but if you add it to the root div above, it would apply */
   transform: translateX(3px);
 }
