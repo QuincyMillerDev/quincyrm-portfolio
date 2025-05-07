@@ -1,0 +1,208 @@
+<script setup lang="ts">
+import { computed, ref, onMounted } from 'vue'
+import { Icon } from '@iconify/vue'
+import { Button } from '@/components/ui/button'
+import { Card } from '@/components/ui/card'
+import { NuxtImg } from '#components'
+
+// Define props for the component
+const props = defineProps<{
+  name: string
+  desktopPictureUrl: string
+  mobilePictureUrl: string
+  subtitle: string
+  location: string
+  descriptionMd: string
+  links: Array<{ name: string; url: string; icon: string }>
+}>()
+
+// Split markdown text into paragraphs
+const paragraphs = computed(() =>
+  props.descriptionMd
+    .trim()
+    .split(/\n\s*\n/)
+    .filter((p) => p.length)
+)
+
+// Brand color classes for social icons
+const brandColorClasses: Record<string, string> = {
+  GitHub: 'hover:text-[#181717]',
+  LinkedIn: 'hover:text-[#0077B5]',
+  'X.com': 'hover:text-black',
+  Instagram: 'hover:text-[#E1306C]',
+  Twitch: 'hover:text-[#9146FF]',
+}
+
+// Animation states
+const isVisible = ref(false)
+const imageLoaded = ref(false)
+
+onMounted(() => {
+  setTimeout(() => {
+    isVisible.value = true
+  }, 300)
+})
+
+const handleImageLoad = () => {
+  imageLoaded.value = true
+}
+</script>
+
+<template>
+  <Card class="bg-background/30 backdrop-blur-sm border-none shadow-lg overflow-hidden w-full">
+    <div 
+      class="relative w-full p-5 md:p-6"
+      :class="{ 'opacity-100 translate-y-0': isVisible, 'opacity-0 translate-y-4': !isVisible }"
+      style="transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1)"
+    >
+      <!-- Mobile Layout - Horizontal -->
+      <div class="md:hidden w-full">
+        <div class="flex items-start justify-between gap-4 w-full">
+          <!-- Content -->
+          <div class="flex-1">
+            <h2 class="text-lg font-medium text-primary mb-1">{{ props.subtitle }}</h2>
+            <div class="flex items-center text-sm text-muted-foreground mb-2">
+              <Icon icon="lucide:map-pin" class="w-3.5 h-3.5 mr-1" />
+              <span>{{ props.location }}</span>
+            </div>
+            
+            <!-- Social Links -->
+            <div class="flex flex-wrap gap-1.5 mb-3">
+              <Button
+                v-for="(link, index) in props.links"
+                :key="link.name"
+                as-child
+                variant="ghost"
+                size="icon"
+                class="w-7 h-7 rounded-full transition-all duration-300"
+                :class="[
+                  brandColorClasses[link.name] || '',
+                  { 'opacity-0': !isVisible, [`opacity-100 transition-opacity duration-500 delay-[${300 + index * 100}ms]`]: isVisible }
+                ]"
+              >
+                <a 
+                  :href="link.url" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  :aria-label="link.name"
+                >
+                  <Icon :icon="link.icon" class="w-4 h-4" />
+                </a>
+              </Button>
+            </div>
+          </div>
+          
+          <!-- Image -->
+          <div 
+            class="flex-shrink-0"
+            :class="{ 'opacity-100 scale-100': imageLoaded, 'opacity-0 scale-95': !imageLoaded }"
+            style="transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1)"
+          >
+            <NuxtImg
+              :src="props.mobilePictureUrl"
+              :alt="`${props.name}'s Profile Picture`"
+              width="100"
+              height="100"
+              format="webp"
+              quality="90"
+              class="rounded-full shadow-md aspect-square object-cover w-20 h-20"
+              @load="handleImageLoad"
+            />
+          </div>
+        </div>
+        
+        <!-- Description -->
+        <div 
+          class="prose prose-sm max-w-none text-muted-foreground dark:prose-invert mt-3 w-full"
+          :class="{ 'opacity-100 translate-y-0': isVisible, 'opacity-0 translate-y-4': !isVisible }"
+          style="transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s"
+        >
+          <p
+            v-for="(text, idx) in paragraphs"
+            :key="idx"
+            class="mb-2"
+          >
+            {{ text }}
+          </p>
+        </div>
+      </div>
+      
+      <!-- Desktop Layout - Horizontal -->
+      <div class="hidden md:block">
+        <div class="flex items-start gap-8 w-full">
+          <!-- Content -->
+          <div class="flex-1">
+            <h2 class="text-xl font-medium text-primary mb-2">{{ props.subtitle }}</h2>
+            <div class="flex items-center text-sm text-muted-foreground mb-4">
+              <Icon icon="lucide:map-pin" class="w-4 h-4 mr-1.5" />
+              <span>{{ props.location }}</span>
+            </div>
+            
+            <!-- Description -->
+            <div 
+              class="prose prose-sm md:prose-base max-w-none text-muted-foreground dark:prose-invert mb-4"
+              :class="{ 'opacity-100 translate-y-0': isVisible, 'opacity-0 translate-y-4': !isVisible }"
+              style="transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s"
+            >
+              <p
+                v-for="(text, idx) in paragraphs"
+                :key="idx"
+                class="mb-3"
+              >
+                {{ text }}
+              </p>
+            </div>
+            
+            <!-- Social Links -->
+            <div class="flex flex-wrap gap-2">
+              <Button
+                v-for="(link, index) in props.links"
+                :key="link.name"
+                as-child
+                variant="ghost"
+                size="icon"
+                class="w-8 h-8 rounded-full transition-all duration-300 hover:scale-105"
+                :class="[
+                  brandColorClasses[link.name] || '',
+                  { 'opacity-0': !isVisible, [`opacity-100 transition-opacity duration-500 delay-[${300 + index * 100}ms]`]: isVisible }
+                ]"
+              >
+                <a 
+                  :href="link.url" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  :aria-label="link.name"
+                >
+                  <Icon :icon="link.icon" class="w-4 h-4" />
+                </a>
+              </Button>
+            </div>
+          </div>
+          
+          <!-- Image -->
+          <div 
+            class="flex-shrink-0"
+            :class="{ 'opacity-100 scale-100': imageLoaded, 'opacity-0 scale-95': !imageLoaded }"
+            style="transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1)"
+          >
+            <div class="relative group">
+              <div 
+                class="absolute inset-0 rounded-xl bg-gradient-to-br from-primary/10 to-primary/5 blur-lg group-hover:opacity-100 opacity-0 transition-opacity duration-700"
+              />
+              <NuxtImg
+                :src="props.desktopPictureUrl"
+                :alt="`${props.name}'s Profile Picture`"
+                width="220"
+                height="220"
+                format="webp"
+                quality="90"
+                class="rounded-xl shadow-md aspect-square object-cover w-[220px] relative z-10"
+                @load="handleImageLoad"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </Card>
+</template>

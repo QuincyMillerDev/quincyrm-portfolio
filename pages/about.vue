@@ -16,22 +16,15 @@ const images: ImageItem[] = [
   // Add more memories here
 ]
 
-interface TimelineItem {
-  year: string
-  title: string
-  description: string
-}
-const timelineItems: TimelineItem[] = [
-  { year: '2018', title: 'Started Coding', description: 'Began learning web development basics.' },
-  { year: '2020', title: 'Joined Tech Company', description: 'Worked as a frontend developer.' },
-  { year: '2022', title: 'Launched Portfolio', description: 'Built this Nuxt.js portfolio.' },
-  // Add more milestones here
-]
+const timelineItems = ref([
+  // The Timeline component will use mock data if this is empty
+])
+
 </script>
 
 <template>
   <div class="container mx-auto py-16 space-y-12">
-    <h1 class="text-4xl font-bold">About Me</h1>
+    <h1 class="text-2xl font-bold">About Me</h1>
     <ImageContainer :images="images" />
     <Timeline :items="timelineItems" />
   </div>

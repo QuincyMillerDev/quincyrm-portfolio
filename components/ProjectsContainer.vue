@@ -13,9 +13,9 @@ const props = defineProps<{
 </script>
 
 <template>
-  <section class="mt-16">
-    <h2 class="text-3xl font-bold mb-6">Projects</h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+  <section class="mt-12">
+    <h2 class="text-xl font-medium mb-4">Projects</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
       <ProjectCard
         v-for="project in props.projects"
         :key="project.title"
@@ -23,4 +23,4 @@ const props = defineProps<{
       />
     </div>
   </section>
-</template> 
+</template>

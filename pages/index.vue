@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import HeroInfo from '~/components/HeroInfo.vue'
+import ProfileContainer from '~/components/ProfileContainer.vue'
 import ProjectsContainer from '~/components/ProjectsContainer.vue'
-
 // Keep the data definition
 const name = "Quincy Miller"
-const pictureUrl = '/images/portrait.jpg'
-const subtitle = "Full-Stack Developer & AI Enthusiast"
+const desktopPictureUrl = '/images/portrait.jpg'
+const mobilePictureUrl = '/images/portrait_small.jpg'
+const subtitle = "Full-Stack Software Engineer"
 const descriptionMd = `
 Passionate about building modern web applications and exploring the potential of AI. 
 Currently focused on Nuxt.js, TypeScript, and integrating intelligent features.
@@ -33,14 +33,24 @@ const projects: Project[] = [
 </script>
 
 <template>
-  <div class="container mx-auto pt-24 sm:pt-32 pb-16">
-    <HeroInfo 
+  <div class="container mx-auto px-4 py-12 space-y-12">
+    <TypewriterHeader 
+      :text="`Hello, I'm Quincy Miller.`" 
+      class="text-xl md:text-2xl font-bold" 
+    />
+    
+    <ProfileContainer 
       :name="name" 
-      :picture-url="pictureUrl" 
+      :desktop-picture-url="desktopPictureUrl" 
+      :mobile-picture-url="mobilePictureUrl"
       :subtitle="subtitle"
       :description-md="descriptionMd"
       :links="links"
+      location="Coventry, CT"
     />
-    <ProjectsContainer :projects="projects" />
+    
+    <div>
+      <ProjectsContainer :projects="projects" />
+    </div>
   </div>
-</template> 
+</template>
