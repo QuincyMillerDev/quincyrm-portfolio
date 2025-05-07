@@ -31,6 +31,7 @@ const brandColorClasses: Record<string, string> = {
   'X.com': 'hover:text-black',
   Instagram: 'hover:text-[#E1306C]',
   Twitch: 'hover:text-[#9146FF]',
+  Email: 'hover:text-green-500'
 }
 
 // Animation states

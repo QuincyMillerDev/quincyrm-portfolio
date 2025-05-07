@@ -15,9 +15,7 @@ const props = defineProps<{ project: Project }>()
 </script>
 
 <template>
-  <Card class="group relative overflow-hidden transition-transform hover:translate-y-[-3px] hover:shadow-md border-border/50">
-    <!-- Subtle overlay effect -->
-    <div class="absolute inset-0 bg-gradient-to-tr from-transparent to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+  <Card class="group relative overflow-hidden transition-all duration-300 hover:shadow-md border-border/50 hover:ring-1 hover:ring-primary/20">
     <CardHeader class="relative z-10 p-5">
       <CardTitle class="text-base font-medium group-hover:text-primary transition-colors">{{ props.project.title }}</CardTitle>
       <CardDescription class="mt-2 text-sm text-muted-foreground">

@@ -40,7 +40,7 @@ const setHoveredSection = (section: string | null) => {
     </div>
     
     <div
-      class="transition-all duration-200 ease-out relative"
+      class="transition-all duration-300 ease-out relative"
       :class="{
         'scale-101 z-10': activeSection === 'images',
         'opacity-85 brightness-98 scale-99': activeSection !== null && activeSection !== 'images'
@@ -51,7 +51,7 @@ const setHoveredSection = (section: string | null) => {
       <ImageContainer :images="images" />
     </div>
     <div
-      class="transition-all duration-200 ease-out relative"
+      class="transition-all duration-300 ease-out relative"
       :class="{
         'scale-101 z-10': activeSection === 'timeline',
         'opacity-85 brightness-98 scale-99': activeSection !== null && activeSection !== 'timeline'
@@ -62,7 +62,7 @@ const setHoveredSection = (section: string | null) => {
       <Timeline :items="timelineItems" />
     </div>
     <div
-      class="transition-all duration-200 ease-out relative"
+      class="transition-all duration-300 ease-out relative"
       :class="{
         'scale-101 z-10': activeSection === 'hobbies',
         'opacity-85 brightness-98 scale-99': activeSection !== null && activeSection !== 'hobbies'

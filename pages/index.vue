@@ -13,11 +13,12 @@ Currently focused on Nuxt.js, TypeScript, and integrating intelligent features.
 `
 // Social links and icons
 const links = [
-  { name: 'GitHub', url: 'https://github.com/quincymillerdev', icon: 'simple-icons:github' },
-  { name: 'LinkedIn', url: 'https://linkedin.com/in/your-profile', icon: 'simple-icons:linkedin' },
-  { name: 'X.com', url: 'https://x.com/your-handle', icon: 'simple-icons:x' },
-  { name: 'Instagram', url: 'https://instagram.com/your-handle', icon: 'simple-icons:instagram' },
-  { name: 'Twitch', url: 'https://twitch.tv/your-handle', icon: 'simple-icons:twitch' },
+  { name: 'GitHub', url: 'https://github.com/quincymillerdev', icon: 'lucide:github' },
+  { name: 'LinkedIn', url: 'https://linkedin.com/in/your-profile', icon: 'lucide:linkedin' },
+  { name: 'X.com', url: 'https://x.com/your-handle', icon: 'lucide:x' },
+  { name: 'Instagram', url: 'https://instagram.com/your-handle', icon: 'lucide:instagram' },
+  { name: 'Twitch', url: 'https://twitch.tv/your-handle', icon: 'lucide:twitch' },
+  { name: 'Email', url: 'mailto:quincymiller6589@gmail.com', icon: 'lucide:mail' }
 ]
 
 // Projects data
@@ -47,7 +48,7 @@ const setHoveredSection = (section: string | null) => {
     />
     
     <div
-      class="transition-all duration-200 ease-out relative"
+      class="transition-all duration-300 ease-out relative"
       :class="{
         'scale-101 z-10': activeSection === 'profile',
         'opacity-85 brightness-98 scale-99': activeSection !== null && activeSection !== 'profile'
@@ -67,7 +68,7 @@ const setHoveredSection = (section: string | null) => {
     </div>
     
     <div
-      class="transition-all duration-200 ease-out relative"
+      class="transition-all duration-300 ease-out relative"
       :class="{
         'scale-101 z-10': activeSection === 'projects',
         'opacity-85 brightness-98 scale-99': activeSection !== null && activeSection !== 'projects'
