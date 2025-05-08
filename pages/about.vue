@@ -31,7 +31,7 @@ const timelineItems = ref<TimelineItemData[]>([
     title: 'Associate Software Engineer',
     company: 'UConn Digital Experience Group',
     location: 'Storrs, CT',
-    description: 'Lead the development of diverse full-stack applications. Turned client ideas into functional, responsive web applications.',
+    description: 'Lead the development of diverse full-stack applications. Turned client ideas into functional, responsive applications.',
     skills: ['Vue.js', 'TypeScript', 'Nuxt', 'Node.js', 'Docker', 'NGINX', 'MySQL'],
     type: 'work'
   },
