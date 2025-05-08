@@ -4,24 +4,11 @@ import { ref } from 'vue'
 import ImageContainer from '~/components/ImageContainer.vue'
 import Timeline from '~/components/Timeline.vue'
 import HobbiesContainer from '~/components/HobbiesContainer.vue'
+import type {TimelineItemData} from "~/types/timeline";
+import type {ImageItem} from "~/types/image";
+import type {Hobby} from "~/types/hobby"
 
-interface TimelineItemData {
-  year: string
-  title: string
-  company?: string
-  location?: string
-  description: string
-  skills?: string[]
-  type: 'work' | 'project' | 'education' | 'achievement'
-}
 
-interface ImageItem {
-  src: string
-  alt: string
-  shortDescription: string
-  location?: string
-  date?: string
-}
 const images: ImageItem[] = [
   { src: '/images/IMG_1625_VSCO.JPG', alt: 'Backcountry Skiing', shortDescription: 'I need to go backcountry skiing again.', location: 'Alta, UT', date: 'Jan 2025' },
   { src: '/images/IMG_1385.JPG', alt: 'Senior Design', shortDescription: 'UConn Computer Science Capstone, 3rd place!', location: 'Storrs, CT', date: 'April 2024' },
@@ -66,7 +53,7 @@ const timelineItems = ref<TimelineItemData[]>([
   }
 ])
 
-const hobbies = ref([
+const hobbies = ref<Hobby[]>([
 {
     id: 'fitness',
     name: 'Fitness & Nutrition',

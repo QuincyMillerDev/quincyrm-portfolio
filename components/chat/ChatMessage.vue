@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar'
 import { marked } from 'marked'
 import DOMPurify from 'dompurify'
 
@@ -35,11 +34,6 @@ const formattedTime = computed(() => {
     <!-- AI Message -->
     <template v-if="!isUser">
       <div class="flex max-w-[85%]">
-        <Avatar class="h-8 w-8 mr-2 mt-1 flex-shrink-0 opacity-80">
-          <AvatarImage src="/placeholder.svg?height=40&width=40" alt="AI Assistant" />
-          <AvatarFallback class="bg-primary/10 text-primary">AI</AvatarFallback>
-        </Avatar>
-        
         <div>
           <div 
             class="bg-muted/30 backdrop-blur-sm px-4 py-3 rounded-2xl rounded-tl-sm text-sm text-foreground"

@@ -1,14 +1,7 @@
 <script setup lang="ts">
 import { NuxtImg } from '#components'
 import { onMounted, ref } from 'vue'
-
-interface ImageItem {
-  src: string
-  alt: string
-  shortDescription: string
-  location?: string
-  date?: string
-}
+import type {ImageItem} from "~/types/image";
 
 const props = defineProps<{ 
   images: ImageItem[],

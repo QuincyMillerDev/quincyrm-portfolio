@@ -1,25 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import HobbyItem from './HobbyItem.vue'
-
-interface HobbyStats {
-  label: string
-  value: string
-  icon?: string
-}
-
-interface Hobby {
-  id: string
-  name: string
-  icon: string
-  description: string
-  stats?: HobbyStats[]
-  color: string
-  link?: {
-    url: string
-    label: string
-  }
-}
+import type {Hobby} from "~/types/hobby";
 
 const props = defineProps<{
   hobbies: Hobby[]
