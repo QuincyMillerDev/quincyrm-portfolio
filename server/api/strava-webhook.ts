@@ -1,7 +1,6 @@
 // server/api/strava-webhook.ts
 import { defineEventHandler, getQuery, type H3Event } from "h3";
 
-// TODO: Learn more about how this works, create the token
 const STRAVA_VERIFY_TOKEN = process.env.STRAVA_VERIFY_TOKEN;
 
 interface StravaWebhookEventPayload {
