@@ -2,18 +2,9 @@
 import { ref, onMounted } from 'vue'
 // import { Icon } from '@iconify/vue' // Removed as it's no longer used directly here
 import TimelineItem from './TimelineItem.vue'
+import type { TimelineItemData, TypeConfigMap, SkillColorMap } from '@/types/timeline'
 
 defineOptions({ name: 'AboutTimeline' })
-
-interface TimelineItemData {
-  year: string
-  title: string
-  company?: string
-  location?: string
-  description: string
-  skills?: string[]
-  type: 'work' | 'education' | 'project' | 'achievement'
-}
 
 const props = defineProps<{ items: TimelineItemData[] }>()
 
@@ -27,7 +18,7 @@ onMounted(() => {
 })
 
 // Type-specific icons and colors
-const typeConfig: Record<string, { icon: string; color: string; border: string }> = {
+const typeConfig: TypeConfigMap = {
   work: {
     icon: 'lucide:briefcase',
     color: 'bg-primary/10 text-primary',
@@ -53,17 +44,21 @@ const typeConfig: Record<string, { icon: string; color: string; border: string }
 const timelineItems: TimelineItemData[] = props.items?.length ? props.items : []
 
 // Color mapping for skills
-const skillColorMap: Record<string, { bg: string; text: string; border: string }> = {
-  'vue.js': { bg: 'bg-emerald-500/10', text: 'text-emerald-600', border: 'border-emerald-500/30' },
-  'typescript': { bg: 'bg-blue-500/10', text: 'text-blue-600', border: 'border-blue-500/30' },
-  'aws': { bg: 'bg-orange-500/10', text: 'text-orange-600', border: 'border-orange-500/30' },
-  'ci/cd': { bg: 'bg-indigo-500/10', text: 'text-indigo-600', border: 'border-indigo-500/30' },
-  'react': { bg: 'bg-sky-500/10', text: 'text-sky-600', border: 'border-sky-500/30' },
-  'javascript': { bg: 'bg-yellow-400/10', text: 'text-yellow-600', border: 'border-yellow-400/30' },
-  'css': { bg: 'bg-cyan-500/10', text: 'text-cyan-600', border: 'border-cyan-500/30' },
-  'design systems': { bg: 'bg-pink-500/10', text: 'text-pink-600', border: 'border-pink-500/30' },
-  'nuxt.js': { bg: 'bg-green-500/10', text: 'text-green-600', border: 'border-green-500/30' },
+const skillColorMap: SkillColorMap = {
   'python': { bg: 'bg-teal-500/10', text: 'text-teal-600', border: 'border-teal-500/30' },
+  'typescript': { bg: 'bg-blue-500/10', text: 'text-blue-600', border: 'border-blue-500/30' },
+  'ci/cd': { bg: 'bg-indigo-500/10', text: 'text-indigo-600', border: 'border-indigo-500/30' },
+  'vue.js': { bg: 'bg-emerald-500/10', text: 'text-emerald-600', border: 'border-emerald-500/30' },
+  'nuxt': { bg: 'bg-green-500/10', text: 'text-green-600', border: 'border-green-500/30' },
+  'azure': { bg: 'bg-sky-600/10', text: 'text-sky-700', border: 'border-sky-600/30' },
+  'angular': { bg: 'bg-red-500/10', text: 'text-red-600', border: 'border-red-500/30' },
+  'c#': { bg: 'bg-purple-500/10', text: 'text-purple-600', border: 'border-purple-500/30' },
+  'databricks': { bg: 'bg-orange-400/10', text: 'text-orange-500', border: 'border-orange-400/30' },
+  'postgresql': { bg: 'bg-blue-700/10', text: 'text-blue-800', border: 'border-blue-700/30' },
+  'node.js': { bg: 'bg-lime-500/10', text: 'text-lime-600', border: 'border-lime-500/30' },
+  'docker': { bg: 'bg-cyan-400/10', text: 'text-cyan-500', border: 'border-cyan-400/30' },
+  'nginx': { bg: 'bg-emerald-700/10', text: 'text-emerald-800', border: 'border-emerald-700/30' },
+  'mysql': { bg: 'bg-indigo-400/10', text: 'text-indigo-500', border: 'border-indigo-400/30' },
   'default': { bg: 'bg-slate-500/10', text: 'text-slate-600', border: 'border-slate-500/30' }
 };
 

@@ -1,0 +1,20 @@
+export interface HobbyStats {
+  label: string
+  value: string
+  icon?: string
+}
+
+export interface HobbyLink {
+  url: string
+  label: string
+}
+
+export interface Hobby {
+  id: string
+  name: string
+  icon: string
+  description: string
+  stats?: HobbyStats[]
+  color: string
+  link?: HobbyLink
+} 

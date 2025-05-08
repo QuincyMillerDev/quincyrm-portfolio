@@ -1,41 +1,16 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
 import { computed } from 'vue'
-
-// Define the structure for a single timeline item (consistent with original Timeline.vue)
-interface TimelineItemData {
-  year: string
-  title: string
-  company?: string
-  location?: string
-  description: string
-  skills?: string[]
-  type: 'work' | 'education' | 'project' | 'achievement'
-}
-
-// Define the structure for type-specific configurations
-interface TypeConfig {
-  icon: string
-  color: string
-  border: string
-}
-
-// Define the structure for skill color configurations
-interface SkillColorConfig {
-  bg: string
-  text: string
-  border: string
-}
+import type { TimelineItemData, TypeConfig, SkillColorConfig } from '@/types/timeline'
 
 const props = defineProps<{
   item: TimelineItemData
-  typeConfig: Record<string, TypeConfig> // Passed from parent
-  getSkillColors: (skillName: string) => SkillColorConfig // Passed from parent
-  isVisible: boolean // For entry animation
-  animationDelay: string // For staggered entry animation, e.g., "100ms"
+  typeConfig: Record<string, TypeConfig>
+  getSkillColors: (skillName: string) => SkillColorConfig
+  isVisible: boolean
+  animationDelay: string
 }>()
 
-// const isHovered = ref(false); // Removed: No longer needed for this hover effect
 
 // Helper to safely access type configuration
 const currentTypeConfig = computed(() => {

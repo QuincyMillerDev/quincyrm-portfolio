@@ -14,10 +14,10 @@ Currently focused on Nuxt.js, TypeScript, and integrating intelligent features.
 // Social links and icons
 const links = [
   { name: 'GitHub', url: 'https://github.com/quincymillerdev', icon: 'lucide:github' },
-  { name: 'LinkedIn', url: 'https://linkedin.com/in/your-profile', icon: 'lucide:linkedin' },
-  { name: 'X.com', url: 'https://x.com/your-handle', icon: 'lucide:x' },
-  { name: 'Instagram', url: 'https://instagram.com/your-handle', icon: 'lucide:instagram' },
-  { name: 'Twitch', url: 'https://twitch.tv/your-handle', icon: 'lucide:twitch' },
+  { name: 'LinkedIn', url: 'https://www.linkedin.com/in/qrm111/', icon: 'lucide:linkedin' },
+  { name: 'X.com', url: 'https://x.com/_quincyrm/', icon: 'lucide:x' },
+  { name: 'Instagram', url: 'https://www.instagram.com/quincy._miller/', icon: 'lucide:instagram' },
+  { name: 'Twitch', url: 'https://www.twitch.tv/cooliobeans', icon: 'lucide:twitch' },
   { name: 'Email', url: 'mailto:quincymiller6589@gmail.com', icon: 'lucide:mail' }
 ]
 

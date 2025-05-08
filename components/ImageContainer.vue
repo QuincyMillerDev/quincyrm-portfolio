@@ -123,7 +123,6 @@ onMounted(() => {
                     <span v-if="image.location && image.date"> &middot; </span>
                     <span v-if="image.date">{{ image.date }}</span>
                   </p>
-                  <span class="absolute bottom-0 left-0 h-[2px] w-0 bg-primary/70 group-hover:w-full transition-all duration-500 ease-out-expo" style="transition-delay: 200ms;" />
                 </div>
               </div>
               

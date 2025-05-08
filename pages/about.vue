@@ -61,7 +61,7 @@ const timelineItems = ref<TimelineItemData[]>([
     title: 'Software Engineering Intern',
     company: 'Hubbell Inc.',
     location: 'Avon, CT',
-    description: 'Worked in an agile environment over consecutive summer internships to deliver a product to the market.',
+    description: 'Worked in an agile environment over two consecutive summer internships.',
     type: 'work'
   }
 ])
@@ -71,63 +71,46 @@ const hobbies = ref([
     id: 'fitness',
     name: 'Fitness & Nutrition',
     icon: 'lucide:dumbbell',
-    description: 'Dedicated to maintaining a balanced lifestyle through regular strength training, cardio, and mindful nutrition. I track my workouts and nutrition to continuously improve my fitness level.',
+    description: 'I am a data nerd, so I track everything.',
     stats: [
       { label: 'Weekly Workouts', value: '5', icon: 'lucide:activity' },
       { label: 'Running', value: '15 mi/week', icon: 'lucide:timer' },
       { label: 'Strength Training', value: '3x week', icon: 'lucide:weight' }
     ],
     color: 'emerald',
-    link: {
-      url: '#',
-      label: 'Strava Profile'
-    }
   },
   {
     id: 'skiing',
-    name: 'Backcountry Skiing',
+    name: 'Skiing',
     icon: 'lucide:mountain-snow',
-    description: 'Passionate about exploring remote mountain terrain on skis. I prioritize avalanche safety education and enjoy the solitude and beauty of winter backcountry.',
+    description: 'I actually do touch grass (snow) believe it or not. ',
     stats: [
-      { label: 'Seasons', value: '8+', icon: 'lucide:calendar' },
-      { label: 'Vertical Feet', value: '50K+/season', icon: 'lucide:arrow-up' },
-      { label: 'Favorite Terrain', value: 'Alpine', icon: 'lucide:mountain' }
+      { label: 'Seasons', value: '12+', icon: 'lucide:calendar' },
+      { label: 'Favorite Mountain', value: 'Snowbird, UT', icon: 'lucide:mountain' }
     ],
     color: 'sky',
-    link: {
-      url: '#',
-      label: 'Trip Reports'
-    }
   },
   {
     id: 'finance',
     name: 'Personal Finance',
     icon: 'lucide:bar-chart-2',
-    description: 'Interested in financial independence and long-term investing strategies. I enjoy analyzing market trends and optimizing personal financial systems.',
+    description: 'Like I said, I track <em>everything</em>.',
     stats: [
       { label: 'Investment Style', value: 'Long-term', icon: 'lucide:trending-up' },
-      { label: 'Focus Areas', value: 'Index Funds, Real Estate', icon: 'lucide:landmark' }
+      { label: 'Focus Areas', value: 'Index Funds, Crypto, Real Estate?', icon: 'lucide:landmark' }
     ],
     color: 'amber',
-    link: {
-      url: '#',
-      label: 'Resources'
-    }
   },
   {
     id: 'content',
     name: 'Content Creation',
     icon: 'lucide:video',
-    description: 'Creating educational content about technology and software development. I enjoy sharing knowledge and building a community around technical topics.',
+    description: 'I used to stream during the pandemic, maybe I\'ll get back into it.',
     stats: [
-      { label: 'Medium', value: 'Video & Writing', icon: 'lucide:pen-tool' },
-      { label: 'Topics', value: 'Web Dev, AI, Design', icon: 'lucide:layers' }
+      { label: 'Medium', value: 'Twitch & TikTok', icon: 'lucide:pen-tool' },
+      { label: 'Topics', value: 'Gaming, Tech, Life', icon: 'lucide:layers' }
     ],
     color: 'violet',
-    link: {
-      url: '#',
-      label: 'View Content'
-    }
   }
 ])
 
