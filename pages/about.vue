@@ -103,7 +103,6 @@ const baseHobbies = ref<Hobby[]>([
 
 // Computed property to merge base hobbies with dynamic fitness stats from Pinia
 const hobbies = computed(() => {
-  console.log('Computed hobbies running. Fitness stats:', JSON.parse(JSON.stringify(stravaStore.fitnessStats))); // Log the stats
   return baseHobbies.value.map(hobby => {
     if (hobby.id === 'fitness') {
       // Replace the stats for the fitness hobby with the ones from the store
