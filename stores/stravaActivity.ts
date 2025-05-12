@@ -1,23 +1,7 @@
 import { defineStore } from 'pinia';
 import type { HobbyStats } from '~/types/hobby';
+import type { StravaAthleteStats } from '~/types/strava';
 
-// Define the structure matching the /athletes/{id}/stats endpoint response
-// This is the data that will be stored in KV and fetched by this store
-interface StravaAthleteStats {
-  ytd_ride_totals: StravaTotals;
-  ytd_run_totals: StravaTotals;
-  // Add other fields like all_ride_totals, recent_run_totals if needed
-}
-
-interface StravaTotals {
-  count: number;
-  distance: number; // meters
-  moving_time: number; // seconds
-  elapsed_time: number; // seconds
-  elevation_gain: number; // meters
-}
-
-// Updated state interface
 interface StravaActivityState {
   athleteStats: StravaAthleteStats | null; 
   isLoading: boolean;
@@ -27,14 +11,6 @@ interface StravaActivityState {
 // Helper type predicate remains the same
 function isFetchError(error: unknown): error is { response?: { status: number; data?: { error?: string } }; message: string } {
   return typeof error === 'object' && error !== null && 'message' in error;
-}
-
-// Helper function to format time from seconds to H:MM
-function formatSecondsToHoursMinutes(seconds: number): string {
-  if (isNaN(seconds) || seconds < 0) return '0:00';
-  const hours = Math.floor(seconds / 3600);
-  const minutes = Math.floor((seconds % 3600) / 60);
-  return `${hours}:${minutes.toString().padStart(2, '0')}`;
 }
 
 export const useStravaActivityStore = defineStore('stravaActivity', {
@@ -55,28 +31,29 @@ export const useStravaActivityStore = defineStore('stravaActivity', {
         const stats = state.athleteStats;
         const statsArray: HobbyStats[] = [];
 
+        // Conversion factor from meters to miles
+        const metersToMiles = 0.000621371;
+
+        // YTD Run Totals
         if (stats.ytd_run_totals && stats.ytd_run_totals.count > 0) {
-          const distanceKm = (stats.ytd_run_totals.distance / 1000).toFixed(1);
-          const timeFormatted = formatSecondsToHoursMinutes(stats.ytd_run_totals.moving_time);
+          const distanceMiles = (stats.ytd_run_totals.distance * metersToMiles).toFixed(1);
           statsArray.push({
-            label: 'YTD Run',
-            value: `${distanceKm}km / ${timeFormatted} / ${stats.ytd_run_totals.count} runs`,
-            icon: 'lucide:trending-up',
+            label: 'YTD Runs',
+            value: `${distanceMiles}mi / ${stats.ytd_run_totals.count} runs`,
+            icon: 'material-symbols:directions-run-rounded', // Updated Icon
           });
         } else {
            statsArray.push({ label: 'YTD Run', value: 'No runs yet', icon: 'lucide:calendar-off' });
         }
 
-        if (stats.ytd_ride_totals && stats.ytd_ride_totals.count > 0) {
-          const distanceKm = (stats.ytd_ride_totals.distance / 1000).toFixed(1);
-          const timeFormatted = formatSecondsToHoursMinutes(stats.ytd_ride_totals.moving_time);
+        // All Time Run Totals
+        if (stats.all_run_totals && stats.all_run_totals.count > 0) {
+          const distanceMiles = (stats.all_run_totals.distance * metersToMiles).toFixed(1);
           statsArray.push({
-            label: 'YTD Ride',
-            value: `${distanceKm}km / ${timeFormatted} / ${stats.ytd_ride_totals.count} rides`,
-            icon: 'lucide:bike',
+            label: 'All Time Runs',
+            value: `${distanceMiles}mi / ${stats.all_run_totals.count} runs`,
+            icon: 'material-symbols:history-rounded', // Example icon
           });
-        } else {
-          statsArray.push({ label: 'YTD Ride', value: 'No rides yet', icon: 'lucide:calendar-off' });
         }
         return statsArray;
       }

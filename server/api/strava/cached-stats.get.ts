@@ -1,21 +1,9 @@
 import { defineEventHandler } from 'h3';
 import { kv } from '@vercel/kv';
+import type { StravaAthleteStats } from '~/types/strava';
 
 // Key for storing stats data in KV
 const getKvStatsKey = (ownerId: string) => `strava:stats:${ownerId}`;
-
-// Reuse the interface from the update job (or define in a shared types file)
-interface StravaAthleteStats {
-  ytd_ride_totals: StravaTotals;
-  ytd_run_totals: StravaTotals;
-}
-interface StravaTotals {
-  count: number;
-  distance: number;
-  moving_time: number;
-  elapsed_time: number;
-  elevation_gain: number;
-}
 
 export default defineEventHandler(async (event) => {
   const ownerId = process.env.MY_STRAVA_OWNER_ID;

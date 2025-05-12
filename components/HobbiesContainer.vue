@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import HobbyItem from './HobbyItem.vue'
 import type {Hobby} from "~/types/hobby";
 
@@ -26,7 +26,9 @@ const handleToggleActive = (id: string) => {
 }
 
 // Use provided hobbies or sample data
-const displayHobbies = props.hobbies?.length ? props.hobbies : []
+// const displayHobbies = props.hobbies?.length ? props.hobbies : []
+// Use computed for better reactivity with props
+const displayHobbies = computed(() => props.hobbies || [])
 </script>
 
 <template>

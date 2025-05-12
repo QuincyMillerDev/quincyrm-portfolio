@@ -1,5 +1,6 @@
 import { defineEventHandler, getHeader, setResponseStatus } from 'h3';
 import { kv } from '@vercel/kv';
+import type { StravaAthleteStats, StravaErrorResponse, StravaTokenResponse } from '~/types/strava';
 
 // Key for storing token data in KV
 const KV_TOKEN_KEY = 'strava:tokenData';
@@ -12,33 +13,8 @@ interface StoredTokenData {
   expiresAt: number; // Expiry timestamp (seconds since epoch)
 }
 
-// Interface for a potential error response from Strava OAuth/API
-interface StravaErrorResponse {
-  message: string;
-  errors: Array<{ resource: string; field: string; code: string }>;
-}
 
-// Interface for a successful token refresh response
-interface StravaTokenResponse {
-  access_token: string;
-  expires_at: number;
-  refresh_token: string;
-  // Other fields like token_type might exist but aren't used here
-}
 
-interface StravaAthleteStats {
-  ytd_ride_totals: StravaTotals;
-  ytd_run_totals: StravaTotals;
-  // Add other fields if needed
-}
-
-interface StravaTotals {
-  count: number;
-  distance: number;
-  moving_time: number;
-  elapsed_time: number;
-  elevation_gain: number;
-}
 
 // Type guard to check if an object is a StravaErrorResponse
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -156,8 +132,8 @@ export default defineEventHandler(async (event) => { // Use event parameter now
     const statsData = statsResponse as StravaAthleteStats;
 
     // Add a basic check to ensure the expected data structure is present
-    if (!statsData || !statsData.ytd_run_totals || !statsData.ytd_ride_totals) {
-       throw new Error(`Strava stats API error: Invalid or incomplete stats data received - ${JSON.stringify(statsData)}`);
+    if (!statsData || !statsData.ytd_run_totals || !statsData.recent_run_totals || !statsData.all_run_totals) {
+       throw new Error(`Strava stats API error: Invalid or incomplete run stats data received - ${JSON.stringify(statsData)}`);
     }
 
     const kvStatsKey = getKvStatsKey(ownerId);
