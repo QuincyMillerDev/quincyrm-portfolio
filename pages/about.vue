@@ -1,13 +1,16 @@
 <script setup lang="ts">
 // About page
-import { ref } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import ImageContainer from '~/components/ImageContainer.vue'
 import Timeline from '~/components/Timeline.vue'
 import HobbiesContainer from '~/components/HobbiesContainer.vue'
 import type {TimelineItemData} from "~/types/timeline";
 import type {ImageItem} from "~/types/image";
 import type {Hobby} from "~/types/hobby"
+import { useStravaActivityStore } from '~/stores/stravaActivity';
 
+// Initialize the store
+const stravaStore = useStravaActivityStore();
 
 const images: ImageItem[] = [
   { src: '/images/IMG_1625_VSCO.JPG', alt: 'Backcountry Skiing', shortDescription: 'I need to go backcountry skiing again.', location: 'Alta, UT', date: 'Jan 2025' },
@@ -19,7 +22,7 @@ const images: ImageItem[] = [
 const timelineItems = ref<TimelineItemData[]>([
 {
     year: '2024 - Now',
-    title: 'Software Engineer',
+    title: 'Full-Stack Software Engineer',
     company: 'Hubbell Inc.',
     location: 'Avon, CT',
     description: 'Working on enterprise products in Hubbell\'s high risk, high reward division.',
@@ -53,17 +56,14 @@ const timelineItems = ref<TimelineItemData[]>([
   }
 ])
 
-const hobbies = ref<Hobby[]>([
+// Initial hobbies data (without fitness stats)
+const baseHobbies = ref<Hobby[]>([
 {
     id: 'fitness',
     name: 'Fitness & Nutrition',
     icon: 'lucide:dumbbell',
     description: 'I am a data nerd, so I track everything.',
-    stats: [
-      { label: 'Weekly Workouts', value: '5', icon: 'lucide:activity' },
-      { label: 'Running', value: '15 mi/week', icon: 'lucide:timer' },
-      { label: 'Strength Training', value: '3x week', icon: 'lucide:weight' }
-    ],
+    stats: [], // Stats will come from Pinia store via computed property
     color: 'emerald',
   },
   {
@@ -84,7 +84,7 @@ const hobbies = ref<Hobby[]>([
     description: 'Like I said, I track <em>everything</em>.',
     stats: [
       { label: 'Investment Style', value: 'Long-term', icon: 'lucide:trending-up' },
-      { label: 'Focus Areas', value: 'Index Funds, Crypto, Real Estate?', icon: 'lucide:landmark' }
+      { label: 'Focus Areas', value: 'Index Funds, Stocks, Real Estate?', icon: 'lucide:landmark' }
     ],
     color: 'amber',
   },
@@ -101,11 +101,31 @@ const hobbies = ref<Hobby[]>([
   }
 ])
 
+// Computed property to merge base hobbies with dynamic fitness stats from Pinia
+const hobbies = computed(() => {
+  return baseHobbies.value.map(hobby => {
+    if (hobby.id === 'fitness') {
+      // Replace the stats for the fitness hobby with the ones from the store
+      return { ...hobby, stats: stravaStore.fitnessStats };
+    }
+    return hobby;
+  });
+});
+
 const activeSection = ref<string | null>(null)
 
 const setHoveredSection = (section: string | null) => {
   activeSection.value = section
 }
+
+// Fetch latest activity data via Pinia store action when the component mounts
+onMounted(() => {
+  stravaStore.fetchAthleteStats();
+  // Optional: Set up polling or refetch on window focus for more frequent updates
+  // Consider if polling is necessary or if webhook updates + initial fetch are sufficient
+  // Example: Poll every 5 minutes
+  // setInterval(() => stravaStore.fetchAthleteStats(), 5 * 60 * 1000);
+});
 </script>
 
 <template>

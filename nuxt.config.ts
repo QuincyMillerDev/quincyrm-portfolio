@@ -10,6 +10,15 @@ export default defineNuxtConfig({
     plugins: [
       tailwindcss(),
     ],
+    server: {
+      hmr: {
+        protocol: 'wss',
+        host: 'localhost',
+      },
+      allowedHosts: [
+        '4d73-32-216-125-127.ngrok-free.app'
+      ],
+    },
   },
 
   modules: [

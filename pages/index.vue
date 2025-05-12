@@ -8,8 +8,7 @@ const desktopPictureUrl = '/images/portrait.jpg'
 const mobilePictureUrl = '/images/portrait_small.jpg'
 const subtitle = "Full-Stack Software Engineer"
 const descriptionMd = `
-Passionate about building modern web applications and exploring the potential of AI. 
-Currently focused on Nuxt.js, TypeScript, and integrating intelligent features.
+Just a guy who is seriously passionate about exploring the potential of emerging technologies such as GenAI. With an established foundation, I'm looking for ways to dive deep and make a real impact.
 `
 // Social links and icons
 const links = [

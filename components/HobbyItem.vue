@@ -62,21 +62,46 @@ const handleClick = () => {
       >
         <div
           v-for="stat in hobby.stats"
-          :key="`${hobby.id}-${stat.label}`"
+          :key="stat.label"
           class="flex items-center"
         >
           <div class="w-6 h-6 flex items-center justify-center mr-2 opacity-70">
-            <Icon :icon="stat.icon || 'lucide:activity'" class="w-4 h-4" />
+            <Icon v-if="stat.icon" :icon="stat.icon" class="w-4 h-4" />
           </div>
           <div>
             <div class="text-xs text-muted-foreground">{{ stat.label }}</div>
-            <div class="text-sm font-medium">{{ stat.value }}</div>
+            <template v-if="stat.url">
+              <a
+                :href="stat.url"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-sm font-medium text-muted-foreground hover:text-orange-500 hover:underline transition-colors duration-150 truncate"
+              >
+                {{ stat.value }}
+              </a>
+            </template>
+            <template v-else>
+              <div class="text-sm font-medium">{{ stat.value }}</div>
+            </template>
           </div>
         </div>
       </div>
 
-      <!-- Link -->
-      <div v-if="hobby.link" class="mt-auto">
+      <!-- Specific Link for Fitness Hobby -->
+      <div v-if="hobby.id === 'fitness'" class="text-right -mt-2 mb-4 mr-1"> 
+          <a 
+            href="https://www.strava.com/athletes/144953166"
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="text-xs text-muted-foreground hover:text-orange-500 hover:underline transition-colors duration-150 flex items-center justify-end"
+          >
+            Data Source: Strava
+            <Icon icon="lucide:external-link" class="w-3 h-3 ml-1" />
+          </a>
+      </div>
+
+      <!-- Generic Hobby Link (if defined in hobby data) -->
+      <div v-if="hobby.link" class="mt-auto"> 
         <Button
           variant="ghost"
           size="sm"
