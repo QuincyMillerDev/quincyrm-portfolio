@@ -58,13 +58,14 @@ const timelineItems = ref<TimelineItemData[]>([
 
 // Initial hobbies data (without fitness stats)
 const baseHobbies = ref<Hobby[]>([
-{
+  {
     id: 'fitness',
     name: 'Fitness & Nutrition',
     icon: 'lucide:dumbbell',
     description: 'I track everything.',
     stats: [], // Stats will come from Pinia store via computed property
     colorHue: 150,
+    accentColorHex: '#4CAF50'
   },
   {
     id: 'skiing',
@@ -76,6 +77,7 @@ const baseHobbies = ref<Hobby[]>([
       { label: 'Favorite Mountain', value: 'Snowbird, UT', icon: 'lucide:mountain' }
     ],
     colorHue: 200,
+    accentColorHex: '#00BCD4'
   },
   {
     id: 'finance',
@@ -87,6 +89,7 @@ const baseHobbies = ref<Hobby[]>([
       { label: 'Focus Areas', value: 'Index Funds, Stocks, Real Estate?', icon: 'lucide:landmark' }
     ],
     colorHue: 40,
+    accentColorHex: '#FFC107'
   },
   {
     id: 'content',
@@ -98,6 +101,7 @@ const baseHobbies = ref<Hobby[]>([
       { label: 'Topics', value: 'Gaming, Tech, Life', icon: 'lucide:layers' }
     ],
     colorHue: 270,
+    accentColorHex: '#9C27B0'
   }
 ])
 

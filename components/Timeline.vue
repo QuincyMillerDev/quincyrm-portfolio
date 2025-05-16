@@ -23,25 +23,29 @@ const typeConfig: TypeConfigMap = {
     icon: 'lucide:briefcase',
     color: 'bg-primary/10 text-primary',
     border: 'border-primary/20',
-    accentHue: 210 // Primary (blueish)
+    accentHue: 210,
+    accentColorHex: '#3B82F6'
   },
   education: {
     icon: 'lucide:graduation-cap',
     color: 'bg-amber-500/10 text-amber-500',
     border: 'border-amber-500/20',
-    accentHue: 36 // Amber
+    accentHue: 36,
+    accentColorHex: '#F59E0B'
   },
   project: {
     icon: 'lucide:code',
     color: 'bg-emerald-500/10 text-emerald-500',
     border: 'border-emerald-500/20',
-    accentHue: 145 // Emerald
+    accentHue: 145,
+    accentColorHex: '#10B981'
   },
   achievement: {
     icon: 'lucide:award',
     color: 'bg-violet-500/10 text-violet-500',
     border: 'border-violet-500/20',
-    accentHue: 262 // Violet
+    accentHue: 262,
+    accentColorHex: '#8B5CF6'
   }
 };
 

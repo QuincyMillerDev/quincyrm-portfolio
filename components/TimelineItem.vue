@@ -14,8 +14,25 @@ const props = defineProps<{
 
 // Helper to safely access type configuration
 const currentTypeConfig = computed(() => {
-  return props.typeConfig[props.item.type] || { icon: 'lucide:help-circle', color: 'bg-slate-500/10 text-slate-500', border: 'border-slate-500/20', accentHue: 240 };
+  return props.typeConfig[props.item.type] || { 
+    icon: 'lucide:help-circle', 
+    color: 'bg-slate-500/10 text-slate-500', 
+    border: 'border-slate-500/20', 
+    accentHue: 240, 
+    accentColorHex: '#888888' // Default hex if not provided
+  };
 });
+
+const currentAccentHex = computed(() => currentTypeConfig.value.accentColorHex || '#888888');
+
+// Style object to set the CSS custom property
+const itemStyle = computed(() => ({
+  '--item-accent-color': currentAccentHex.value
+}));
+
+// Classes now reference the CSS custom property
+const cardRingClass = 'group-hover:ring-[var(--item-accent-color)]/30';
+const titleHoverColorClass = 'group-hover:text-[var(--item-accent-color)]';
 
 </script>
 
@@ -23,10 +40,12 @@ const currentTypeConfig = computed(() => {
   <div
     class="relative pl-10 group"
     :class="{ 'translate-y-0 opacity-100': isVisible, 'translate-y-4 opacity-0': !isVisible }"
-    :style="{ 
-      transition: `all 0.5s ease-out ${animationDelay}`,
-      '--timeline-accent-hue': currentTypeConfig.accentHue + 'deg'
-    }"
+    :style="[
+      {
+        transition: `all 0.5s ease-out ${animationDelay}`,
+      },
+      itemStyle // Apply the CSS custom property here
+    ]"
   >
     <!-- Timeline dot with icon -->
     <div
@@ -42,13 +61,13 @@ const currentTypeConfig = computed(() => {
     <!-- Content card -->
     <div
       class="bg-background/50 backdrop-blur-sm rounded-lg overflow-hidden transition-all duration-200 group-hover:shadow-md group-hover:ring-1 border border-border/40"
-      :class="[`group-hover:ring-[hsl(var(--timeline-accent-hue)_70%_55%_/_0.3)]`]"
+      :class="[cardRingClass]"
     >
       <!-- Header section -->
       <div class="p-4 pb-0">
         <h3 
           class="text-base font-medium transition-colors duration-300"
-          :class="[`group-hover:text-[hsl(var(--timeline-accent-hue)_80%_60%)]`]"
+          :class="[titleHoverColorClass]"
         >
           {{ item.title }}
         </h3>

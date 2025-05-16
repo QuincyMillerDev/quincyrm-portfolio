@@ -2,6 +2,7 @@
 import { Icon } from '@iconify/vue'
 import { Button } from '@/components/ui/button'
 import type { Hobby } from '@/types/hobby'
+import { computed } from 'vue';
 
 const props = defineProps<{
   hobby: Hobby
@@ -17,38 +18,64 @@ const emit = defineEmits<{
 const handleClick = () => {
   emit('toggle-active', props.hobby.id)
 }
+
+const currentAccentHex = computed(() => props.hobby.accentColorHex || '#888888'); // Default hex
+
+// Style object to set the CSS custom property
+const itemStyle = computed(() => ({
+  '--item-accent-color': currentAccentHex.value
+}));
+
+// Classes now reference the CSS custom property
+const cardRingClass = 'group-hover:ring-[var(--item-accent-color)]/30';
+const iconContainerBgClass = 'bg-[var(--item-accent-color)]/10';
+const iconContainerTextColorClass = 'text-[var(--item-accent-color)]';
+const iconContainerHoverBgClass = 'group-hover:bg-[var(--item-accent-color)]/20';
+const iconContainerHoverTextColorClass = 'group-hover:text-[var(--item-accent-color)]';
+const titleHoverColorClass = 'group-hover:text-[var(--item-accent-color)]';
+const buttonTextColorClass = 'text-[var(--item-accent-color)]';
+const buttonHoverBgClass = 'hover:bg-[var(--item-accent-color)]/10';
+const buttonHoverTextColorClass = 'hover:text-[var(--item-accent-color)]';
+
 </script>
 
 <template>
   <div
     class="group block h-full"
-    :style="{
-      transition: `all 0.3s ease-out ${animationDelay}`,
-      transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
-      opacity: isVisible ? 1 : 0
-    }"
+    :style="[
+      {
+        transition: `all 0.3s ease-out ${animationDelay}`,
+        transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
+        opacity: isVisible ? 1 : 0
+      },
+      itemStyle // Apply the CSS custom property here
+    ]"
     @click="handleClick"
   >
     <div
       class="relative bg-background/50 backdrop-blur-sm rounded-lg border border-border/40 overflow-hidden transition-all duration-200 hover:shadow-md group-hover:ring-1 h-full flex flex-col"
       :class="[
         isActive ? 'shadow-md' : '',
-        `group-hover:ring-[hsl(var(--hobby-accent-hue)_70%_55%_/_0.3)]`
+        cardRingClass
       ]"
-      :style="{
-        '--hobby-accent-hue': props.hobby.colorHue + 'deg'
-      }"
     >
       <div class="p-5 flex-grow flex flex-col">
         <!-- Header with icon -->
         <div class="flex items-center mb-3">
           <div
-            class="w-8 h-8 rounded-full flex items-center justify-center mr-3 transition-all duration-300 group-hover:scale-105 bg-[hsl(var(--hobby-accent-hue),_70%,_50%,_0.1)] text-[hsl(var(--hobby-accent-hue),_80%,_60%)] group-hover:bg-[hsl(var(--hobby-accent-hue),_70%,_50%,_0.2)] group-hover:text-[hsl(var(--hobby-accent-hue),_85%,_65%)]"
+            class="w-8 h-8 rounded-full flex items-center justify-center mr-3 transition-all duration-300 group-hover:scale-105"
+            :class="[
+              iconContainerBgClass, 
+              iconContainerTextColorClass, 
+              iconContainerHoverBgClass, 
+              iconContainerHoverTextColorClass
+            ]"
           >
             <Icon :icon="hobby.icon" class="w-4 h-4 transition-transform duration-300 group-hover:scale-110" />
           </div>
           <h3
-            class="text-base font-medium transition-colors duration-300 group-hover:text-[hsl(var(--hobby-accent-hue),_80%,_60%)]"
+            class="text-base font-medium transition-colors duration-300"
+            :class="[titleHoverColorClass]"
           >
             {{ hobby.name }}
           </h3>
@@ -108,7 +135,8 @@ const handleClick = () => {
           <Button
             variant="ghost"
             size="sm"
-            class="text-xs px-3 py-1 h-auto transition-colors duration-300 text-[hsl(var(--hobby-accent-hue),_75%,_55%)] hover:bg-[hsl(var(--hobby-accent-hue),_70%,_50%,_0.1)] hover:text-[hsl(var(--hobby-accent-hue),_80%,_60%)]"
+            class="text-xs px-3 py-1 h-auto transition-colors duration-300"
+            :class="[buttonTextColorClass, buttonHoverBgClass, buttonHoverTextColorClass]"
             as-child
           >
             <a :href="hobby.link.url" target="blank" rel="noopener noreferrer">

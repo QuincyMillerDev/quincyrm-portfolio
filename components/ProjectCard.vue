@@ -15,12 +15,19 @@ const props = defineProps<{
   animationDelay: string
 }>()
 
-// Generate a random accent color for each card
-const accentHues = [340, 25, 120, 200, 260, 290]
-const accentHue = accentHues[(props.index || 0) % accentHues.length]
+const accentHexColors = ['#FF4081', '#FFAB40', '#69F0AE', '#00B8D4', '#536DFE', '#D500F9'];
+const currentAccentHex = computed(() => accentHexColors[(props.index || 0) % accentHexColors.length]);
+
+// Style object to set the CSS custom property
+const itemStyle = computed(() => ({
+  '--item-accent-color': currentAccentHex.value
+}));
 
 // Determine if it's a GitHub link
 const isGithubLink = computed(() => props.project.link.includes('github.com'))
+
+// Removed unused class string constants
+
 </script>
 
 <template>
@@ -29,30 +36,38 @@ const isGithubLink = computed(() => props.project.link.includes('github.com'))
     target="_blank" 
     rel="noopener noreferrer"
     class="block h-full group"
+    :style="itemStyle"
   >
     <div 
       class="project-card relative flex flex-col h-full overflow-hidden rounded-lg border border-border/40 bg-background/50 backdrop-blur-sm transition-all duration-300 group-hover:shadow-md group-hover:ring-1"
       :style="{
-        '--accent-hue': accentHue + 'deg',
-        '--accent-text-hover': `hsl(var(--accent-hue), 90%, 65%)`,
         'transition': `all 0.3s ease-out ${props.animationDelay || '0s'}`,
         'transform': props.isVisible ? 'translateY(0px)' : 'translateY(20px)',
         'opacity': props.isVisible ? 1 : 0
-      }"
-      :class="[`group-hover:ring-[hsl(var(--accent-hue)_70%_50%_/_0.3)]`]">
-      
+      }" 
+      :class="['group-hover:ring-[var(--item-accent-color)]/30']"
+    >
       <div class="p-5 flex-grow flex flex-col">
         <div class="flex items-center mb-3">
           <div 
-            class="icon-container flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center mr-3 transition-all duration-300 bg-[hsl(var(--accent-hue),_70%,_50%,_0.1)] group-hover:bg-[hsl(var(--accent-hue),_70%,_50%,_0.2)] group-hover:scale-105"
+            class="icon-container flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center mr-3 transition-all duration-300 group-hover:scale-105"
+            :class="[
+              'bg-[var(--item-accent-color)]/10',
+              'group-hover:bg-[var(--item-accent-color)]/20'
+            ]"
           >
             <component 
               :is="isGithubLink ? Github : Globe" 
-              class="icon-glyph w-5 h-5 transition-all duration-300 text-[hsl(var(--accent-hue),_80%,_60%)] group-hover:text-[hsl(var(--accent-hue),_90%,_70%)] group-hover:scale-110"
+              class="icon-glyph w-5 h-5 transition-all duration-300 group-hover:scale-110"
+              :class="[
+                'text-[var(--item-accent-color)]',
+                'group-hover:text-[var(--item-accent-color)]'
+              ]"
             />
           </div>
           <h3 
-            class="text-md font-medium tracking-tight transition-colors duration-300 group-hover:text-[var(--accent-text-hover)]"
+            class="text-md font-medium tracking-tight transition-colors duration-300"
+            :class="['group-hover:text-[var(--item-accent-color)]']"
           >
             {{ props.project.title }}
           </h3>

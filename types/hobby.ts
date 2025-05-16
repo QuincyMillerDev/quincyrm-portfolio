@@ -17,5 +17,6 @@ export interface Hobby {
   description: string
   stats?: HobbyStats[]
   colorHue: number
+  accentColorHex: string
   link?: HobbyLink
 } 
