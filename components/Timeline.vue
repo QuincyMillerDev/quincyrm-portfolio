@@ -21,8 +21,8 @@ onMounted(() => {
 const typeConfig: TypeConfigMap = {
   work: {
     icon: 'lucide:briefcase',
-    color: 'bg-primary/10 text-primary',
-    border: 'border-primary/20',
+    color: 'bg-[#3B82F6]/10 text-[#3B82F6]',
+    border: 'border-[#3B82F6]/20',
     accentHue: 210,
     accentColorHex: '#3B82F6'
   },
