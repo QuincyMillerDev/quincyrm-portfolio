@@ -64,7 +64,7 @@ onMounted(() => {
         :subtitle="subtitle"
         :description-md="descriptionMd"
         :links="links"
-        location="Coventry, CT"
+        location="Coventry, CT (Willing to move!)"
       />
     </div>
     

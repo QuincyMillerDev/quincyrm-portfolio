@@ -106,7 +106,7 @@ const handleImageLoad = () => {
         </div>
 
         <!-- Social Links -->
-        <div class="flex flex-wrap gap-1.5 my-2">
+        <div class="flex flex-wrap gap-1.5 my-10">
           <Button
             v-for="(link, index) in props.links"
             :key="link.name"
