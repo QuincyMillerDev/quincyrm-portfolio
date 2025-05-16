@@ -20,7 +20,7 @@ const open = ref(false)
           <span class="sr-only">Open Chat</span>
         </Button>
       </SheetTrigger>
-      <SheetContent class="p-0 flex flex-col h-full w-[400px] sm:w-[450px] border-l border-border/50 bg-background/95 backdrop-blur-sm">
+      <SheetContent class="p-0 flex flex-col h-full w-[400px] sm:w-[600px] border-l border-border/50 bg-background/95 backdrop-blur-sm">
   
         <div class="flex-1 overflow-hidden">
           <ChatInterface />
