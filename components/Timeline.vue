@@ -22,22 +22,26 @@ const typeConfig: TypeConfigMap = {
   work: {
     icon: 'lucide:briefcase',
     color: 'bg-primary/10 text-primary',
-    border: 'border-primary/20'
+    border: 'border-primary/20',
+    accentHue: 210 // Primary (blueish)
   },
   education: {
     icon: 'lucide:graduation-cap',
     color: 'bg-amber-500/10 text-amber-500',
-    border: 'border-amber-500/20'
+    border: 'border-amber-500/20',
+    accentHue: 36 // Amber
   },
   project: {
     icon: 'lucide:code',
     color: 'bg-emerald-500/10 text-emerald-500',
-    border: 'border-emerald-500/20'
+    border: 'border-emerald-500/20',
+    accentHue: 145 // Emerald
   },
   achievement: {
     icon: 'lucide:award',
     color: 'bg-violet-500/10 text-violet-500',
-    border: 'border-violet-500/20'
+    border: 'border-violet-500/20',
+    accentHue: 262 // Violet
   }
 };
 
@@ -45,6 +49,7 @@ const timelineItems: TimelineItemData[] = props.items?.length ? props.items : []
 
 // Color mapping for skills
 const skillColorMap: SkillColorMap = {
+  'terraform': { bg: 'bg-purple-500/10', text: 'text-purple-600', border: 'border-purple-500/30' },
   'python': { bg: 'bg-teal-500/10', text: 'text-teal-600', border: 'border-teal-500/30' },
   'typescript': { bg: 'bg-blue-500/10', text: 'text-blue-600', border: 'border-blue-500/30' },
   'ci/cd': { bg: 'bg-indigo-500/10', text: 'text-indigo-600', border: 'border-indigo-500/30' },
@@ -71,7 +76,10 @@ const getSkillColors = (skillName: string) => {
 
 <template>
   <section class="mt-12 relative">
-    <h2 class="text-xl font-medium mb-6">Timeline</h2>
+    <h2 
+      class="text-xl font-medium mb-6 animate-timeline-header"
+      :class="{ 'opacity-100 translate-y-0 scale-100': isVisible, 'opacity-0 translate-y-5 scale-95': !isVisible }"
+    >Timeline</h2>
     
     <!-- Timeline container -->
     <div 
@@ -102,5 +110,12 @@ const getSkillColors = (skillName: string) => {
 /* Custom hover effect for timeline items */
 .timeline-item:hover {
   transform: translateX(3px);
+}
+
+.animate-timeline-header {
+  transition-property: opacity, transform;
+  transition-duration: 0.5s;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1); /* ease-out-expo like */
+  /* No explicit delay needed here if triggered by isVisible becoming true at 300ms */
 }
 </style>

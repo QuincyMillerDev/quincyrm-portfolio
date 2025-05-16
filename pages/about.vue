@@ -26,7 +26,7 @@ const timelineItems = ref<TimelineItemData[]>([
     company: 'Hubbell Inc.',
     location: 'Avon, CT',
     description: 'Working on enterprise products in Hubbell\'s high risk, high reward division.',
-    skills: ['Python', 'TypeScript', 'Azure', 'Angular', 'C#', 'Databricks', 'PostgreSQL', 'CI/CD'],
+    skills: ['Python', 'TypeScript', 'Azure', 'Angular', 'C#', 'Databricks', 'PostgreSQL', 'Terraform', 'CI/CD'],
     type: 'work'
   },
   {
@@ -64,7 +64,7 @@ const baseHobbies = ref<Hobby[]>([
     icon: 'lucide:dumbbell',
     description: 'I am a data nerd, so I track everything.',
     stats: [], // Stats will come from Pinia store via computed property
-    color: 'emerald',
+    colorHue: 150,
   },
   {
     id: 'skiing',
@@ -75,7 +75,7 @@ const baseHobbies = ref<Hobby[]>([
       { label: 'Seasons', value: '12+', icon: 'lucide:calendar' },
       { label: 'Favorite Mountain', value: 'Snowbird, UT', icon: 'lucide:mountain' }
     ],
-    color: 'sky',
+    colorHue: 200,
   },
   {
     id: 'finance',
@@ -86,7 +86,7 @@ const baseHobbies = ref<Hobby[]>([
       { label: 'Investment Style', value: 'Long-term', icon: 'lucide:trending-up' },
       { label: 'Focus Areas', value: 'Index Funds, Stocks, Real Estate?', icon: 'lucide:landmark' }
     ],
-    color: 'amber',
+    colorHue: 40,
   },
   {
     id: 'content',
@@ -97,7 +97,7 @@ const baseHobbies = ref<Hobby[]>([
       { label: 'Medium', value: 'Twitch & TikTok', icon: 'lucide:pen-tool' },
       { label: 'Topics', value: 'Gaming, Tech, Life', icon: 'lucide:layers' }
     ],
-    color: 'violet',
+    colorHue: 270,
   }
 ])
 
@@ -130,9 +130,6 @@ onMounted(() => {
 
 <template>
   <div class="space-y-12">
-    <div>
-      <h1 class="text-xl md:text-2xl font-bold">About Me</h1>
-    </div>
     
     <div
       class="transition-all duration-300 ease-out relative"
@@ -172,4 +169,19 @@ onMounted(() => {
 
 <style scoped>
 /* No custom styles needed anymore for blur */
+
+@keyframes fade-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-fade-slide-up {
+  animation: fade-slide-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
 </style>

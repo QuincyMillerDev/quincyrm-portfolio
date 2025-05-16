@@ -14,16 +14,19 @@ const props = defineProps<{
 
 // Helper to safely access type configuration
 const currentTypeConfig = computed(() => {
-  return props.typeConfig[props.item.type] || { icon: 'lucide:help-circle', color: 'bg-slate-500/10 text-slate-500', border: 'border-slate-500/20' };
+  return props.typeConfig[props.item.type] || { icon: 'lucide:help-circle', color: 'bg-slate-500/10 text-slate-500', border: 'border-slate-500/20', accentHue: 240 };
 });
 
 </script>
 
 <template>
   <div
-    class="relative pl-10"
+    class="relative pl-10 group"
     :class="{ 'translate-y-0 opacity-100': isVisible, 'translate-y-4 opacity-0': !isVisible }"
-    :style="{ transition: `all 0.5s ease-out ${animationDelay}` }"
+    :style="{ 
+      transition: `all 0.5s ease-out ${animationDelay}`,
+      '--timeline-accent-hue': currentTypeConfig.accentHue + 'deg'
+    }"
   >
     <!-- Timeline dot with icon -->
     <div
@@ -38,11 +41,17 @@ const currentTypeConfig = computed(() => {
 
     <!-- Content card -->
     <div
-      class="bg-background/50 backdrop-blur-sm rounded-lg shadow-sm overflow-hidden transition-all duration-200 hover:shadow-md hover:ring-1"
-      :class="[`hover:ring-${currentTypeConfig.color.split(' ')[1].substring('text-'.length)}/20`]">
+      class="bg-background/50 backdrop-blur-sm rounded-lg shadow-sm overflow-hidden transition-all duration-200 hover:shadow-md group-hover:ring-1"
+      :class="[`group-hover:ring-[hsl(var(--timeline-accent-hue)_70%_55%_/_0.3)]`]"
+    >
       <!-- Header section -->
       <div class="p-4 pb-0">
-        <h3 class="text-base font-medium">{{ item.title }}</h3>
+        <h3 
+          class="text-base font-medium transition-colors duration-300"
+          :class="[`group-hover:text-[hsl(var(--timeline-accent-hue)_80%_60%)]`]"
+        >
+          {{ item.title }}
+        </h3>
 
         <!-- Company and location if available -->
         <div v-if="item.company || item.location" class="flex items-center gap-3 mt-1 text-sm text-muted-foreground">
@@ -67,7 +76,7 @@ const currentTypeConfig = computed(() => {
           v-for="skill in item.skills"
           :key="skill"
           :class="[
-            'inline-flex items-center px-2 py-0.5 rounded-full text-xs border',
+            'inline-flex items-center px-2 py-0.5 rounded-sm text-xs border',
             getSkillColors(skill).bg,
             getSkillColors(skill).text,
             getSkillColors(skill).border

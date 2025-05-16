@@ -14,6 +14,7 @@ export interface TypeConfig {
   icon: string
   color: string
   border: string
+  accentHue: number
 }
 
 export interface SkillColorConfig {

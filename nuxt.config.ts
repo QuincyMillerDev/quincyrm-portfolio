@@ -54,6 +54,12 @@ export default defineNuxtConfig({
         provider: 'google',
         weights: [400, 700],
         styles: ['normal', 'italic']
+      },
+      {
+        name: 'JetBrains Mono',
+        provider: 'google',
+        weights: [400, 700],
+        styles: ['normal', 'italic']
       }
     ],
   },

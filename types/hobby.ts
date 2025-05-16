@@ -16,6 +16,6 @@ export interface Hobby {
   icon: string
   description: string
   stats?: HobbyStats[]
-  color: string
+  colorHue: number
   link?: HobbyLink
 } 

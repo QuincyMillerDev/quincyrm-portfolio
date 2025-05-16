@@ -78,16 +78,9 @@ onMounted(() => {
               v-for="(image, idx) in props.images"
               :key="`horiz-${idx}`"
               class="group image-item-horiz w-36 h-36 sm:w-40 sm:h-40 md:w-48 md:h-48 lg:w-52 lg:h-52 flex-shrink-0 rounded-lg overflow-hidden shadow-sm transform-gpu mx-1.5"
-              :class="[
-                idx === 0 ? '-rotate-2 z-10' : '',
-                idx === 1 ? 'rotate-1 z-20' : '',
-                idx === 2 ? '-rotate-2 z-30' : '',
-                idx === 3 ? 'rotate-2 z-40' : '',
-              ]"
-              :style="{ 
+              :style="{
                 '--delay': `${idx * 150}ms`,
-                '--x-offset': `${(idx - 1.5) * 30}px`,
-                '--rotation': `${idx % 2 === 0 ? '-2deg' : '2deg'}`
+                '--x-offset': `${(idx - 1.5) * 30}px`
               }"
             >
               <!-- Enhanced hover effect elements -->

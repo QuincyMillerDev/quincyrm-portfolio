@@ -14,7 +14,7 @@ const route = useRoute()
 <template>
   <div class="fixed top-4 left-0 w-screen z-50 flex justify-center items-start pointer-events-none">
     <div 
-      class="rounded-lg bg-background/80 backdrop-blur-sm px-3 py-1 flex items-center border border-border/40 shadow-sm pointer-events-auto"
+      class="rounded-sm bg-background/80 backdrop-blur-sm px-3 py-1 flex items-center border border-border/40 shadow-sm pointer-events-auto"
       :class="[
         'hover:bg-background/90 transition-all duration-300'
       ]"
@@ -23,14 +23,14 @@ const route = useRoute()
         <NuxtLink 
           to="/" 
           class="text-sm font-medium transition-colors hover:text-primary"
-          :class="route.path === '/' ? 'text-primary' : 'text-muted-foreground'"
+          :class="route.path === '/' ? 'text-foreground' : 'text-muted-foreground'"
         >
           Home
         </NuxtLink>
         <NuxtLink 
           to="/about" 
           class="text-sm font-medium transition-colors hover:text-primary"
-          :class="route.path === '/about' ? 'text-primary' : 'text-muted-foreground'"
+          :class="route.path === '/about' ? 'text-foreground' : 'text-muted-foreground'"
         >
           About
         </NuxtLink>

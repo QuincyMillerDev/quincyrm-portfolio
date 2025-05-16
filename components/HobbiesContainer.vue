@@ -33,7 +33,10 @@ const displayHobbies = computed(() => props.hobbies || [])
 
 <template>
   <section class="mt-12">
-    <h2 class="text-xl font-medium mb-6">Hobbies</h2>
+    <h2 
+      class="text-xl font-medium mb-6 animate-timeline-header"
+      :class="{ 'opacity-100 translate-y-0 scale-100': isVisible, 'opacity-0 translate-y-5 scale-95': !isVisible }"
+    >Hobbies</h2>
     
     <div 
       class="grid grid-cols-1 sm:grid-cols-2 gap-4"

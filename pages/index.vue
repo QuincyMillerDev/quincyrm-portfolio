@@ -8,7 +8,7 @@ const desktopPictureUrl = '/images/portrait.jpg'
 const mobilePictureUrl = '/images/portrait_small.jpg'
 const subtitle = "Full-Stack Software Engineer"
 const descriptionMd = `
-Just a guy who is seriously passionate about exploring the potential of emerging technologies such as GenAI. With an established foundation, I'm looking for ways to dive deep and make a real impact.
+SWE @ Hubbell, CS Alumni @ UConn
 `
 // Social links and icons
 const links = [
@@ -48,11 +48,6 @@ onMounted(() => {
 
 <template>
   <div class="space-y-12">
-    <TypewriterHeader 
-      :text="`Hello, I'm Quincy Miller.`" 
-      class="text-xl md:text-2xl font-bold" 
-    />
-    
     <div
       class="transition-all duration-300 ease-out relative"
       :class="{

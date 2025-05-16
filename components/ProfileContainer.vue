@@ -50,7 +50,7 @@ const handleImageLoad = () => {
 </script>
 
 <template>
-  <Card class="bg-background/30 backdrop-blur-sm border-none shadow-lg overflow-hidden w-full">
+  <Card class="bg-background/30 backdrop-blur-sm border-none overflow-hidden w-full">
     <div 
       class="relative w-full p-5 md:p-6"
       :class="{ 'opacity-100 translate-y-0': isVisible, 'opacity-0 translate-y-4': !isVisible }"
@@ -61,35 +61,11 @@ const handleImageLoad = () => {
         <div class="flex items-start justify-between gap-4 w-full">
           <!-- Content -->
           <div class="flex-1">
-            <h2 class="text-lg font-medium text-primary mb-1">{{ props.subtitle }}</h2>
-            <div class="flex items-center text-sm text-muted-foreground mb-2">
+            <h1 class="text-2xl font-bold text-foreground mb-0.5">{{ props.name }}</h1>
+            <h2 class="text-lg text-muted-foreground mb-1">{{ props.subtitle }}</h2>
+            <div class="flex items-center text-sm text-muted-foreground mb-2.5">
               <Icon icon="lucide:map-pin" class="w-3.5 h-3.5 mr-1" />
               <span>{{ props.location }}</span>
-            </div>
-            
-            <!-- Social Links -->
-            <div class="flex flex-wrap gap-1.5 mb-3">
-              <Button
-                v-for="(link, index) in props.links"
-                :key="link.name"
-                as-child
-                variant="ghost"
-                size="icon"
-                class="w-7 h-7 rounded-full transition-all duration-300"
-                :class="[
-                  brandColorClasses[link.name] || '',
-                  { 'opacity-0': !isVisible, [`opacity-100 transition-opacity duration-500 delay-[${300 + index * 100}ms]`]: isVisible }
-                ]"
-              >
-                <a 
-                  :href="link.url" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  :aria-label="link.name"
-                >
-                  <Icon :icon="link.icon" class="w-4 h-4" />
-                </a>
-              </Button>
             </div>
           </div>
           
@@ -102,19 +78,21 @@ const handleImageLoad = () => {
             <NuxtImg
               :src="props.mobilePictureUrl"
               :alt="`${props.name}'s Profile Picture`"
-              width="100"
-              height="100"
+              width="200"
+              height="200"
               format="webp"
               quality="90"
-              class="rounded-full shadow-md aspect-square object-cover w-20 h-20"
+              class="rounded-full shadow-md aspect-square object-cover w-26 h-26"
               @load="handleImageLoad"
             />
           </div>
         </div>
         
+
+        
         <!-- Description -->
         <div 
-          class="prose prose-sm max-w-none text-muted-foreground dark:prose-invert mt-3 w-full"
+          class="prose prose-sm max-w-none text-muted-foreground dark:prose-invert w-full"
           :class="{ 'opacity-100 translate-y-0': isVisible, 'opacity-0 translate-y-4': !isVisible }"
           style="transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s"
         >
@@ -126,6 +104,32 @@ const handleImageLoad = () => {
             {{ text }}
           </p>
         </div>
+
+        <!-- Social Links -->
+        <div class="flex flex-wrap gap-1.5 my-2.5">
+          <Button
+            v-for="(link, index) in props.links"
+            :key="link.name"
+            as-child
+            variant="ghost"
+            size="icon"
+            class="w-7 h-7 rounded-full transition-all duration-300"
+            :class="[
+              brandColorClasses[link.name] || '',
+              { 'opacity-0': !isVisible, [`opacity-100 transition-opacity duration-500 delay-[${300 + index * 100}ms]`]: isVisible }
+            ]"
+          >
+            <a 
+              :href="link.url" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              :aria-label="link.name"
+            >
+              <Icon :icon="link.icon" class="w-4 h-4" />
+            </a>
+          </Button>
+        </div>
+
       </div>
       
       <!-- Desktop Layout - Horizontal -->
@@ -133,15 +137,16 @@ const handleImageLoad = () => {
         <div class="flex items-start gap-8 w-full">
           <!-- Content -->
           <div class="flex-1">
-            <h2 class="text-xl font-medium text-primary mb-2">{{ props.subtitle }}</h2>
-            <div class="flex items-center text-sm text-muted-foreground mb-4">
+            <h1 class="text-2xl font-bold text-foreground mb-1">{{ props.name }}</h1>
+            <h2 class="text-xl text-muted-foreground mb-2">{{ props.subtitle }}</h2>
+            <div class="flex items-center text-sm text-muted-foreground mb-2">
               <Icon icon="lucide:map-pin" class="w-4 h-4 mr-1.5" />
               <span>{{ props.location }}</span>
             </div>
             
             <!-- Description -->
             <div 
-              class="prose prose-sm md:prose-base max-w-none text-muted-foreground dark:prose-invert mb-4"
+              class="prose prose-sm md:prose-base max-w-none text-muted-foreground dark:prose-invert"
               :class="{ 'opacity-100 translate-y-0': isVisible, 'opacity-0 translate-y-4': !isVisible }"
               style="transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s"
             >
@@ -153,9 +158,9 @@ const handleImageLoad = () => {
                 {{ text }}
               </p>
             </div>
-            
+
             <!-- Social Links -->
-            <div class="flex flex-wrap gap-2">
+            <div class="flex flex-wrap gap-2 mb-3">
               <Button
                 v-for="(link, index) in props.links"
                 :key="link.name"
@@ -178,6 +183,8 @@ const handleImageLoad = () => {
                 </a>
               </Button>
             </div>
+            
+
           </div>
           
           <!-- Image -->
