@@ -143,6 +143,7 @@ onMounted(() => {
   transform: translateY(-3px) scale(1.02);
   z-index: 10;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition-duration: 0.3s;
 }
 
 /* Desktop horizontal hover effects - enhanced with unique animations */
@@ -152,7 +153,7 @@ onMounted(() => {
 }
 
 .image-item-horiz:hover {
-  transform: translateX(calc(-1 * var(--x-offset))) translateY(-8px) rotate(0deg) !important;
+  transform: translateY(-6px) scale(1.03);
   z-index: 50 !important;
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
 }
@@ -179,20 +180,5 @@ onMounted(() => {
 .image-item-horiz:hover img {
   filter: saturate(1.1);
   transform: scale(1.05);
-}
-
-/* Unique hover effect - perspective tilt */
-.image-item-horiz::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at 70% 30%, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 60%);
-  opacity: 0;
-  transition: opacity 0.5s ease;
-  z-index: 5;
-}
-
-.image-item-horiz:hover::before {
-  opacity: 1;
 }
 </style>

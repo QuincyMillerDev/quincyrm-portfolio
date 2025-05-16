@@ -14,7 +14,7 @@ const stravaStore = useStravaActivityStore();
 
 const images: ImageItem[] = [
   { src: '/images/IMG_1625_VSCO.JPG', alt: 'Backcountry Skiing', shortDescription: 'I need to go backcountry skiing again.', location: 'Alta, UT', date: 'Jan 2025' },
-  { src: '/images/IMG_1385.JPG', alt: 'Senior Design', shortDescription: 'UConn Computer Science Capstone, 3rd place!', location: 'Storrs, CT', date: 'April 2024' },
+  { src: '/images/IMG_1385.JPG', alt: 'Senior Design', shortDescription: 'Presenting our Agentic AI Capstone Project, won 3rd place!', location: 'Storrs, CT', date: 'April 2024' },
   { src: '/images/IMG_7864.JPG', alt: 'Japan', shortDescription: 'Exploring Japan.', location: 'Tokyo, Japan', date: 'August 2024' },
   { src: '/images/IMG_3697.JPG', alt: 'Head of the Charles', shortDescription: 'Scout and I rowed in the PR3 doubles race at the Head of the Charles.', location: 'Boston, MA', date: 'Oct 2024' },
 ]
@@ -62,7 +62,7 @@ const baseHobbies = ref<Hobby[]>([
     id: 'fitness',
     name: 'Fitness & Nutrition',
     icon: 'lucide:dumbbell',
-    description: 'I am a data nerd, so I track everything.',
+    description: 'I track everything.',
     stats: [], // Stats will come from Pinia store via computed property
     colorHue: 150,
   },
@@ -70,7 +70,7 @@ const baseHobbies = ref<Hobby[]>([
     id: 'skiing',
     name: 'Skiing',
     icon: 'lucide:mountain-snow',
-    description: 'I actually do touch grass (snow) believe it or not. ',
+    description: 'I actually do touch grass/snow. ',
     stats: [
       { label: 'Seasons', value: '12+', icon: 'lucide:calendar' },
       { label: 'Favorite Mountain', value: 'Snowbird, UT', icon: 'lucide:mountain' }
@@ -92,7 +92,7 @@ const baseHobbies = ref<Hobby[]>([
     id: 'content',
     name: 'Content Creation',
     icon: 'lucide:video',
-    description: 'I used to stream during the pandemic, maybe I\'ll get back into it.',
+    description: 'Built a community on Twitch during the pandemic.',
     stats: [
       { label: 'Medium', value: 'Twitch & TikTok', icon: 'lucide:pen-tool' },
       { label: 'Topics', value: 'Gaming, Tech, Life', icon: 'lucide:layers' }

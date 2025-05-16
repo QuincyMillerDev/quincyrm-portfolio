@@ -16,7 +16,7 @@ const open = ref(false)
     <Sheet v-model:open="open">
       <SheetTrigger as-child>
         <Button variant="ghost" size="icon" class="h-6 w-6">
-          <Icon icon="lucide:message-circle" class="h-[1rem] w-[1rem]" />
+          <Icon icon="lucide:message-square" class="h-[1rem] w-[1rem]" />
           <span class="sr-only">Open Chat</span>
         </Button>
       </SheetTrigger>

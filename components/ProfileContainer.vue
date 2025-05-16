@@ -28,7 +28,7 @@ const paragraphs = computed(() =>
 const brandColorClasses: Record<string, string> = {
   GitHub: 'hover:text-[#181717]',
   LinkedIn: 'hover:text-[#0077B5]',
-  'X.com': 'hover:text-black',
+  'X.com': 'hover:text-[#1DA1F2]',
   Instagram: 'hover:text-[#E1306C]',
   Twitch: 'hover:text-[#9146FF]',
   Email: 'hover:text-green-500'
@@ -50,9 +50,9 @@ const handleImageLoad = () => {
 </script>
 
 <template>
-  <Card class="bg-background/30 backdrop-blur-sm border-none overflow-hidden w-full">
+  <Card class="bg-background/50 backdrop-blur-sm border border-border/40 overflow-hidden w-full">
     <div 
-      class="relative w-full p-5 md:p-6"
+      class="relative w-full py-2 px-4 md:py-3 md:px-5"
       :class="{ 'opacity-100 translate-y-0': isVisible, 'opacity-0 translate-y-4': !isVisible }"
       style="transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1)"
     >
@@ -62,8 +62,8 @@ const handleImageLoad = () => {
           <!-- Content -->
           <div class="flex-1">
             <h1 class="text-2xl font-bold text-foreground mb-0.5">{{ props.name }}</h1>
-            <h2 class="text-lg text-muted-foreground mb-1">{{ props.subtitle }}</h2>
-            <div class="flex items-center text-sm text-muted-foreground mb-2.5">
+            <h2 class="text-lg text-muted-foreground mb-0.5">{{ props.subtitle }}</h2>
+            <div class="flex items-center text-sm text-muted-foreground mb-2">
               <Icon icon="lucide:map-pin" class="w-3.5 h-3.5 mr-1" />
               <span>{{ props.location }}</span>
             </div>
@@ -99,21 +99,21 @@ const handleImageLoad = () => {
           <p
             v-for="(text, idx) in paragraphs"
             :key="idx"
-            class="mb-2"
+            class="mb-1.5"
           >
             {{ text }}
           </p>
         </div>
 
         <!-- Social Links -->
-        <div class="flex flex-wrap gap-1.5 my-2.5">
+        <div class="flex flex-wrap gap-1.5 my-2">
           <Button
             v-for="(link, index) in props.links"
             :key="link.name"
             as-child
             variant="ghost"
             size="icon"
-            class="w-7 h-7 rounded-full transition-all duration-300"
+            class="w-8 h-8 rounded-md transition-all duration-300"
             :class="[
               brandColorClasses[link.name] || '',
               { 'opacity-0': !isVisible, [`opacity-100 transition-opacity duration-500 delay-[${300 + index * 100}ms]`]: isVisible }
@@ -134,12 +134,12 @@ const handleImageLoad = () => {
       
       <!-- Desktop Layout - Horizontal -->
       <div class="hidden md:block">
-        <div class="flex items-start gap-8 w-full">
+        <div class="flex items-center gap-8 w-full">
           <!-- Content -->
           <div class="flex-1">
-            <h1 class="text-2xl font-bold text-foreground mb-1">{{ props.name }}</h1>
-            <h2 class="text-xl text-muted-foreground mb-2">{{ props.subtitle }}</h2>
-            <div class="flex items-center text-sm text-muted-foreground mb-2">
+            <h1 class="text-2xl font-bold text-foreground mb-0.5">{{ props.name }}</h1>
+            <h2 class="text-xl text-muted-foreground mb-1.5">{{ props.subtitle }}</h2>
+            <div class="flex items-center text-sm text-muted-foreground mb-1.5">
               <Icon icon="lucide:map-pin" class="w-4 h-4 mr-1.5" />
               <span>{{ props.location }}</span>
             </div>
@@ -153,21 +153,21 @@ const handleImageLoad = () => {
               <p
                 v-for="(text, idx) in paragraphs"
                 :key="idx"
-                class="mb-3"
+                class="mb-2"
               >
                 {{ text }}
               </p>
             </div>
 
             <!-- Social Links -->
-            <div class="flex flex-wrap gap-2 mb-3">
+            <div class="flex flex-wrap gap-2 mb-2">
               <Button
                 v-for="(link, index) in props.links"
                 :key="link.name"
                 as-child
                 variant="ghost"
                 size="icon"
-                class="w-8 h-8 rounded-full transition-all duration-300 hover:scale-105"
+                class="w-8 h-8 rounded-md transition-all duration-300 hover:scale-105"
                 :class="[
                   brandColorClasses[link.name] || '',
                   { 'opacity-0': !isVisible, [`opacity-100 transition-opacity duration-500 delay-[${300 + index * 100}ms]`]: isVisible }

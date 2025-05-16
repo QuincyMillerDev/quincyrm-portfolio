@@ -12,7 +12,7 @@ export default defineNuxtConfig({
     ],
     server: {
       hmr: {
-        protocol: 'wss',
+        protocol: 'ws',
         host: 'localhost',
       },
       allowedHosts: [

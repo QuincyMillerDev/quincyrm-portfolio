@@ -14,7 +14,7 @@ SWE @ Hubbell, CS Alumni @ UConn
 const links = [
   { name: 'GitHub', url: 'https://github.com/quincymillerdev', icon: 'lucide:github' },
   { name: 'LinkedIn', url: 'https://www.linkedin.com/in/qrm111/', icon: 'lucide:linkedin' },
-  { name: 'X.com', url: 'https://x.com/_quincyrm/', icon: 'lucide:x' },
+  { name: 'X.com', url: 'https://x.com/_quincyrm/', icon: 'lucide:twitter' },
   { name: 'Instagram', url: 'https://www.instagram.com/quincy._miller/', icon: 'lucide:instagram' },
   { name: 'Twitch', url: 'https://www.twitch.tv/cooliobeans', icon: 'lucide:twitch' },
   { name: 'Email', url: 'mailto:quincymiller6589@gmail.com', icon: 'lucide:mail' }

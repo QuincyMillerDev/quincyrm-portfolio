@@ -41,7 +41,7 @@ const currentTypeConfig = computed(() => {
 
     <!-- Content card -->
     <div
-      class="bg-background/50 backdrop-blur-sm rounded-lg shadow-sm overflow-hidden transition-all duration-200 hover:shadow-md group-hover:ring-1"
+      class="bg-background/50 backdrop-blur-sm rounded-lg overflow-hidden transition-all duration-200 group-hover:shadow-md group-hover:ring-1 border border-border/40"
       :class="[`group-hover:ring-[hsl(var(--timeline-accent-hue)_70%_55%_/_0.3)]`]"
     >
       <!-- Header section -->
