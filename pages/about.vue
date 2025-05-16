@@ -35,7 +35,7 @@ const timelineItems = ref<TimelineItemData[]>([
     company: 'UConn Digital Experience Group',
     location: 'Storrs, CT',
     description: 'Lead the development of diverse full-stack applications. Turned client ideas into functional, responsive applications.',
-    skills: ['Vue.js', 'TypeScript', 'Nuxt', 'Node.js', 'Docker', 'NGINX', 'MySQL'],
+    skills: ['Vue.js', 'TypeScript', 'React', 'Node.js', 'Docker', 'NGINX', 'MySQL'],
     type: 'work'
   },
   {
@@ -52,6 +52,7 @@ const timelineItems = ref<TimelineItemData[]>([
     company: 'Hubbell Inc.',
     location: 'Avon, CT',
     description: 'Worked in an agile environment over two consecutive summer internships.',
+    skills: ['C#', '.NET', 'Java', 'Spring Boot', 'MySQL'],
     type: 'work'
   }
 ])

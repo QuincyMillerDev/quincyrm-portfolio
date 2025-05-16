@@ -68,6 +68,10 @@ const skillColorMap: SkillColorMap = {
   'docker': { bg: 'bg-cyan-400/10', text: 'text-cyan-500', border: 'border-cyan-400/30' },
   'nginx': { bg: 'bg-emerald-700/10', text: 'text-emerald-800', border: 'border-emerald-700/30' },
   'mysql': { bg: 'bg-indigo-400/10', text: 'text-indigo-500', border: 'border-indigo-400/30' },
+  '.net': { bg: 'bg-purple-600/10', text: 'text-purple-700', border: 'border-purple-600/30' },
+  'java': { bg: 'bg-orange-500/10', text: 'text-orange-600', border: 'border-orange-500/30' },
+  'spring boot': { bg: 'bg-green-600/10', text: 'text-green-700', border: 'border-green-600/30' },
+  'react': { bg: 'bg-cyan-500/10', text: 'text-cyan-600', border: 'border-cyan-500/30' },
   'default': { bg: 'bg-slate-500/10', text: 'text-slate-600', border: 'border-slate-500/30' }
 };
 

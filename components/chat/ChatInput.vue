@@ -3,10 +3,8 @@ import { ref } from 'vue'
 import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
 import { Icon } from '@iconify/vue'
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 
 const message = ref('')
-const isRecording = ref(false)
 const textareaRef = ref<HTMLTextAreaElement | null>(null)
 
 const emit = defineEmits(['send'])
@@ -16,11 +14,6 @@ const handleSend = () => {
     emit('send', message.value)
     message.value = ''
   }
-}
-
-const toggleRecording = () => {
-  isRecording.value = !isRecording.value
-  // In a real implementation, this would start/stop speech recognition
 }
 
 const handleKeyDown = (e: KeyboardEvent) => {
@@ -50,36 +43,11 @@ const resizeTextarea = () => {
         v-model="message"
         placeholder="Ask me anything..."
         class="min-h-[40px] max-h-[120px] resize-none bg-transparent border-0 focus-visible:ring-0 focus-visible:ring-offset-0 p-2"
-        :class="{ 'pr-10': isRecording }"
         @keydown="handleKeyDown"
         @input="resizeTextarea"
       />
       
       <div class="flex items-center gap-1">
-        <!-- Microphone button -->
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger as-child>
-              <Button 
-                variant="ghost" 
-                size="icon" 
-                class="h-8 w-8 rounded-full flex-shrink-0 transition-colors"
-                :class="{ 'bg-primary/20 text-primary': isRecording }"
-                @click="toggleRecording"
-              >
-                <Icon 
-                  :icon="isRecording ? 'lucide:mic' : 'lucide:mic'" 
-                  class="h-4 w-4"
-                  :class="{ 'text-primary animate-pulse': isRecording }"
-                />
-                <span class="sr-only">{{ isRecording ? 'Stop recording' : 'Start recording' }}</span>
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent>
-              <p>{{ isRecording ? 'Stop recording' : 'Start voice input' }}</p>
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
         
         <!-- Send button -->
         <Button 
