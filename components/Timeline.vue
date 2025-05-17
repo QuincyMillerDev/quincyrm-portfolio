@@ -14,7 +14,7 @@ const isVisible = ref(false)
 onMounted(() => {
   setTimeout(() => {
     isVisible.value = true
-  }, 300)
+  }, 100)
 })
 
 // Type-specific icons and colors
@@ -85,15 +85,14 @@ const getSkillColors = (skillName: string) => {
 <template>
   <section class="mt-12 relative">
     <h2 
-      class="text-xl font-medium mb-6 animate-timeline-header"
-      :class="{ 'opacity-100 translate-y-0 scale-100': isVisible, 'opacity-0 translate-y-5 scale-95': !isVisible }"
+      class="text-xl font-medium mb-6 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
+      :class="{ 'opacity-100 translate-y-0 scale-100': isVisible, 'opacity-0 translate-y-[10px] scale-[0.98]': !isVisible }"
     >Timeline</h2>
     
     <!-- Timeline container -->
     <div 
-      class="relative"
+      class="relative transition-opacity duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] delay-100"
       :class="{ 'opacity-100': isVisible, 'opacity-0': !isVisible }"
-      style="transition: opacity 0.6s ease-out"
     >
       <!-- Timeline line -->
       <div class="absolute left-[15px] top-0 bottom-0 w-px bg-gradient-to-b from-border/40 via-border/60 to-border/20" />
@@ -107,7 +106,7 @@ const getSkillColors = (skillName: string) => {
           :type-config="typeConfig"
           :get-skill-colors="getSkillColors"
           :is-visible="isVisible"
-          :animation-delay="`${idx * 100 + 200}ms`"
+          :animation-delay="`${idx * 100}ms`"
         />
       </div>
     </div>
@@ -115,10 +114,10 @@ const getSkillColors = (skillName: string) => {
 </template>
 
 <style scoped>
-
-.animate-timeline-header {
+/* Removed .animate-timeline-header as it's now handled by Tailwind classes on h2 */
+/* .animate-timeline-header {
   transition-property: opacity, transform;
   transition-duration: 0.5s;
   transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1); 
-}
+} */
 </style>

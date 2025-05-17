@@ -41,9 +41,11 @@ const setHoveredSection = (section: string | null) => {
 }
 
 onMounted(() => {
+  // ProfileContainer starts its own animation at 100ms (internal)
+  // Start ProjectsContainer animation slightly after ProfileContainer has started animating
   setTimeout(() => {
     projectsContainerVisible.value = true;
-  }, 300); // Delay before animation starts
+  }, 150); // Delay for ProjectsContainer wrapper
 });
 </script>
 
@@ -69,11 +71,10 @@ onMounted(() => {
     </div>
     
     <div
+      class="relative transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
       :class="[
-        'relative',
-        projectsContainerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+        projectsContainerVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-[10px] scale-[0.98]'
       ]"
-      style="transition-property: opacity, transform; transition-duration: 0.6s; transition-timing-function: ease-out;"
     >
       <div
         class="transition-all duration-300 ease-out relative"

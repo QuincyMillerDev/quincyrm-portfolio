@@ -14,7 +14,7 @@ const activeHobby = ref('')
 onMounted(() => {
   setTimeout(() => {
     isVisible.value = true
-  }, 300)
+  }, 100)
 })
 
 const handleToggleActive = (id: string) => {
@@ -34,14 +34,13 @@ const displayHobbies = computed(() => props.hobbies || [])
 <template>
   <section class="mt-12">
     <h2 
-      class="text-xl font-medium mb-6 animate-timeline-header"
-      :class="{ 'opacity-100 translate-y-0 scale-100': isVisible, 'opacity-0 translate-y-5 scale-95': !isVisible }"
+      class="text-xl font-medium mb-6 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
+      :class="{ 'opacity-100 translate-y-0 scale-100': isVisible, 'opacity-0 translate-y-[10px] scale-[0.98]': !isVisible }"
     >Hobbies</h2>
     
     <div 
-      class="grid grid-cols-1 sm:grid-cols-2 gap-4"
+      class="grid grid-cols-1 sm:grid-cols-2 gap-4 transition-opacity duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] delay-100"
       :class="{ 'opacity-100': isVisible, 'opacity-0': !isVisible }"
-      style="transition: opacity 0.6s ease-out"
     >
       <HobbyItem
         v-for="(hobby, idx) in displayHobbies"

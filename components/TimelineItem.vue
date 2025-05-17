@@ -38,25 +38,23 @@ const titleHoverColorClass = 'group-hover:text-[var(--item-accent-color)]';
 
 <template>
   <div
-    class="relative pl-10 group"
-    :class="{ 'translate-y-0 opacity-100': isVisible, 'translate-y-4 opacity-0': !isVisible }"
-    :style="[
-      {
-        transition: `all 0.5s ease-out ${animationDelay}`,
-      },
-      itemStyle // Apply the CSS custom property here
-    ]"
+    class="relative pl-10 group transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
+    :class="{ 'opacity-100 translate-y-0 scale-100': isVisible, 'opacity-0 translate-y-[10px] scale-[0.98]': !isVisible }"
+    :style="[itemStyle, { transitionDelay: animationDelay }]"
   >
     <!-- Timeline dot with icon -->
     <div
-      class="absolute left-0 top-0 w-[30px] h-[30px] rounded-full flex items-center justify-center shadow-sm"
-      :class="currentTypeConfig.color"
+      class="absolute left-0 top-0 w-[30px] h-[30px] rounded-full flex items-center justify-center shadow-sm transition-all duration-300 delay-100 ease-[cubic-bezier(0.16,1,0.3,1)]"
+      :class="[currentTypeConfig.color, { 'opacity-100 scale-100': isVisible, 'opacity-0 scale-50': !isVisible }]"
     >
       <Icon :icon="currentTypeConfig.icon" class="w-4 h-4" />
     </div>
 
     <!-- Year label -->
-    <div class="text-sm font-medium text-muted-foreground mb-2">{{ item.year }}</div>
+    <div 
+      class="text-sm font-medium text-muted-foreground mb-2 transition-opacity duration-300 delay-150 ease-[cubic-bezier(0.16,1,0.3,1)]"
+      :class="{ 'opacity-100': isVisible, 'opacity-0': !isVisible }"
+    >{{ item.year }}</div>
 
     <!-- Content card -->
     <div
@@ -109,7 +107,7 @@ const titleHoverColorClass = 'group-hover:text-[var(--item-accent-color)]';
 </template>
 
 <style scoped>
-.timeline-item:hover { /* This class isn't used in the new template, but if you add it to the root div above, it would apply */
+/* .timeline-item:hover { 
   transform: translateX(3px);
-}
+} */
 </style> 

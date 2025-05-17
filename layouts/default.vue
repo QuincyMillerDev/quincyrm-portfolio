@@ -20,8 +20,8 @@ const isMobile = breakpoints.smaller('mobile')
     <div class="flex h-full relative">
       <!-- Chat panel - hidden on mobile and when closed -->
       <Transition
-        enter-active-class="transition-all duration-150 ease-out"
-        leave-active-class="transition-all duration-150 ease-in"
+        enter-active-class="transition-all duration-150 ease-in-out"
+        leave-active-class="transition-all duration-150 ease-in-out"
         enter-from-class="opacity-0 -translate-x-full"
         leave-to-class="opacity-0 -translate-x-full"
       >
@@ -35,7 +35,7 @@ const isMobile = breakpoints.smaller('mobile')
       
       <!-- Main content area with transition -->
       <div
-        class="flex-grow flex flex-col h-full transition-all duration-150 ease-out w-full"
+        class="flex-grow flex flex-col h-full transition-all duration-150 ease-in-out w-full"
         :class="{
           'pl-0': isMobile || !chatStore.isOpen,
           'sm:pl-80 md:pl-96 lg:pl-[400px] xl:pl-[450px] 2xl:pl-[500px]': !isMobile && chatStore.isOpen

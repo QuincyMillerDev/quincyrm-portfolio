@@ -41,15 +41,12 @@ const buttonHoverTextColorClass = 'hover:text-[var(--item-accent-color)]';
 
 <template>
   <div
-    class="group block h-full"
-    :style="[
-      {
-        transition: `all 0.3s ease-out ${animationDelay}`,
-        transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
-        opacity: isVisible ? 1 : 0
-      },
-      itemStyle // Apply the CSS custom property here
-    ]"
+    class="group block h-full transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
+    :style="[itemStyle, { transitionDelay: animationDelay }]"
+    :class="{ 
+      'opacity-100 translate-y-0 scale-100': isVisible, 
+      'opacity-0 translate-y-[10px] scale-[0.98]': !isVisible 
+    }"
     @click="handleClick"
   >
     <div

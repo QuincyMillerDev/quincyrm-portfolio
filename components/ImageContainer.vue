@@ -22,13 +22,17 @@ const toggleActive = (idx: number) => {
 onMounted(() => {
   setTimeout(() => {
     loaded.value = true
-  }, 300)
+  }, 100)
 })
 </script>
 
 <template>
   <section class="relative mb-8">
-    <h2 v-if="title" class="text-xl font-medium mb-4">{{ title }}</h2>
+    <h2 
+      v-if="title" 
+      class="text-xl font-medium mb-4 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] delay-100"
+      :class="{ 'opacity-100 translate-y-0 scale-100': loaded, 'opacity-0 translate-y-[10px] scale-[0.98]': !loaded }"
+    >{{ title }}</h2>
     
     <div :class="{ 'images-loaded': loaded }">
       <!-- Responsive Grid Layout for all screens -->
@@ -36,13 +40,17 @@ onMounted(() => {
         <div
           v-for="(image, idx) in props.images"
           :key="`grid-${idx}`"
-          class="group image-item relative aspect-square rounded-lg overflow-hidden shadow-sm"
-          :class="{'is-active': activeIndex === idx}"
-          :style="{ '--delay': `${idx * 100}ms` }"
+          class="group image-item relative aspect-square rounded-lg overflow-hidden shadow-sm transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
+          :class="{
+            'is-active': activeIndex === idx,
+            'opacity-100 translate-y-0 scale-100': loaded, 
+            'opacity-0 translate-y-[10px] scale-[0.98]': !loaded
+          }"
+          :style="{ transitionDelay: loaded ? '0ms' : '0ms' }"
           @click="toggleActive(idx)"
         >
           <!-- Hover effect elements -->
-          <div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-primary/5 dark:from-primary/5 dark:to-primary/5 z-0 opacity-0 group-hover:opacity-100 is-active:opacity-100 transition-opacity duration-500" />
+          <div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-primary/5 dark:from-primary/5 dark:to-primary/5 z-0 opacity-0 group-hover:opacity-100 is-active:opacity-100 transition-opacity duration-200 ease-out" />
           
           <!-- Image -->
           <NuxtImg
@@ -51,12 +59,12 @@ onMounted(() => {
             width="300"
             height="300"
             format="webp"
-            class="w-full h-full object-cover transition-all duration-300 ease-out-expo"
-            :class="loaded ? 'scale-100 blur-0' : 'scale-105 blur-sm'"
+            class="w-full h-full object-cover transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] delay-100" 
+            :class="loaded ? 'scale-100 blur-0' : 'scale-100 blur-sm'"
           />
           
           <!-- Description overlay -->
-          <div class="absolute inset-0 flex items-end p-3 opacity-0 group-hover:opacity-100 is-active:opacity-100 transition-all duration-300 ease-out bg-gradient-to-t from-black/70 to-transparent translate-y-2 group-hover:translate-y-0 is-active:translate-y-0">
+          <div class="absolute inset-0 flex items-end p-3 opacity-0 group-hover:opacity-100 is-active:opacity-100 transition-all duration-200 ease-out bg-gradient-to-t from-black/70 to-transparent translate-y-2 group-hover:translate-y-0 is-active:translate-y-0">
             <div class="text-white text-xs sm:text-sm font-medium">
               <p>{{ image.shortDescription }}</p>
               <p v-if="image.location || image.date" class="text-xs opacity-80 mt-0.5">
@@ -66,12 +74,6 @@ onMounted(() => {
               </p>
             </div>
           </div>
-          
-          <!-- Decorative corner accent (desktop only) -->
-          <div class="hidden md:block absolute top-0 right-0 w-12 h-12 -translate-x-full translate-y-full rotate-45 bg-primary/10 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 ease-out-expo" style="transition-delay: 50ms;" />
-          
-          <!-- Subtle border effect -->
-          <div class="absolute inset-0 border border-white/5 group-hover:border-white/20 rounded-lg pointer-events-none transition-all duration-500" />
         </div>
       </div>
     </div>
@@ -79,49 +81,29 @@ onMounted(() => {
 </template>
 
 <style scoped>
-/* Shared styles for all image items */
-.image-item {
-  transform: translateY(20px) scale(0.95);
-  opacity: 0;
-  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-  transition-delay: var(--delay, 0ms);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  will-change: transform, opacity;
-}
 
-.images-loaded .image-item {
-  transform: translateY(0) scale(1);
-  opacity: 1;
-}
-
-/* Hover effects */
+/* Hover effects - these are fine and separate from entry animation */
 .image-item:hover, .image-item.is-active {
-  transform: translateY(-3px);
   z-index: 10;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  transition-duration: 0.3s;
+  
+  transition-property: box-shadow; /* Only box-shadow for hover, entry is on 'all' */
+  transition-duration: 0.2s; 
+  transition-timing-function: ease-out; 
 }
 
-/* Medium and larger screens get enhanced hover */
 @media (min-width: 768px) {
-  .image-item:hover {
-    transform: translateY(-6px);
-    z-index: 50;
+  .image-item:hover, .image-item.is-active { 
+    z-index: 50; 
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
   }
   
-  .image-item:hover img {
+  .image-item:hover img { 
     filter: saturate(1.1);
-    /* transform: scale(1.05); */ /* Removed scaling */
   }
 }
 
-/* Custom ease-out-expo transition */
-.ease-out-expo {
-  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* Active state for mobile tap */
+/* Active state for mobile tap - these are fine */
 .is-active\:opacity-100:where(.is-active) {
   opacity: 1;
 }
@@ -130,8 +112,8 @@ onMounted(() => {
   transform: translateY(0);
 }
 
-/* Image filter effects */
+/* Image filter effects - these are fine */
 .image-item img {
-  filter: saturate(0.9);
+  filter: saturate(0.9); /* Base saturation for images */
 }
 </style>

@@ -35,17 +35,17 @@ const isGithubLink = computed(() => props.project.link.includes('github.com'))
     :href="props.project.link" 
     target="_blank" 
     rel="noopener noreferrer"
-    class="block h-full group"
-    :style="itemStyle"
+    class="block h-full group transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
+    :style="[itemStyle, { transitionDelay: props.animationDelay }]"
+    :class="{ 
+      'opacity-100 translate-y-0 scale-100': props.isVisible, 
+      'opacity-0 translate-y-[10px] scale-[0.98]': !props.isVisible 
+    }"
   >
     <div 
       class="project-card relative flex flex-col h-full overflow-hidden rounded-lg border border-border/40 bg-background/50 backdrop-blur-sm transition-all duration-300 group-hover:shadow-md group-hover:ring-1"
-      :style="{
-        'transition': `all 0.3s ease-out ${props.animationDelay || '0s'}`,
-        'transform': props.isVisible ? 'translateY(0px)' : 'translateY(20px)',
-        'opacity': props.isVisible ? 1 : 0
-      }" 
-      :class="['group-hover:ring-[var(--item-accent-color)]/30']"
+      :class="['group-hover:ring-[var(--item-accent-color)]/30']" 
+      comment="Removed animation classes/styles from here as they are now on the root 'a' tag"
     >
       <div class="p-5 flex-grow flex flex-col">
         <div class="flex items-center mb-3">
@@ -85,6 +85,7 @@ const isGithubLink = computed(() => props.project.link.includes('github.com'))
 
 <style scoped>
 .project-card {
-  will-change: transform, opacity, box-shadow;
+  will-change: transform, opacity, box-shadow; 
+  /* Note: transform and opacity are handled by the parent 'a' tag's animation now */
 }
 </style>
