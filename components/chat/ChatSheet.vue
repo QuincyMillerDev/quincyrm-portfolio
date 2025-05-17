@@ -15,12 +15,14 @@ const chatStore = useChatStore()
 
 <template>
   <Sheet v-model:open="chatStore.isMobileSheetOpen">
-    <SheetTrigger>
-      <Button variant="ghost" size="icon" class="h-6 w-6 mx-1 flex items-center justify-center">
-        <Icon icon="lucide:message-square" class="h-[1rem] w-[1rem]" />
-        <span class="sr-only">Open Chat</span>
-      </Button>
-    </SheetTrigger>
+    <ClientOnly>
+      <SheetTrigger>
+        <Button variant="ghost" size="icon" class="h-6 w-6 mx-1 flex items-center justify-center">
+          <Icon icon="lucide:message-square" class="h-[1rem] w-[1rem]" />
+          <span class="sr-only">Open Chat</span>
+        </Button>
+      </SheetTrigger>
+    </ClientOnly>
     <SheetContent 
       class="p-0 flex flex-col h-full border-l border-border/50 bg-background/95 backdrop-blur-sm"
       :class="[

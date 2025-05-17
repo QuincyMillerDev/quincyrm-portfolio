@@ -27,7 +27,7 @@ const isMobile = breakpoints.smaller('mobile')
       >
         <div 
           v-if="!isMobile && chatStore.isOpen" 
-          class="absolute left-0 top-0 z-20 w-96 h-full flex-shrink-0 border-r border-border/30 shadow-sm bg-background"
+          class="absolute left-0 top-0 z-20 h-full flex-shrink-0 border-r border-border/30 shadow-sm bg-background sm:w-96 md:w-96 lg:w-[401px] xl:w-[451px] 2xl:w-[551px]"
         >
           <ChatbotPanel class="h-full" />
         </div>
@@ -36,12 +36,15 @@ const isMobile = breakpoints.smaller('mobile')
       <!-- Main content area with transition -->
       <div 
         class="flex-grow flex flex-col h-full transition-all duration-150 ease-out w-full"
-        :class="{'pl-0': isMobile || !chatStore.isOpen, 'pl-96': !isMobile && chatStore.isOpen}"
+        :class="{
+          'pl-0': isMobile || !chatStore.isOpen, 
+          'sm:pl-96 md:pl-96 lg:pl-[450px] xl:pl-[500px] 2xl:pl-[550px]': !isMobile && chatStore.isOpen
+        }"
       >
-        <MainNavbar />
         <!-- Scrollable content area -->
         <div class="flex-grow overflow-y-auto custom-scroll-area">
-          <main class="max-w-3xl w-full mx-auto px-4 pb-8 pt-6 transition-all duration-150">
+          <MainNavbar />
+          <main class="max-w-3xl w-full mx-auto px-4 pb-8 pt-11 transition-all duration-150">
             <slot /> <!-- NuxtPage content renders here -->
           </main>
         </div>

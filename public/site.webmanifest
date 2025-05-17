@@ -1,0 +1,18 @@
+{
+  "name": "Quincy Portfolio",
+  "short_name": "Quincy RM",
+  "description": "Quincy's portfolio site",
+  "start_url": "/",
+  "background_color": "#020817",
+  "theme_color": "#020817",
+  "display": "standalone",
+  "orientation": "portrait",
+  "categories": ["portfolio", "development"],
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64",
+      "type": "image/x-icon"
+    }
+  ]
+} 

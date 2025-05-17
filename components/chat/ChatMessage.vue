@@ -50,7 +50,7 @@ const formattedTime = computed(() => {
             <ClientOnly>
               <!-- eslint-disable-next-line vue/no-v-html -->
               <div 
-                class="prose prose-sm dark:prose-invert max-w-none"
+                class="prose prose-sm dark:prose-invert max-w-none break-all"
                 v-html="parsedContent"
               />
             </ClientOnly>
@@ -71,7 +71,7 @@ const formattedTime = computed(() => {
           <ClientOnly>
             <!-- eslint-disable-next-line vue/no-v-html -->
             <div 
-              class="prose prose-sm dark:prose-invert max-w-none"
+              class="prose prose-sm dark:prose-invert max-w-none break-all"
               v-html="parsedContent"
             />
           </ClientOnly>

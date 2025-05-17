@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, nextTick } from 'vue'
+import type { ComponentPublicInstance } from 'vue'
 import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
 import { Icon } from '@iconify/vue'
 
 const message = ref('')
-const textareaRef = ref<HTMLTextAreaElement | null>(null)
+const textareaRef = ref<ComponentPublicInstance & { $el: HTMLTextAreaElement } | null>(null)
 
 const emit = defineEmits(['send'])
 
@@ -17,8 +18,8 @@ const handleSend = () => {
     message.value = ''
     
     // Reset textarea height
-    if (textareaRef.value) {
-      textareaRef.value.style.height = 'auto'
+    if (textareaRef.value && textareaRef.value.$el) {
+      textareaRef.value.$el.style.height = 'auto'
     }
   }
 }
@@ -32,11 +33,23 @@ const handleKeyDown = (e: KeyboardEvent) => {
 
 // Auto-resize textarea
 const resizeTextarea = () => {
-  if (!textareaRef.value) return
+  if (!textareaRef.value || !textareaRef.value.$el) return
   
-  textareaRef.value.style.height = 'auto'
-  textareaRef.value.style.height = `${Math.min(textareaRef.value.scrollHeight, 150)}px`
+  textareaRef.value.$el.style.height = 'auto'
+  textareaRef.value.$el.style.height = `${Math.min(textareaRef.value.$el.scrollHeight, 150)}px`
 }
+
+const setMessage = (newMessage: string) => {
+  message.value = newMessage
+  nextTick(() => {
+    if (textareaRef.value && textareaRef.value.$el) {
+      textareaRef.value.$el.focus()
+    }
+    resizeTextarea()
+  })
+}
+
+defineExpose({ setMessage })
 </script>
 
 <template>

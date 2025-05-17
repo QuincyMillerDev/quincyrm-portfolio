@@ -6,6 +6,25 @@ export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
   css: ['~/assets/css/tailwind.css'],
+  
+  // Add app-wide head configuration for iOS theming
+  app: {
+    head: {
+      meta: [
+        // iOS status bar configuration
+        { name: 'mobile-web-app-capable', content: 'yes' },
+        { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' },
+        // Add theme-color meta for browser UI elements
+        { name: 'theme-color', content: '#ffffff', media: '(prefers-color-scheme: light)' },
+        { name: 'theme-color', content: '#020817', media: '(prefers-color-scheme: dark)' }
+      ],
+      link: [
+        // Add a manifest file for PWA support
+        { rel: 'manifest', href: '/site.webmanifest' }
+      ]
+    }
+  },
+  
   vite: {
     plugins: [
       tailwindcss(),

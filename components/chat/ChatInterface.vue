@@ -44,6 +44,7 @@ const handleSendMessage = (content: string) => {
 
 // Toggle header visibility on scroll
 const messagesContainer = ref<HTMLDivElement | null>(null)
+const chatInputRef = ref<InstanceType<typeof ChatInput> | null>(null)
 const handleScroll = () => {
   if (!messagesContainer.value) return
   headerVisible.value = messagesContainer.value.scrollTop < 50
@@ -51,6 +52,10 @@ const handleScroll = () => {
 
 // Empty state
 const isEmptyChat = computed(() => chatStore.messages.length === 0)
+
+const populateInputWithSuggestion = (suggestion: string) => {
+  chatInputRef.value?.setMessage(suggestion)
+}
 
 onMounted(() => {
   scrollToBottom()
@@ -118,7 +123,7 @@ onMounted(() => {
           v-for="(suggestion, i) in ['How does this chatbot work?', 'What was Quincy\'s most recent job?', 'Provide a list of Quincy\'s skills', 'What is Quincy\'s favorite food?']" 
             :key="i"
             class="text-xs px-3 py-2 rounded-lg border border-border/40 bg-muted/30 hover:bg-muted/50 transition-colors text-muted-foreground hover:text-foreground"
-            @click="handleSendMessage(suggestion)"
+            @click="populateInputWithSuggestion(suggestion)"
           >
             {{ suggestion }}
           </button>
@@ -147,7 +152,7 @@ onMounted(() => {
     
     <!-- Input area -->
     <div class="mt-auto">
-      <ChatInput @send="handleSendMessage" />
+      <ChatInput ref="chatInputRef" @send="handleSendMessage" />
     </div>
   </div>
 </template>

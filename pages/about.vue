@@ -14,9 +14,9 @@ const stravaStore = useStravaActivityStore();
 
 const images: ImageItem[] = [
   { src: '/images/IMG_1625_VSCO.JPG', alt: 'Backcountry Skiing', shortDescription: 'I need to go backcountry skiing again.', location: 'Alta, UT', date: 'Jan 2025' },
-  { src: '/images/IMG_1385.JPG', alt: 'Senior Design', shortDescription: 'Presenting our Agentic AI Capstone Project, won 3rd place!', location: 'Storrs, CT', date: 'April 2024' },
-  { src: '/images/IMG_7864.JPG', alt: 'Japan', shortDescription: 'Exploring Japan.', location: 'Tokyo, Japan', date: 'August 2024' },
-  { src: '/images/IMG_3697.JPG', alt: 'Head of the Charles', shortDescription: 'Scout and I rowed in the PR3 doubles race at the Head of the Charles.', location: 'Boston, MA', date: 'Oct 2024' },
+  { src: '/images/IMG_1385.JPG', alt: 'Senior Design', shortDescription: 'Won 3rd place in Capstone Competition.', location: 'Storrs, CT', date: 'Apr 2024' },
+  { src: '/images/IMG_7864.JPG', alt: 'Japan', shortDescription: 'Exploring Japan.', location: 'Tokyo, Japan', date: 'Aug 2024' },
+  { src: '/images/IMG_3697.JPG', alt: 'Head of the Charles', shortDescription: 'Scout and I rowed in the HoTC.', location: 'Boston, MA', date: 'Oct 2024' },
 ]
 
 const timelineItems = ref<TimelineItemData[]>([
