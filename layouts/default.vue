@@ -44,7 +44,7 @@ const isMobile = breakpoints.smaller('mobile')
         <!-- Scrollable content area -->
         <div class="flex-grow overflow-y-auto custom-scroll-area">
           <MainNavbar />
-          <main class="max-w-3xl w-full mx-auto px-4 pb-8 pt-11 transition-all duration-150">
+          <main class="max-w-2xl w-full mx-auto px-4 pb-8 pt-11 transition-all duration-150">
             <slot /> <!-- NuxtPage content renders here -->
           </main>
         </div>

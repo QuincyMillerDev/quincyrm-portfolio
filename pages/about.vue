@@ -134,8 +134,7 @@ onMounted(() => {
     <div
       class="transition-all duration-300 ease-out relative"
       :class="{
-        'z-10': activeSection === 'images',
-        'opacity-85 brightness-98': activeSection !== null && activeSection !== 'images'
+        'z-10': activeSection === 'images'
       }"
       @mouseenter="setHoveredSection('images')"
       @mouseleave="setHoveredSection(null)"
@@ -145,8 +144,7 @@ onMounted(() => {
     <div
       class="transition-all duration-300 ease-out relative"
       :class="{
-        'z-10': activeSection === 'timeline',
-        'opacity-85 brightness-98': activeSection !== null && activeSection !== 'timeline'
+        'z-10': activeSection === 'timeline'
       }"
       @mouseenter="setHoveredSection('timeline')"
       @mouseleave="setHoveredSection(null)"
@@ -156,8 +154,7 @@ onMounted(() => {
     <div
       class="transition-all duration-300 ease-out relative"
       :class="{
-        'z-10': activeSection === 'hobbies',
-        'opacity-85 brightness-98': activeSection !== null && activeSection !== 'hobbies'
+        'z-10': activeSection === 'hobbies'
       }"
       @mouseenter="setHoveredSection('hobbies')"
       @mouseleave="setHoveredSection(null)"
