@@ -8,6 +8,7 @@ const desktopPictureUrl = '/images/portrait.jpg'
 const mobilePictureUrl = '/images/portrait_small.jpg'
 const subtitle = "Full-Stack Software Engineer"
 const descriptionMd = `
+(Open to relocation) \n
 SWE @ Hubbell, CS Alumni @ UConn
 `
 // Social links and icons
@@ -64,7 +65,7 @@ onMounted(() => {
         :subtitle="subtitle"
         :description-md="descriptionMd"
         :links="links"
-        location="Coventry, CT (Open to relocation)"
+        location="Coventry, CT"
       />
     </div>
     
