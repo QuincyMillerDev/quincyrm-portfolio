@@ -4,9 +4,25 @@ import ChatMessage from './ChatMessage.vue'
 import ChatInput from './ChatInput.vue'
 import { useChatStore } from '~/stores/chatStore'
 import { Icon } from '@iconify/vue'
+import { useBreakpoints } from '@vueuse/core'
 
 // Use chat store
 const chatStore = useChatStore()
+
+// Detect mobile breakpoint
+const breakpoints = useBreakpoints({
+  mobile: 768, // md breakpoint
+})
+const isMobile = breakpoints.smaller('mobile')
+
+// Function to close chat based on device
+const closeChat = () => {
+  if (isMobile.value) {
+    chatStore.toggleMobileSheet()
+  } else {
+    chatStore.toggleChat()
+  }
+}
 
 const messagesEndRef = ref<HTMLDivElement | null>(null)
 const headerVisible = ref(true)
@@ -59,7 +75,7 @@ onMounted(() => {
             <Icon icon="lucide:message-square" class="w-4 h-4 text-violet-600 dark:text-violet-400" />
           </div>
         </div>
-        <h3 class="font-medium text-sm">Chat Assistant</h3>
+        <h3 class="font-medium text-sm text-foreground">Chat Assistant</h3>
       </div>
       
       <!-- Chat actions -->
@@ -75,7 +91,7 @@ onMounted(() => {
         
         <button 
           class="p-1.5 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors"
-          @click="chatStore.toggleChat"
+          @click="closeChat"
         >
           <Icon icon="lucide:x" class="w-3.5 h-3.5" />
           <span class="sr-only">Close chat</span>
@@ -93,7 +109,7 @@ onMounted(() => {
         v-if="isEmptyChat" 
         class="h-full flex flex-col items-center justify-center text-center px-6 py-10"
       >
-        <h3 class="text-base font-medium mb-1">Welcome to the Chat</h3>
+        <h3 class="text-base font-medium mb-1 text-foreground">Welcome to the Chat</h3>
         <p class="text-sm text-muted-foreground mb-4 max-w-xs">
           Ask me anything about my projects, experience, or just say hello!
         </p>
