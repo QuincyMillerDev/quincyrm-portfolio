@@ -123,13 +123,8 @@ const setHoveredSection = (section: string | null) => {
   activeSection.value = section
 }
 
-// Fetch latest activity data via Pinia store action when the component mounts
 onMounted(() => {
   stravaStore.fetchAthleteStats();
-  // Optional: Set up polling or refetch on window focus for more frequent updates
-  // Consider if polling is necessary or if webhook updates + initial fetch are sufficient
-  // Example: Poll every 5 minutes
-  // setInterval(() => stravaStore.fetchAthleteStats(), 5 * 60 * 1000);
 });
 </script>
 
@@ -139,8 +134,8 @@ onMounted(() => {
     <div
       class="transition-all duration-300 ease-out relative"
       :class="{
-        'scale-101 z-10': activeSection === 'images',
-        'opacity-85 brightness-98 scale-99': activeSection !== null && activeSection !== 'images'
+        'z-10': activeSection === 'images',
+        'opacity-85 brightness-98': activeSection !== null && activeSection !== 'images'
       }"
       @mouseenter="setHoveredSection('images')"
       @mouseleave="setHoveredSection(null)"
@@ -150,8 +145,8 @@ onMounted(() => {
     <div
       class="transition-all duration-300 ease-out relative"
       :class="{
-        'scale-101 z-10': activeSection === 'timeline',
-        'opacity-85 brightness-98 scale-99': activeSection !== null && activeSection !== 'timeline'
+        'z-10': activeSection === 'timeline',
+        'opacity-85 brightness-98': activeSection !== null && activeSection !== 'timeline'
       }"
       @mouseenter="setHoveredSection('timeline')"
       @mouseleave="setHoveredSection(null)"
@@ -161,8 +156,8 @@ onMounted(() => {
     <div
       class="transition-all duration-300 ease-out relative"
       :class="{
-        'scale-101 z-10': activeSection === 'hobbies',
-        'opacity-85 brightness-98 scale-99': activeSection !== null && activeSection !== 'hobbies'
+        'z-10': activeSection === 'hobbies',
+        'opacity-85 brightness-98': activeSection !== null && activeSection !== 'hobbies'
       }"
       @mouseenter="setHoveredSection('hobbies')"
       @mouseleave="setHoveredSection(null)"

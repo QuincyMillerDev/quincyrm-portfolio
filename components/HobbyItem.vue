@@ -63,7 +63,7 @@ const buttonHoverTextColorClass = 'hover:text-[var(--item-accent-color)]';
         <!-- Header with icon -->
         <div class="flex items-center mb-3">
           <div
-            class="w-8 h-8 rounded-full flex items-center justify-center mr-3 transition-all duration-300 group-hover:scale-105"
+            class="w-8 h-8 rounded-full flex items-center justify-center mr-3 transition-all duration-300"
             :class="[
               iconContainerBgClass, 
               iconContainerTextColorClass, 
@@ -71,7 +71,7 @@ const buttonHoverTextColorClass = 'hover:text-[var(--item-accent-color)]';
               iconContainerHoverTextColorClass
             ]"
           >
-            <Icon :icon="hobby.icon" class="w-4 h-4 transition-transform duration-300 group-hover:scale-110" />
+            <Icon :icon="hobby.icon" class="w-4 h-4 transition-transform duration-300" />
           </div>
           <h3
             class="text-base font-medium transition-colors duration-300"

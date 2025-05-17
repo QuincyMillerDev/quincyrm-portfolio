@@ -115,15 +115,10 @@ const getSkillColors = (skillName: string) => {
 </template>
 
 <style scoped>
-/* Custom hover effect for timeline items */
-.timeline-item:hover {
-  transform: translateX(3px);
-}
 
 .animate-timeline-header {
   transition-property: opacity, transform;
   transition-duration: 0.5s;
-  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1); /* ease-out-expo like */
-  /* No explicit delay needed here if triggered by isVisible becoming true at 300ms */
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1); 
 }
 </style>

@@ -165,7 +165,7 @@ const handleImageLoad = () => {
                 as-child
                 variant="ghost"
                 size="icon"
-                class="w-8 h-8 rounded-md transition-all duration-300 hover:scale-105"
+                class="w-8 h-8 rounded-md transition-all duration-300"
                 :class="[
                   brandColorClasses[link.name] || '',
                   { 'opacity-0': !isVisible, [`opacity-100 transition-opacity duration-500 delay-[${300 + index * 100}ms]`]: isVisible }

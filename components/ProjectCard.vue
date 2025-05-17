@@ -50,7 +50,7 @@ const isGithubLink = computed(() => props.project.link.includes('github.com'))
       <div class="p-5 flex-grow flex flex-col">
         <div class="flex items-center mb-3">
           <div 
-            class="icon-container flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center mr-3 transition-all duration-300 group-hover:scale-105"
+            class="icon-container flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center mr-3 transition-all duration-300"
             :class="[
               'bg-[var(--item-accent-color)]/10',
               'group-hover:bg-[var(--item-accent-color)]/20'
@@ -58,7 +58,7 @@ const isGithubLink = computed(() => props.project.link.includes('github.com'))
           >
             <component 
               :is="isGithubLink ? Github : Globe" 
-              class="icon-glyph w-5 h-5 transition-all duration-300 group-hover:scale-110"
+              class="icon-glyph w-5 h-5 transition-all duration-300"
               :class="[
                 'text-[var(--item-accent-color)]',
                 'group-hover:text-[var(--item-accent-color)]'

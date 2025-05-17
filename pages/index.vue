@@ -52,8 +52,7 @@ onMounted(() => {
     <div
       class="transition-all duration-300 ease-out relative"
       :class="{
-        'scale-101 z-10': activeSection === 'profile',
-        'opacity-85 brightness-98 scale-99': activeSection !== null && activeSection !== 'profile'
+        'z-10': activeSection === 'profile',
       }"
       @mouseenter="setHoveredSection('profile')"
       @mouseleave="setHoveredSection(null)"
@@ -69,7 +68,6 @@ onMounted(() => {
       />
     </div>
     
-    <!-- Wrapper for entry animation -->
     <div
       :class="[
         'relative',
@@ -77,12 +75,10 @@ onMounted(() => {
       ]"
       style="transition-property: opacity, transform; transition-duration: 0.6s; transition-timing-function: ease-out;"
     >
-      <!-- Original wrapper for hover effects -->
       <div
         class="transition-all duration-300 ease-out relative"
         :class="{
-          'scale-101 z-10': activeSection === 'projects',
-          'opacity-85 brightness-98 scale-99': activeSection !== null && activeSection !== 'projects'
+          'z-10': activeSection === 'projects',
         }"
         @mouseenter="setHoveredSection('projects')"
         @mouseleave="setHoveredSection(null)"

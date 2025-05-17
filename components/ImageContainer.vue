@@ -27,7 +27,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <section class="relative my-8">
+  <section class="relative mb-8">
     <h2 v-if="title" class="text-xl font-medium mb-4">{{ title }}</h2>
     
     <div :class="{ 'images-loaded': loaded }">
@@ -96,7 +96,7 @@ onMounted(() => {
 
 /* Hover effects */
 .image-item:hover, .image-item.is-active {
-  transform: translateY(-3px) scale(1.02);
+  transform: translateY(-3px);
   z-index: 10;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   transition-duration: 0.3s;
@@ -105,14 +105,14 @@ onMounted(() => {
 /* Medium and larger screens get enhanced hover */
 @media (min-width: 768px) {
   .image-item:hover {
-    transform: translateY(-6px) scale(1.03);
+    transform: translateY(-6px);
     z-index: 50;
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
   }
   
   .image-item:hover img {
     filter: saturate(1.1);
-    transform: scale(1.05);
+    /* transform: scale(1.05); */ /* Removed scaling */
   }
 }
 
