@@ -25,20 +25,20 @@ const isMobile = breakpoints.smaller('mobile')
         enter-from-class="opacity-0 -translate-x-full"
         leave-to-class="opacity-0 -translate-x-full"
       >
-        <div 
-          v-if="!isMobile && chatStore.isOpen" 
-          class="absolute left-0 top-0 z-20 h-full flex-shrink-0 border-r border-border/30 shadow-sm bg-background sm:w-96 md:w-96 lg:w-[401px] xl:w-[451px] 2xl:w-[551px]"
+        <div
+          v-if="!isMobile && chatStore.isOpen"
+          class="absolute left-0 top-0 z-20 h-full flex-shrink-0 border-r border-border/30 shadow-sm bg-background/95 backdrop-blur-sm sm:w-80 md:w-96 lg:w-[400px] xl:w-[450px] 2xl:w-[500px]"
         >
           <ChatbotPanel class="h-full" />
         </div>
       </Transition>
       
       <!-- Main content area with transition -->
-      <div 
+      <div
         class="flex-grow flex flex-col h-full transition-all duration-150 ease-out w-full"
         :class="{
-          'pl-0': isMobile || !chatStore.isOpen, 
-          'sm:pl-96 md:pl-96 lg:pl-[450px] xl:pl-[500px] 2xl:pl-[550px]': !isMobile && chatStore.isOpen
+          'pl-0': isMobile || !chatStore.isOpen,
+          'sm:pl-80 md:pl-96 lg:pl-[400px] xl:pl-[450px] 2xl:pl-[500px]': !isMobile && chatStore.isOpen
         }"
       >
         <!-- Scrollable content area -->
