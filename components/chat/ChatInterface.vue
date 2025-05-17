@@ -116,7 +116,7 @@ onMounted(() => {
       >
         <h3 class="text-base font-medium mb-1 text-foreground">Welcome to the Chat</h3>
         <p class="text-sm text-muted-foreground mb-4 max-w-xs">
-          Ask me anything about my projects, experience, or just say hello!
+          This feature is still under development.
         </p>
         <div class="grid grid-cols-2 gap-2 w-full max-w-xs">
           <button 
