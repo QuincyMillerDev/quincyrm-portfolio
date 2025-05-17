@@ -1,20 +1,15 @@
 <script setup lang="ts">
-import { ref, onMounted, nextTick } from 'vue'
+import { nextTick, ref, onMounted, computed } from 'vue'
 import ChatMessage from './ChatMessage.vue'
 import ChatInput from './ChatInput.vue'
+import { useChatStore } from '~/stores/chatStore'
+import { Icon } from '@iconify/vue'
 
-interface Message {
-  id: string
-  content: string
-  isUser: boolean
-  timestamp: string
-}
-
-// Sample messages for UI demonstration
-const messages = ref<Message[]>([])
+// Use chat store
+const chatStore = useChatStore()
 
 const messagesEndRef = ref<HTMLDivElement | null>(null)
-const isTyping = ref(false)
+const headerVisible = ref(true)
 
 const scrollToBottom = async () => {
   await nextTick()
@@ -24,39 +19,99 @@ const scrollToBottom = async () => {
 }
 
 const handleSendMessage = (content: string) => {
-  // Add user message
-  messages.value.push({
-    id: Date.now().toString(),
-    content,
-    isUser: true,
-    timestamp: new Date().toISOString()
-  })
+  // Add message via store
+  chatStore.addUserMessage(content)
   
   // Scroll to bottom after sending message
   scrollToBottom()
 }
 
+// Toggle header visibility on scroll
+const messagesContainer = ref<HTMLDivElement | null>(null)
+const handleScroll = () => {
+  if (!messagesContainer.value) return
+  headerVisible.value = messagesContainer.value.scrollTop < 50
+}
+
+// Empty state
+const isEmptyChat = computed(() => chatStore.messages.length === 0)
+
 onMounted(() => {
   scrollToBottom()
+  if (messagesContainer.value) {
+    messagesContainer.value.addEventListener('scroll', handleScroll)
+  }
 })
 </script>
 
 <template>
   <div class="flex flex-col h-full">
+    <!-- Chat header - animated and smaller -->
+    <div 
+      class="px-4 py-3 border-b border-border/30 flex justify-between items-center transition-all duration-300 backdrop-blur-sm bg-background/80 z-10"
+      :class="[
+        headerVisible ? 'opacity-100' : 'opacity-0 -translate-y-2',
+      ]"
+    >
+      <div class="flex items-center gap-2">
+        <div class="relative">
+          <div class="w-7 h-7 rounded-full bg-violet-100 dark:bg-violet-950/40 flex items-center justify-center">
+            <Icon icon="lucide:message-square" class="w-4 h-4 text-violet-600 dark:text-violet-400" />
+          </div>
+        </div>
+        <h3 class="font-medium text-sm">Chat Assistant</h3>
+      </div>
+      
+      <!-- Chat actions -->
+      <div class="flex items-center gap-1">
+        <button 
+          v-if="chatStore.messages.length > 0"
+          class="p-1.5 rounded-md text-muted-foreground hover:text-red-500 hover:bg-red-50/30 dark:hover:bg-red-950/20 transition-colors"
+          @click="chatStore.clearMessages"
+        >
+          <Icon icon="lucide:trash-2" class="w-3.5 h-3.5" />
+          <span class="sr-only">Clear chat</span>
+        </button>
+        
+        <button 
+          class="p-1.5 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors"
+          @click="chatStore.toggleChat"
+        >
+          <Icon icon="lucide:x" class="w-3.5 h-3.5" />
+          <span class="sr-only">Close chat</span>
+        </button>
+      </div>
+    </div>
+    
     <!-- Chat messages area -->
-    <div class="flex-1 overflow-y-auto px-2 py-4 space-y-1 scroll-smooth">
-      <!-- Date separator -->
-      <!-- 
-      <div class="flex justify-center my-4">
-        <div class="text-xs text-muted-foreground bg-muted/30 px-2 py-1 rounded-full">
-          Today
+    <div 
+      ref="messagesContainer"
+      class="flex-1 overflow-y-auto px-3 py-4 space-y-2 scroll-smooth hide-scrollbar"
+    >
+      <!-- Empty state -->
+      <div 
+        v-if="isEmptyChat" 
+        class="h-full flex flex-col items-center justify-center text-center px-6 py-10"
+      >
+        <h3 class="text-base font-medium mb-1">Welcome to the Chat</h3>
+        <p class="text-sm text-muted-foreground mb-4 max-w-xs">
+          Ask me anything about my projects, experience, or just say hello!
+        </p>
+        <div class="grid grid-cols-2 gap-2 w-full max-w-xs">
+          <button 
+          v-for="(suggestion, i) in ['How does this chatbot work?', 'What was Quincy\'s most recent job?', 'Provide a list of Quincy\'s skills', 'What is Quincy\'s favorite food?']" 
+            :key="i"
+            class="text-xs px-3 py-2 rounded-lg border border-border/40 bg-muted/30 hover:bg-muted/50 transition-colors text-muted-foreground hover:text-foreground"
+            @click="handleSendMessage(suggestion)"
+          >
+            {{ suggestion }}
+          </button>
         </div>
       </div>
-      -->
       
       <!-- Messages -->
       <ChatMessage 
-        v-for="message in messages" 
+        v-for="message in chatStore.messages" 
         :key="message.id"
         :content="message.content"
         :is-user="message.isUser"
@@ -64,7 +119,7 @@ onMounted(() => {
       />
       
       <!-- Typing indicator -->
-      <div v-if="isTyping" class="flex items-center space-x-2 opacity-70 ml-10">
+      <div v-if="chatStore.isTyping" class="flex items-center space-x-2 opacity-70 ml-10">
         <div class="w-2 h-2 rounded-full bg-primary/60 animate-bounce" style="animation-delay: 0ms;" />
         <div class="w-2 h-2 rounded-full bg-primary/60 animate-bounce" style="animation-delay: 150ms;" />
         <div class="w-2 h-2 rounded-full bg-primary/60 animate-bounce" style="animation-delay: 300ms;" />
@@ -75,8 +130,19 @@ onMounted(() => {
     </div>
     
     <!-- Input area -->
-    <div class="mt-auto pt-2">
+    <div class="mt-auto">
       <ChatInput @send="handleSendMessage" />
     </div>
   </div>
 </template>
+
+<style scoped>
+/* Hide scrollbar for all browsers */
+.hide-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari and Opera */
+}
+</style>

@@ -1,7 +1,9 @@
+<!-- eslint-disable vue/no-v-html -->
 <script setup lang="ts">
 import { computed } from 'vue'
 import { marked } from 'marked'
 import DOMPurify from 'dompurify'
+import { Icon } from '@iconify/vue'
 
 interface Props {
   content: string
@@ -26,7 +28,7 @@ const formattedTime = computed(() => {
 
 <template>
   <div 
-    class="group flex w-full mb-4 transition-opacity"
+    class="group flex w-full mb-4 transition-all duration-300 hover:translate-x-0.5"
     :class="[
       isUser ? 'justify-end' : 'justify-start',
     ]"
@@ -34,9 +36,16 @@ const formattedTime = computed(() => {
     <!-- AI Message -->
     <template v-if="!isUser">
       <div class="flex max-w-[85%]">
+        <!-- AI Avatar -->
+        <div class="mr-2 mt-1 flex-shrink-0">
+          <div class="w-6 h-6 rounded-full bg-blue-100 dark:bg-blue-950/40 flex items-center justify-center">
+            <Icon icon="lucide:sparkles" class="w-3.5 h-3.5 text-blue-500 dark:text-blue-400" />
+          </div>
+        </div>
+        
         <div>
           <div 
-            class="bg-muted/30 backdrop-blur-sm px-4 py-3 rounded-2xl rounded-tl-sm text-sm text-foreground"
+            class="bg-muted/30 backdrop-blur-sm px-4 py-3 rounded-lg border border-border/30 shadow-sm text-sm text-foreground group-hover:border-border/50 transition-all duration-300"
           >
             <ClientOnly>
               <!-- eslint-disable-next-line vue/no-v-html -->
@@ -57,7 +66,7 @@ const formattedTime = computed(() => {
     <template v-else>
       <div class="flex flex-col items-end max-w-[85%]">
         <div 
-          class="bg-primary/10 backdrop-blur-sm px-4 py-3 rounded-2xl rounded-tr-sm text-sm text-foreground"
+          class="bg-primary/10 backdrop-blur-sm px-4 py-3 rounded-lg border border-primary/10 shadow-sm text-sm text-foreground group-hover:border-primary/20 transition-all duration-300"
         >
           <ClientOnly>
             <!-- eslint-disable-next-line vue/no-v-html -->
@@ -67,8 +76,9 @@ const formattedTime = computed(() => {
             />
           </ClientOnly>
         </div>
-        <div class="text-xs text-muted-foreground mt-1 mr-1 opacity-0 group-hover:opacity-70 transition-opacity">
+        <div class="text-xs text-muted-foreground mt-1 mr-1 opacity-0 group-hover:opacity-70 transition-opacity flex items-center gap-1">
           {{ formattedTime }}
+          <Icon icon="lucide:check" class="w-3 h-3 text-primary" />
         </div>
       </div>
     </template>

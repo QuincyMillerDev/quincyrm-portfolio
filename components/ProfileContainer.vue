@@ -52,18 +52,18 @@ const handleImageLoad = () => {
 <template>
   <Card class="bg-background/50 backdrop-blur-sm border border-border/40 overflow-hidden w-full">
     <div 
-      class="relative w-full py-2 px-4 md:py-3 md:px-5"
+      class="relative w-full py-2 px-3 md:py-3 md:px-5"
       :class="{ 'opacity-100 translate-y-0': isVisible, 'opacity-0 translate-y-4': !isVisible }"
       style="transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1)"
     >
       <!-- Mobile Layout - Horizontal -->
       <div class="md:hidden w-full">
-        <div class="flex items-start justify-between gap-4 w-full">
+        <div class="flex items-start justify-between gap-3 w-full">
           <!-- Content -->
           <div class="flex-1">
-            <h1 class="text-2xl font-bold text-foreground mb-0.5">{{ props.name }}</h1>
-            <h2 class="text-lg text-muted-foreground mb-0.5">{{ props.subtitle }}</h2>
-            <div class="flex items-center text-sm text-muted-foreground mb-2">
+            <h1 class="text-2xl font-bold text-foreground mb-0">{{ props.name }}</h1>
+            <h2 class="text-lg text-muted-foreground mb-0">{{ props.subtitle }}</h2>
+            <div class="flex items-center text-sm text-muted-foreground mb-1">
               <Icon icon="lucide:map-pin" class="w-3.5 h-3.5 mr-1" />
               <span>{{ props.location }}</span>
             </div>
@@ -82,38 +82,36 @@ const handleImageLoad = () => {
               height="200"
               format="webp"
               quality="90"
-              class="rounded-full shadow-md aspect-square object-cover w-26 h-26"
+              class="rounded-full shadow-md aspect-square object-cover w-24 h-24"
               @load="handleImageLoad"
             />
           </div>
         </div>
         
-
-        
         <!-- Description -->
         <div 
-          class="prose prose-sm max-w-none text-muted-foreground dark:prose-invert w-full"
+          class="prose prose-sm max-w-none text-muted-foreground dark:prose-invert w-full mt-1"
           :class="{ 'opacity-100 translate-y-0': isVisible, 'opacity-0 translate-y-4': !isVisible }"
           style="transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s"
         >
           <p
             v-for="(text, idx) in paragraphs"
             :key="idx"
-            class="mb-1.5"
+            class="mb-1"
           >
             {{ text }}
           </p>
         </div>
 
         <!-- Social Links -->
-        <div class="flex flex-wrap gap-1.5 my-10">
+        <div class="flex flex-wrap gap-1 mt-2 mb-1">
           <Button
             v-for="(link, index) in props.links"
             :key="link.name"
             as-child
             variant="ghost"
             size="icon"
-            class="w-8 h-8 rounded-md transition-all duration-300"
+            class="w-7 h-7 rounded-md transition-all duration-300"
             :class="[
               brandColorClasses[link.name] || '',
               { 'opacity-0': !isVisible, [`opacity-100 transition-opacity duration-500 delay-[${300 + index * 100}ms]`]: isVisible }
@@ -125,7 +123,7 @@ const handleImageLoad = () => {
               rel="noopener noreferrer" 
               :aria-label="link.name"
             >
-              <Icon :icon="link.icon" class="w-4 h-4" />
+              <Icon :icon="link.icon" class="w-3.5 h-3.5" />
             </a>
           </Button>
         </div>
