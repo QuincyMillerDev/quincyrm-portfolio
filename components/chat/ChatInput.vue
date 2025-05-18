@@ -63,7 +63,7 @@ defineExpose({ setMessage })
           ref="textareaRef"
           v-model="message"
           placeholder="Ask me a question..."
-          class="min-h-[44px] max-h-[150px] resize-none bg-transparent border-0 focus-visible:ring-0 focus-visible:ring-offset-0 p-2 text-sm hide-scrollbar"
+          class="min-h-[44px] max-h-[150px] resize-none bg-transparent border-0 focus-visible:ring-0 focus-visible:ring-offset-0 p-2 text-sm hide-scrollbar text-foreground"
           @keydown="handleKeyDown"
           @input="resizeTextarea"
         />
