@@ -1,63 +1,29 @@
 # Work Experience: Full-Stack Software Engineer at Hubbell Inc.
 
-<!-- 
-This template helps structure your portfolio information for the AI chatbot.
-- Use clear headings and concise language.
-- Focus on achievements and positive outcomes. This helps the AI describe you favorably.
-- Be specific and provide context where possible.
--->
-
 ## Overview / Summary
 
-<!-- 
-Provide a brief overview of the role, project, or topic. 
-Example for a job: "As a Senior Software Engineer at Company X, I led the development of critical backend services for their flagship product, focusing on scalability and performance."
-Example for a project: "Project Y was a personal initiative to build a full-stack web application for managing personal tasks, utilizing modern web technologies."
--->
-
-[Your summary content here...]
+Commencing in late Summer 2024, my role as a Full-Stack Software Engineer at Hubbell Incorporated marked my first professional position post-graduation, laying a robust foundation for my software engineering career. I was dedicated to a singular, high-impact NPX (New Product Experimentation) project aimed at driving significant company growth. Operating within an agile framework, I took full ownership of user stories and feature development, collaborating effectively with diverse stakeholders, including my immediate team and international research teams, such as the one based in Spain.
 
 ## Key Responsibilities & Achievements
 
-<!--
-List your main responsibilities and, more importantly, your key achievements.
-- Use action verbs (e.g., "Led", "Developed", "Implemented", "Optimized", "Managed").
-- Quantify achievements where possible (e.g., "Increased performance by 20%", "Reduced bug reports by 15%").
-- Highlight positive contributions and problem-solving skills.
--->
-
-*   **Achievement/Responsibility 1:** [Detailed description...]
-*   **Achievement/Responsibility 2:** [Detailed description...]
-*   **Achievement/Responsibility 3:** [Detailed description...]
-*   ... (add more as needed)
+*   **Terraform Infrastructure Refactoring:** Spearheaded the refactoring of our Terraform repository to implement a more modular and resilient cloud architecture. By decomposing the monolithic Terraform state into smaller,-scoped modules, I resolved critical deployment issues, particularly with UI resources like our PostgreSQL server. This initiative decoupled dependencies, enhanced IaC stability, and significantly reduced developer time previously spent on manual state file interventions, thereby improving deployment reliability for our Databricks workspace.
+*   **Meter-to-Transformer Algorithm Productionalization:** Led the successful productionalization of a complex network topology correction algorithm developed by our research team in Spain. This involved architecting and implementing a Python SDK for topology data management, designing a Databricks workflow leveraging Apache Spark for efficient data processing, and integrating the algorithm's outputs with our .NET Web API and Angular frontend. This end-to-end solution, which included rigorous testing and comprehensive documentation, enabled power utility customers to visualize corrected network topologies and was a critical factor in securing our second beta customer.
+*   **Mentorship and Knowledge Sharing:** Actively mentored and supported team members, including a senior developer with 17 years of industry experience who was new to the project. I facilitated his onboarding by providing guidance on our project structure, Databricks-centric workflows, and other domain-specific knowledge. Additionally, I participated in Hubbell's formal mentorship program, benefiting from dedicated weekly sessions with my mentor (the project lead and a staff engineer) focused on accelerating my early career development and navigating complex technical and strategic challenges.
+*   **Technical Documentation Development:** Authored comprehensive technical documentation, including onboarding guides for new team members, detailed architecture diagrams, and operational procedures for infrastructure and DevOps systems, ensuring clarity and knowledge continuity.
+*   **CI/CD Pipeline Optimization:** Re-engineered the Azure DevOps CI/CD pipeline to resolve critical issues with our PyTest unit test suite execution. This comprehensive overhaul involved parallelizing tests across multiple Azure Build agents using a self-hosted Virtual Machine Scale-set, integrating coverage and deprecated method reports to enhance code quality. These improvements resulted in an 80% reduction in PR CI/CD build times, significantly boosting development velocity and feedback loops.
 
 ## Skills Utilized / Developed
 
-<!--
-List the key skills you applied or developed in this role/project. This helps the AI map questions about your skills to relevant experiences.
-Categorize if helpful (e.g., Technical Skills, Soft Skills).
--->
-
 *   **Technical Skills:**
-    *   [Skill 1: e.g., TypeScript, Python, AWS, Docker]
-    *   [Skill 2: e.g., System Design, API Development]
-    *   ...
-*   **Soft Skills / Methodologies:**
-    *   [Skill 1: e.g., Agile Development, Problem Solving, Team Leadership]
-    *   [Skill 2: e.g., Communication, Project Management]
-    *   ...
+    *   Cloud & DevOps: Microsoft Azure, Azure DevOps, Terraform, Databricks, CI/CD Pipeline Design
+    *   Backend & Data: Python, Apache Spark, C#, .NET, API Development, Data Engineering, Data Ingestion/Processing
+    *   Frontend: Angular, TypeScript, Kendo UI
+    *   Software Engineering: System Design, Modular Architecture, Integration Testing, End-to-End Testing, Unit Testing, Technical Documentation
+*   **Soft Skills & Methodologies:**
+    *   Agile Development (Scrum), Cross-functional Communication, Stakeholder Management, Mentorship (giving and receiving), Problem-Solving, Project Ownership, Technical Leadership, Strategic Thinking.
 
 ## Positive Impact / Learnings / Reflection
 
-<!--
-Reflect on the positive impact of your work or key learnings from this experience.
-This section is particularly useful for the AI to draw upon when formulating answers that portray you in a positive light.
-Example: "This project significantly enhanced my leadership abilities and deepened my understanding of distributed systems. The successful launch was a testament to effective teamwork and a commitment to quality, directly contributing to positive user feedback and improved system stability."
--->
+My tenure at Hubbell Inc. was a period of immense professional growth and impactful contributions. Taking ownership of critical infrastructure improvements, like the Terraform refactor and CI/CD pipeline optimization, not only solved pressing technical challenges but also tangibly improved team productivity and system reliability. Leading the productionalization of the meter-to-transformer algorithm was a highlight, offering a deep dive into full-stack architecture, data engineering with Spark, and cross-cultural team collaboration. This experience honed my ability to translate complex research into a viable, customer-facing product, directly contributing to key business objectives like onboarding a beta customer.
 
-[Your reflection and positive takeaways here...]
-
----
-
-<!-- Add more sections or custom headings as needed for different types of portfolio entries. -->
-<!-- Remember: The AI will use this information to answer questions about you. Clear, positive, and achievement-oriented content works best! --> 
+Mentoring a senior colleague was a rewarding experience that underscored the value of diverse experiences and the importance of clear communication in knowledge transfer. Simultaneously, participating in Hubbell's formal mentorship program was invaluable for my early career trajectory. The dedicated guidance from our project lead provided crucial insights into enterprise-level software development, strategic decision-making, and navigating complex technical landscapes. This dual experience of both providing and receiving mentorship accelerated my learning curve significantly, reinforcing the importance of continuous learning, robust testing, documentation, and proactive problem-solving in a fast-paced agile environment. This role solidified my passion for building scalable, high-quality software solutions and tackling complex technical challenges head-on, while also emphasizing the importance of teamwork, strategic thinking, and a culture of continuous improvement.

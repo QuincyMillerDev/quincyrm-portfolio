@@ -1,62 +1,32 @@
-# Activity: Husky Developers Club (UConn)
+# Activity: Husky Developers Club (University of Connecticut)
 
-<!-- 
-This template helps structure your portfolio information for the AI chatbot.
--->
 
 ## Overview / Summary
 
-<!-- 
-Provide a brief overview of your involvement with the Husky Developers Club.
-Example: "I was an active member [and later, e.g., President/Officer] of the Husky Developers Club at UConn, a student organization focused on fostering a community for aspiring software developers through workshops, guest speakers, and collaborative projects."
--->
-
-[Your summary content here...]
+During my sophomore through Junior years I was a member of the Husky Developers club. Eventually becoming the head of outreach and even leading workshops on developing full-stack Vue applications. I worked directly with the rest of the student board to design workshops, develop projects, and share my experiences at the Digital Experience Group for creating applications and giving other computer science students an opportunity to get into software engineering outside of their classwork (because uconn cs classwork lacks a lot of real software engineering.)
 
 ## My Role(s) & Duration
 
-<!--
-List your role(s) in the club and the duration.
--->
-
-*   **Role 1:** [e.g., Member, Years: 2020-2022]
-*   **Role 2 (If applicable):** [e.g., President / Vice-President / Treasurer / Workshop Lead, Years: 2022-2024]
+*   **Role 1:** Member, 2022
+*   **Role 2:** Outreach Chair, 2023
 
 ## Key Contributions & Initiatives
 
-<!--
-Describe your key contributions or initiatives, especially if you held a leadership role.
--->
-
-*   **If Member:**
-    *   [e.g., "Actively participated in workshops on topics like Git, React, and API development."]
-    *   [e.g., "Collaborated on X club projects."]
-*   **If Officer/Lead (examples):**
-    *   [e.g., "Organized and led weekly technical workshops on [specific topics], attended by an average of X students."]
-    *   [e.g., "Invited and hosted X industry guest speakers to share insights with club members."]
-    *   [e.g., "Managed club finances and fundraising activities, securing $Y in sponsorship."]
-    *   [e.g., "Increased club membership by Z% through outreach and engaging events."]
-    *   [e.g., "Facilitated collaborative coding sessions and hackathon participation."]
-*   ...
+*   **Lead Workshops:** Lead workshops on creating your first application utilizing an API to fetch live data on the COVID 19 Virus in the year 2022.
+Github URL: https://github.com/QuincyMillerDev/covidworkshop
+*   **Consultations:** I consulted on group projects that other Husky Developers worked on, providing them insights on technologies and other software engineering principles they could use to achieve their goals. I would often go to weekly meetings and help student developers on whatever issues they faced.
+*   **Community Building:** I ran community building initatives such as organizing the involvement fair and promoting new members to join. Over the course of my two years heavily involved we grew the club from ~150 to ~500 members. Ran active workshops every week.
 
 ## Skills Utilized / Developed
 
-<!--
-List skills relevant to this activity.
--->
-
-*   **Technical Skills (through workshops/projects):** [e.g., Specific programming languages, frameworks, tools practiced]
-*   **Leadership & Organizational Skills (if officer):** [e.g., Event Planning, Public Speaking, Team Management, Mentoring]
-*   **Communication & Networking Skills:**
-*   **Community Building:**
+*   **Technical Skills (through workshops/projects):** Typescript, Git, Agile Development, Python
+*   **Leadership & Organizational Skills (As outreach):** Mentoring, Public Speaking, Event Organization, Workshop leadership
+*   **Community Building:** Member Recruitment, Event Promotion, Student Engagement, Club Growth Strategies
 
 ## Positive Impact / Learnings / Reflection
 
-<!--
-Reflect on the positive impact of this activity or key learnings.
-Example: "My involvement with the Husky Developers Club was instrumental in my growth as a developer, providing practical experience, networking opportunities, and a platform to develop leadership skills. It was rewarding to contribute to a supportive learning community for fellow students."
--->
+Being a part of the Husky Developers Club was a pivotal experience during my university years. It allowed me to bridge the gap between theoretical classroom knowledge and practical, real-world software engineering. Leading workshops and consulting on projects honed my technical and communication skills, reinforcing my understanding of full-stack development and agile methodologies. 
 
-[Your reflection and positive takeaways here...]
+The most rewarding aspect was witnessing the club's growth and the direct impact of our initiatives. Expanding from ~150 to ~500 members and establishing regular, active workshops demonstrated the tangible results of our outreach and community-building efforts. This experience taught me the value of creating opportunities for others to learn and grow, and the importance of practical application in mastering software development. It solidified my passion for not only building software but also for fostering collaborative and educational environments within the tech community.
 
 --- 

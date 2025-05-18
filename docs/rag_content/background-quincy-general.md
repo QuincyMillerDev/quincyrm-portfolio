@@ -1,67 +1,43 @@
 # About Me: Quincy Miller - General Background & Interests
 
-<!-- 
-This template helps structure your portfolio information for the AI chatbot.
-This document is for more general background information, personality, career goals, or anything that doesn't fit neatly into a specific project, job, or hobby document.
--->
-
 ## Introduction / Personal Statement
 
-<!-- 
-Provide a brief, engaging introduction. Think of this as your elevator pitch or a summary of who you are beyond the specific roles and projects.
-Example: "I am a passionate and driven Full-Stack Software Engineer with a strong foundation in computer science from the University of Connecticut and hands-on experience at Hubbell Inc. and UConn's Digital Experience Group. I thrive on solving complex problems, building intuitive applications, and continuously learning new technologies. Beyond coding, I'm an avid [mention a key hobby like skier or fitness enthusiast] and believe in a well-rounded approach to life and work."
--->
-
-[Your introduction/personal statement here...]
+I am a passionate and driven Software Engineer with a strong foundation in computer science from the University of Connecticut and impactful hands-on experience at Hubbell Inc. and UConn's Digital Experience Group. I thrive on solving complex problems, building intuitive and user-centric applications, and am dedicated to continuously learning and mastering new technologies. I am incredibly eager to find an opportunity that is challenging, engaging, and provides real value to real users. Beyond my professional pursuits, I am an avid skier, hiker, and fitness enthusiast, and I also enjoy gaming, believing in a well-rounded approach to life and work.
 
 ## Core Values & Work Philosophy
 
-<!--
-Describe some of your core values or your approach to work.
-This helps the AI understand your personality and how you operate professionally.
--->
-
-*   **Value 1:** [e.g., Continuous Learning & Growth: "I am committed to staying updated with the latest technologies and methodologies in software engineering."]
-*   **Value 2:** [e.g., Collaboration & Teamwork: "I believe the best solutions are built through effective teamwork and open communication."]
-*   **Value 3:** [e.g., Quality & Craftsmanship: "I take pride in writing clean, maintainable, and efficient code."]
-*   **Value 4:** [e.g., User-Centricity: "I strive to build applications that provide real value and a great user experience."]
-*   **Value 5:** [e.g., Problem Solving: "I enjoy tackling challenging problems and finding innovative solutions."]
-*   ...
+*   **Value 1:** Continuous Learning & Growth: "I am committed to staying at the forefront of software engineering by consistently updating my skills with the latest technologies and methodologies."
+*   **Value 2:** Collaboration & Teamwork: "I believe the most innovative and effective solutions are born from strong teamwork, open communication, and diverse perspectives."
+*   **Value 3:** Community Engagement & Contribution: "To be an effective software engineer, I believe in actively participating in the broader tech community, leveraging available resources, and contributing value back. This continuous exchange is key to professional success and innovation."
+*   **Value 4:** Kindness & Empathy: "Genuine kindness and empathy are foundational to successful human relations and productive teamwork. I strive to understand others' perspectives and treat everyone with respect and consideration."
+*   **Value 5:** Commitment to Excellence (Bar-raising): "A job worth doing is worth doing right, as my dad always told me. I am committed to delivering high-quality work and consistently exceeding expectations."
+*   **Value 6:** Saying yes: "I think saying yes is the best thing you can do, especially when you dont feel like it. Being willing to new experiences and opportunities can take you far."
 
 ## Career Aspirations & Goals
 
-<!--
-Briefly outline your career aspirations or the type of roles/work you are seeking.
--->
-
-*   **Short-Term Goals (1-3 years):** [e.g., "To contribute significantly to a dynamic software engineering team, deepen my expertise in [specific technology like cloud platforms or AI/ML], and take on increasing responsibility in project development."]
-*   **Long-Term Goals (3-5+ years):** [e.g., "To grow into a senior engineering or technical leadership role, mentor junior developers, and potentially specialize in [specific domain like application architecture or machine learning engineering]."]
-*   **Ideal Work Environment:** [e.g., "I am looking for a collaborative, innovative environment where I can work on impactful projects and continue to learn and grow."]
-*   **Open to Relocation:** [Yes/No/Details, e.g., "Yes, open to relocation for the right opportunity."]
+*   **Short-Term Goals (1-3 years):** "To make significant contributions to a dynamic software engineering team, deepen my expertise in the rapidly evolving field of AI software engineering, and proactively take on increasing responsibility in project development and delivery. I am still unsure what specific niche I want to dive deep in, but I have a deep interest around generative AI technology and its applications. I also believe financial tech and healthcare software are highly interesting fields. A blend of these is a really cool place to be. I hope to find my role in one of these markets."
+*   **Long-Term Goals (3-5+ years):** "To advance into a senior engineering or technical leadership role, where I can mentor junior developers, drive technical strategy, and potentially specialize in areas like AI application architecture or machine learning/generative AI product development."
+*   **Ideal Work Environment:** "I am seeking a collaborative, innovative, and results-oriented environment where I can contribute to impactful projects and continue my professional growth alongside talented peers. I also am looking at a work environment that values to benefits of a balance between work and other aspects of life, and is just a fun place to be."
+*   **Open to Relocation:** "I am eager to embrace new opportunities and am actively seeking to relocate to a vibrant city. My preferred locations include Washington D.C., Seattle, Denver, New York City, and I am also open to international possibilities."
 
 ## Unique Strengths / What I Bring to a Team
 
-<!--
-Highlight a few key strengths or unique qualities you offer.
--->
+*   **Versatile Full-Stack Development:** Proficient in a range of technologies and frameworks (including Vue.js, TypeScript, Python) with a proven ability to deliver end-to-end solutions. From college I also have fundamental programming experience in more low-level systems programming languages such as C, C++, and even functional programming experience in Lisp.
+*   **Strong Analytical & Problem-Solving Skills:** Adept at dissecting complex issues, identifying root causes, and implementing effective, well-reasoned solutions, developed through diverse project experiences.
+*   **Exceptional Adaptability & Rapid Onboarding:** Demonstrated capacity to quickly learn and adapt to new codebases, domains, tech stacks, and project requirements, ensuring a swift transition to becoming a productive team member.
+*   **Advanced Communication & Mentorship:** Articulate communicator with strong presentation and public speaking skills, honed through leading technical workshops (e.g., Husky Developers Club) and providing individualized coaching (e.g., adaptive rowing coaching). Capable of explaining complex concepts clearly to diverse audiences and fostering supportive learning environments.
+*   **Resilience & Creative Problem-Solving Under Pressure:** Experience in developing innovative solutions in unique and challenging contexts, such as creating adaptive strategies for a visually impaired athlete, demonstrating patience, empathy, and a solutions-oriented mindset.
+*   **Proactive Initiative & Ownership:** A self-starter who can identify when support is needed, take initiative to find solutions independently, and courageously acknowledge knowledge gaps as opportunities for growth.
+*   **DevOps Awareness & Debugging Expertise:** Practical experience with DevOps principles and a methodical approach to debugging, ensuring robust and maintainable code.
 
-*   [e.g., "Strong analytical and problem-solving skills developed through diverse project experiences."]
-*   [e.g., "A blend of technical proficiency with a keen eye for user experience and design."]
-*   [e.g., "Proactive and self-motivated, with a proven ability to learn quickly and adapt to new challenges."]
-*   [e.g., "Excellent communication and interpersonal skills, fostering positive team dynamics."]
+## Interests Outside of Tech
 
-## Interests Outside of Tech (Briefly)
+Beyond my technical pursuits, I am a firm believer in maintaining an active and balanced lifestyle. I have been a dedicated gym-goer since 2017 and more recently have developed a passion for running, hiking, and skiing during the winter months. I also enjoy gaming with my friends from time-to-time.
 
-<!--
-Briefly reiterate or mention other interests that show well-roundedness, complementing the dedicated hobby files.
--->
+## Contact Information Summary
 
-[e.g., "Beyond my technical pursuits, I am passionate about fitness and nutrition, enjoy skiing, and actively manage my personal finances. I also have a background in content creation and enjoy exploring new places through travel."]
-
-## Contact Information Summary (Optional - can also be in main portfolio UI)
-
-*   **Email:** [Your Email]
-*   **LinkedIn:** [Your LinkedIn Profile URL]
-*   **GitHub:** [Your GitHub Profile URL]
+*   **Email:** quincymiller6589@gmail.com
+*   **LinkedIn:** https://www.linkedin.com/in/qrm111/
+*   **GitHub:** https://github.com/quincymillerdev
 
 --- 

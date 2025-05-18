@@ -1,45 +1,32 @@
 # Hobby: Skiing
 
-<!-- 
-This template helps structure your portfolio information for the AI chatbot.
--->
-
 ## Overview / Summary
 
-<!-- 
-Provide a brief overview of your interest in skiing.
-Example: "Skiing has been a lifelong passion, from racing in my youth to exploring backcountry terrain and enjoying resort skiing with friends and family."
--->
-
-[Your summary content here...]
+Skiing isn't just something I do, it's been a huge part of my life since I was two. My parents are ski instructors at Mount Snow, VT, so I basically grew up on the slopes there every weekend. I can snowboard a bit too, but I'm way better on skis. For a while, I was more into video games, but I got super into skiing again in college with the UCONN Outing Club. Now, I'm all about finding cool, challenging spots to ski, especially in the backcountry – that's my absolute favorite.
 
 ## Key Aspects & Experiences
 
-<!--
-List key aspects, experiences, or achievements related to this hobby.
--->
+*   **My Skiing:** I'm an expert skier, been at it my whole life. Intermediate on a snowboard.
+*   **What I Love:** Backcountry skiing is the best. I also love hitting challenging runs at resorts.
+*   **Go-To Mountains:** Mount Snow is home base. Snowbird in Utah is my all-time favorite – the terrain and snow are epic.
+*   **Coolest Stuff I've Done:**
+    *   Skied Tuckerman Ravine on Mount Washington, NH, four times. It's pretty intense, but awesome.
+    *   Made it out to Utah three times to ski places like Snowbird.
+    *   Skied a ton of mountains in Vermont and around the East Coast.
+*   **Big Dreams:** Definitely want to do way more backcountry skiing. Thinking big trips out West, the Alps, and Alaska. 
 
-*   **Experience Level:** [e.g., Advanced, Expert, Years of experience: 12+ seasons]
-*   **Favorite Types of Skiing:** [e.g., Resort, Backcountry, Park, Racing]
-*   **Favorite Mountains/Locations:** [e.g., Snowbird, UT; Alta, UT; Vermont resorts]
-*   **Memorable Trips/Achievements:** [e.g., "Successfully completed a multi-day backcountry ski tour in X range.", "First place in Y local race."]
-*   ... (add more as needed)
+## My Gear
 
-## Gear & Preparation (Optional)
+I've got gear I trust for what I like to do:
+*   **Resort Skis:** J Skis Masterblasters
+*   **Backcountry Setup:** DPS Pagoda Tour 100s
+*   **Boots:** Tecnica Cochise HV 120 Flex
+*   Good gear makes a difference, and I take care of mine.
 
-<!--
-Briefly mention if you are particular about gear or preparation.
--->
+## Why I Love It / What It's Taught Me
 
-[Your notes on gear or preparation here...]
+Skiing has taught me a ton. Early on, it was about discipline. Now, hitting challenging stuff like Tucks or backcountry lines, it's all about making smart calls and assessing risks. Plus, you just get this incredible respect for nature and the mountains.
 
-## Learnings / Reflection
-
-<!--
-Reflect on what this hobby teaches you or how it contributes to your life.
-Example: "Skiing has taught me resilience, risk assessment, and a deep appreciation for nature. It's also a great way to stay active and challenge myself physically and mentally."
--->
-
-[Your reflection and positive takeaways here...]
+Getting back into skiing hard in college was a game-changer. It's about exploring, pushing your own limits, and just having a blast with friends. It's a physical and mental rush that keeps you sharp. My goal to ski more backcountry in amazing places keeps me learning about avalanche safety and all that. For me, skiing is pure joy, a way to get out in nature, and always keeps me stoked for the next adventure.
 
 --- 

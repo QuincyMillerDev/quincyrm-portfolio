@@ -6,12 +6,7 @@ This template helps structure your portfolio information for the AI chatbot.
 
 ## Overview / Summary
 
-<!-- 
-Provide a brief overview of this portfolio project itself.
-Example: "This personal portfolio website was developed to showcase my skills, projects, and experiences in an interactive and engaging way. It incorporates a RAG-based AI chatbot to answer questions about my profile."
--->
-
-[Your summary content here...]
+This personal portfolio website ([quincyrm.com](https://www.quincyrm.com)) is a dynamic and interactive platform built to showcase my software engineering skills, projects, and professional experiences. Developed with Nuxt.js (Vue 3), it features a modern, responsive design. Key architectural components include an advanced AI-powered chatbot utilizing a Retrieval-Augmented Generation (RAG) architecture, and an automated Strava API integration for displaying fitness activities. The entire application is deployed and hosted on Vercel, leveraging its serverless functions, cron jobs, and Key-Value store (Vercel KV).
 
 ## Key Features & Functionality
 
@@ -19,46 +14,133 @@ Example: "This personal portfolio website was developed to showcase my skills, p
 List the key features of your portfolio website.
 -->
 
-*   **Feature 1: Responsive Design:** [e.g., "Fully responsive layout adapting to desktop, tablet, and mobile devices."]
-*   **Feature 2: Interactive AI Chatbot:** [e.g., "Integrated a Retrieval-Augmented Generation (RAG) chatbot using Langchain.js, Pinecone, and OpenAI to answer user questions based on my portfolio data."]
-*   **Feature 3: Dynamic Content Sections:** [e.g., Profile, Projects, About Me (Timeline, Hobbies, Image Gallery)].
-*   **Feature 4: Modern UI/UX:** [e.g., "Built with Nuxt.js, Vue 3, TailwindCSS, and Shadcn Vue for a clean and modern user interface."]
-*   **Feature 5: Strava API Integration:** [e.g., "Dynamically displays fitness statistics on the About page via an integration with the Strava API."]
-*   ... (add more as needed)
+*   **Feature 1: Responsive Design:** Fully responsive layout adapting to desktop, tablet, and mobile devices, ensuring a seamless user experience across all platforms.
+*   **Feature 2: Interactive AI Chatbot (RAG based):**
+    *   Provides contextual, Markdown-formatted answers to user questions about my profile, projects, and experiences.
+    *   Employs a sophisticated RAG architecture, ensuring answers are grounded in provided documentation rather than generic knowledge.
+    *   Supports streaming responses for a real-time conversational feel.
+*   **Feature 3: Dynamic Content Sections:** Features dedicated sections for Profile/About Me (including a timeline, hobbies, and image gallery), Projects, and Work Experience. The content for the AI chatbot is sourced from Markdown files within the `docs/rag_content/` directory.
+*   **Feature 4: Modern UI/UX:** Built with Nuxt.js (Vue 3), TypeScript, Tailwind CSS (v4), and Shadcn Vue (with Radix Vue) for a clean, performant, and modern user interface. Includes features like a typewriter effect for engaging text display.
+*   **Feature 5: Strava API Integration:**
+    *   Dynamically displays personal fitness statistics (running, cycling, etc.) on the About page.
+    *   Features an automated daily background job to fetch and cache Strava data, ensuring fresh data without impacting site load times or hitting API rate limits.
+*   **Feature 6: Markdown Content Rendering:** Utilizes Marked.js and DOMPurify for safely rendering Markdown content from the chatbot, ensuring rich text formatting while preventing XSS vulnerabilities.
 
 ## Technical Stack & Implementation Details
 
-<!--
-List the key technologies and implementation details.
--->
+### Frontend Development
+*   **Framework:** Nuxt.js (v3, Vue 3, TypeScript) for server-side rendering (SSR), client-side navigation, and overall application structure.
+*   **Styling:** Tailwind CSS (v4) for utility-first CSS, Shadcn Vue for pre-built, customizable UI components, and Radix Vue for unstyled, accessible UI primitives.
+*   **Icons:** Lucide Icons for a consistent and clean icon set.
+*   **State Management:** Pinia for managing application-wide state, particularly for the chat interface and Strava data display.
+*   **Markdown Processing:**
+    *   `Marked.js`: For parsing Markdown text into HTML.
+    *   `DOMPurify`: For sanitizing the HTML output from Marked.js to prevent XSS attacks.
+*   **User Interface Enhancements:** `typewriter-effect` for animated text.
 
-*   **Frontend:** Nuxt.js (Vue 3, TypeScript)
-*   **Styling:** TailwindCSS, Shadcn Vue, Radix Vue
-*   **State Management:** Pinia
-*   **AI Chatbot Backend (Nuxt Server Route):**
-    *   **Orchestration:** Langchain.js
-    *   **Vector Database:** Pinecone
-    *   **Embedding Model:** OpenAI `text-embedding-3-small`
-    *   **LLM:** OpenAI (e.g., `gpt-3.5-turbo`, `gpt-4o-mini`)
-*   **Data Ingestion Script (`scripts/ingest-data.ts`):** TypeScript, Langchain.js, Pinecone Client
-*   **Deployment:** [e.g., Vercel, Netlify]
-*   **Version Control:** Git, GitHub
+### AI Chatbot Architecture (RAG System)
+The chatbot uses a Retrieval-Augmented Generation (RAG) approach orchestrated by Langchain.js, ensuring answers are based on the specific content of this portfolio.
+
+**1. Offline: Data Ingestion & Embedding Pipeline:**
+   This process runs upfront and whenever portfolio information is updated.
+   *   **Data Source:** Manually curated Markdown files (`*.md`) located in the `docs/rag_content/` directory.
+   *   **Script:** A TypeScript script (`scripts/ingest-data.ts`) using Langchain.js.
+   *   **Document Loading:** `DirectoryLoader` (with `TextLoader` for Markdown) loads files.
+   *   **Text Splitting:** `MarkdownTextSplitter` (or `RecursiveCharacterTextSplitter`) chunks documents into manageable pieces suitable for embedding.
+   *   **Embedding Generation:** An OpenAI embedding model (e.g., `text-embedding-3-small`) generates vector embeddings for each text chunk.
+   *   **Storage in Vector Database:**
+        *   **Service:** Pinecone (Cloud-hosted managed vector database).
+        *   **Process:** The `PineconeStore` Langchain integration connects to a pre-configured Pinecone index (e.g., "portfolio-data") using API keys and stores the document chunks and their corresponding embeddings. The index is configured with dimensions matching the embedding model (e.g., 1536 for `text-embedding-3-small`).
+
+**2. Online: Query Processing Pipeline (Nuxt Server Route `/api/chat`):**
+   This occurs in real-time when a user interacts with the chatbot.
+   *   **User Query:** User inputs a question in the chat interface (Nuxt/Vue frontend).
+   *   **Frontend Request:** The Nuxt frontend sends the query and recent chat history to the `/api/chat` Nuxt server route.
+   *   **Langchain.js Orchestration (Server Route):**
+        *   **Initialization:** Initializes Langchain.js components:
+            *   LLM: OpenAI model (e.g., `gpt-4o-mini`, `gpt-3.5-turbo`, streaming enabled).
+            *   Embedding Model: OpenAI model (e.g., `text-embedding-3-small`).
+            *   Vector Store: `PineconeStore` connected to the Pinecone index.
+        *   **Chat History Integration:** Uses the provided chat history to create conversational context for the LLM.
+        *   **Query Embedding:** Generates an embedding for the user's query using the embedding model.
+        *   **Vector Search (Retrieval):** The `PineconeStore` instance performs a similarity search against the Pinecone index using the query embedding to find the top K relevant document chunks.
+        *   **Context Augmentation & Prompt Construction:** A `PromptTemplate` structures a prompt for the LLM, including the retrieved context, chat history, and the user's question. Example prompt structure:
+            ```
+            You are a helpful AI assistant for Quincy Miller's portfolio.
+            Answer the user's question based ONLY on the provided context.
+            If the context doesn't contain the answer, say "I'm sorry, I don't have that specific information in my knowledge base."
+            Format your answers in Markdown. Be concise and professional.
+
+            Context:
+            ---
+            {context} <!-- Retrieved chunks from Pinecone -->
+            ---
+            Chat History:
+            {chat_history}
+            ---
+            User Question: {question}
+            ```
+        *   **LLM Interaction (Generation):** A Langchain.js chain (e.g., `RetrievalQAChain` or `RunnableSequence`) manages the retrieval, prompt formatting, and calls the LLM. The LLM streams responses as text chunks.
+   *   **Response Streaming & Rendering (Nuxt Frontend with Pinia Store):**
+        *   The `/api/chat` server route streams LLM text chunks back to the frontend.
+        *   The `chatStore.ts` (Pinia) appends these chunks to the current bot message, which is reactively rendered in the `ChatMessage.vue` component, progressively displaying the Markdown-formatted response.
+
+### Strava Integration Architecture
+This system fetches Strava activity data periodically, caches it, and displays it on the frontend.
+
+**1. Background Data Fetching & Caching (Automated Daily Job):**
+   *   **Trigger:** A Vercel Cron Job, defined in `vercel.json` (e.g., `0 0 * * *` for daily at midnight UTC), triggers the `/api/strava/update-job` Nuxt server route.
+   *   **Authentication:** The cron job uses a `CRON_SECRET` environment variable for security, which the `update-job` endpoint verifies.
+   *   **Update Job (`/api/strava/update-job`):**
+        *   **Token Management:**
+            *   Retrieves Strava token data (access token, refresh token, expiry time) from Vercel KV (key: `strava:tokenData`).
+            *   If the access token is expired or missing, it uses the stored refresh token to request a new set of tokens from the Strava OAuth API (`https://www.strava.com/oauth/token`).
+            *   Stores the updated token data back into Vercel KV. This requires `STRAVA_CLIENT_ID`, `STRAVA_CLIENT_SECRET`, and an initial `STRAVA_REFRESH_TOKEN` to be configured as environment variables.
+        *   **Data Fetching:** Uses the valid access token to GET athlete statistics from the Strava API (`/athletes/{ownerId}/stats`). Requires `MY_STRAVA_OWNER_ID` environment variable.
+        *   **KV Caching:** Stores the fetched athlete stats JSON in Vercel KV (key: `strava:stats:{ownerId}`).
+        *   **Error Handling:** Logs errors and can clear invalid tokens from KV to facilitate recovery on the next run.
+
+**2. Frontend Data Retrieval & Display:**
+   *   **API Endpoint (`/api/strava/cached-stats.get.ts`):** A Nuxt server route that retrieves the cached athlete stats directly from Vercel KV. Returns a 404 if no cached data is found.
+   *   **Pinia Store (`stores/stravaActivity.ts`):**
+        *   Manages state for `athleteStats`, `isLoading`, and `error`.
+        *   The `fetchAthleteStats` action calls the `/api/strava/cached-stats` endpoint.
+        *   The `fitnessStats` getter transforms the raw API data into a format suitable for UI components, including unit conversions (meters to miles) and string formatting.
+   *   **Vue Components (`pages/about.vue`, `components/HobbiesContainer.vue`, `components/HobbyItem.vue`):**
+        *   The `about.vue` page calls `fetchAthleteStats` on mount.
+        *   Computed properties merge static hobby data with dynamic `fitnessStats`.
+        *   Components then render the hobby information, including the fetched Strava stats.
+
+### Deployment (Vercel)
+*   **Platform:** Deployed on Vercel, leveraging its global CDN and serverless infrastructure.
+*   **Serverless Functions:** Nuxt.js server routes (e.g., `/api/chat`, `/api/strava/*`) are deployed as Vercel serverless functions.
+*   **Cron Jobs:** Vercel Cron is used for scheduling the background Strava data update job.
+*   **Storage:** Vercel KV is used for:
+    *   Storing Strava OAuth tokens (`strava:tokenData`).
+    *   Caching fetched Strava athlete statistics (`strava:stats:{ownerId}`).
+*   **Environment Variables:** Critical for API keys (OpenAI, Pinecone, Strava Client ID/Secret/Refresh Token, Cron Secret, Strava Owner ID) and other configurations, managed securely within Vercel project settings.
+*   **Build Process:** Vercel automatically builds the Nuxt.js application from the linked GitHub repository upon pushes to the main branch.
+
+### Version Control & Development Tooling
+*   **Version Control:** Git, GitHub.
+*   **Development Tooling:** ESLint for code linting, Vite as the underlying build tool for Nuxt 3, and ts-node for running TypeScript scripts (like `ingest-data.ts`).
 
 ## Design & Development Process
 
-<!--
-Briefly describe your process if notable.
--->
-
-[Your process notes here... e.g., "Iteratively designed and developed, focusing on user experience and performance..."]
+The development process has been iterative, focusing on building a robust and engaging platform to showcase my full-stack development capabilities. Key aspects include:
+*   **Modular Design:** Leveraging Nuxt.js and Vue components for a maintainable codebase.
+*   **AI-First Approach for Q&A:** Designing the RAG system to handle queries about my professional profile efficiently, prioritizing accurate and contextually relevant responses.
+*   **API Integration Best Practices:** Implementing secure and efficient data fetching for the Strava integration, including robust token management, background updates, and caching to enhance performance and reliability.
+*   **Progressive Enhancement:** Starting with core features and iteratively adding more complex functionalities like the AI chatbot and Strava integration.
+*   **Documentation-Driven Development (for RAG):** Creating detailed Markdown documents (like this one) specifically to serve as the knowledge base for the AI chatbot.
+*   **Continuous Improvement:** This portfolio itself is an ongoing project, with plans to refine features, update content, and potentially integrate new technologies as I explore them.
 
 ## Positive Impact / Learnings / Reflection
 
-<!--
-Reflect on building this portfolio.
-Example: "Developing this portfolio was a significant learning experience, particularly in implementing a RAG system and working with modern frontend technologies. It serves as a practical demonstration of my full-stack capabilities."
--->
+Developing this portfolio website has been a fun undertaking and an interesting learning experience. It serves as a living demonstration of my skills in full-stack development, particularly with the Nuxt.js ecosystem, and my ability to architect and integrate complex systems like a RAG-based AI chatbot and third-party APIs with automated background processing.
 
-[Your reflection and positive takeaways here...]
+Implementing the RAG architecture from scratch—from data ingestion and embedding with OpenAI models to vector storage in Pinecone and dynamic retrieval and generation with Langchain.js—has significantly deepened my understanding of practical AI application development. Designing the Strava data flow with Vercel Cron jobs for automation and Vercel KV for serverless caching has been a valuable exercise in building resilient and performant API integrations, considering aspects like rate limiting and data freshness.
+
+This project continuously pushes me to explore new technologies (like Tailwind CSS v4 and Shadcn Vue for UI) and refine my approach to building user-centric and technically sophisticated web applications. It's not just a static showcase but also an active sandbox for experimentation, learning, and growth. It has also been a great opportunity to experience modern web development paradigms, tools, and abstractions that have evolved in recent years. Although my primary industry experience has been heavily backend-oriented, building this portfolio has been an enjoyable and effective refresher for frontend technologies and full-stack concerns. The process of documenting the architecture for the RAG system itself has also been a useful exercise in clarifying design choices.
 
 --- 
