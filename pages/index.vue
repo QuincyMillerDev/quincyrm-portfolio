@@ -2,6 +2,7 @@
 import { ref, onMounted } from 'vue'
 import ProfileContainer from '~/components/ProfileContainer.vue'
 import ProjectsContainer from '~/components/ProjectsContainer.vue'
+import type { Project } from '~/lib/types/projects'
 // Keep the data definition
 const name = "Quincy Miller"
 const desktopPictureUrl = '/images/portrait.jpg'
@@ -21,16 +22,10 @@ const links = [
   { name: 'Email', url: 'mailto:quincymiller6589@gmail.com', icon: 'lucide:mail' }
 ]
 
-// Projects data
-interface Project {
-  title: string
-  description: string
-  link: string
-}
+
 const projects: Project[] = [
   { title: 'Project One', description: 'Description for project one.', link: 'https://github.com/username/project-one' },
   { title: 'Project Two', description: 'Description for project two.', link: 'https://github.com/username/project-two' },
-  // Add more projects here
 ]
 
 const activeSection = ref<string | null>(null)
@@ -41,8 +36,6 @@ const setHoveredSection = (section: string | null) => {
 }
 
 onMounted(() => {
-  // ProfileContainer starts its own animation at 100ms (internal)
-  // Start ProjectsContainer animation slightly after ProfileContainer has started animating
   setTimeout(() => {
     projectsContainerVisible.value = true;
   }, 150); // Delay for ProjectsContainer wrapper

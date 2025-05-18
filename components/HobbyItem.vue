@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
-import { Button } from '@/components/ui/button'
-import type { Hobby } from '@/types/hobby'
+import { Button } from '~/components/ui/button'
+import type { Hobby } from '~/lib/types/hobby'
 import { computed } from 'vue';
 
 const props = defineProps<{

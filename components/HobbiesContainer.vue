@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted, computed } from 'vue'
 import HobbyItem from './HobbyItem.vue'
-import type {Hobby} from "~/types/hobby";
+import type {Hobby} from "~/lib/types/hobby";
 
 const props = defineProps<{
   hobbies: Hobby[]

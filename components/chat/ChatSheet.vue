@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import { Button } from '@/components/ui/button'
+import { Button } from '~/components/ui/button'
 import { Icon } from '@iconify/vue'
 import {
   Sheet,
   SheetTrigger,
   SheetContent,
-} from '@/components/ui/sheet'
-import ChatInterface from '@/components/chat/ChatInterface.vue'
-import { useChatStore } from '~/stores/chatStore'
+} from '~/components/ui/sheet'
+import ChatInterface from '~/components/chat/ChatInterface.vue'
+import { useChatStore } from '~~/stores/chatStore'
 
 // Use Pinia store for mobile sheet
 const chatStore = useChatStore()

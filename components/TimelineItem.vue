@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
 import { computed } from 'vue'
-import type { TimelineItemData, TypeConfig, SkillColorConfig } from '@/types/timeline'
+import type { TimelineItemData, TypeConfig, SkillColorConfig } from '~/../lib/types/timeline'
 
 const props = defineProps<{
   item: TimelineItemData
@@ -25,12 +25,10 @@ const currentTypeConfig = computed(() => {
 
 const currentAccentHex = computed(() => currentTypeConfig.value.accentColorHex || '#888888');
 
-// Style object to set the CSS custom property
 const itemStyle = computed(() => ({
   '--item-accent-color': currentAccentHex.value
 }));
 
-// Classes now reference the CSS custom property
 const cardRingClass = 'group-hover:ring-[var(--item-accent-color)]/30';
 const titleHoverColorClass = 'group-hover:text-[var(--item-accent-color)]';
 
@@ -105,9 +103,3 @@ const titleHoverColorClass = 'group-hover:text-[var(--item-accent-color)]';
     </div>
   </div>
 </template>
-
-<style scoped>
-/* .timeline-item:hover { 
-  transform: translateX(3px);
-} */
-</style> 

@@ -1,12 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import ProjectCard from '~/components/ProjectCard.vue'
-
-interface Project {
-  title: string
-  description: string
-  link: string
-}
+import type { Project } from '~/lib/types/projects'
 
 const props = defineProps<{
   projects: Project[]

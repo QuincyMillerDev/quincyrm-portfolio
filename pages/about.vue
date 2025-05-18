@@ -4,9 +4,9 @@ import { ref, onMounted, computed } from 'vue'
 import ImageContainer from '~/components/ImageContainer.vue'
 import Timeline from '~/components/Timeline.vue'
 import HobbiesContainer from '~/components/HobbiesContainer.vue'
-import type {TimelineItemData} from "~/types/timeline";
-import type {ImageItem} from "~/types/image";
-import type {Hobby} from "~/types/hobby"
+import type {TimelineItemData} from "~/lib/types/timeline";
+import type {ImageItem} from "~/lib/types/image";
+import type {Hobby} from "~/lib/types/hobby" 
 import { useStravaActivityStore } from '~/stores/stravaActivity';
 
 // Initialize the store
@@ -110,7 +110,6 @@ const baseHobbies = ref<Hobby[]>([
 const hobbies = computed(() => {
   return baseHobbies.value.map(hobby => {
     if (hobby.id === 'fitness') {
-      // Replace the stats for the fitness hobby with the ones from the store
       return { ...hobby, stats: stravaStore.fitnessStats };
     }
     return hobby;
@@ -165,7 +164,6 @@ onMounted(() => {
 </template>
 
 <style scoped>
-/* No custom styles needed anymore for blur */
 
 @keyframes fade-slide-up {
   from {

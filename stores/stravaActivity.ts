@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
-import type { HobbyStats } from '~/types/hobby';
-import type { StravaAthleteStats } from '~/types/strava';
+import type { HobbyStats } from '~/lib/types/hobby';
+import type { StravaAthleteStats } from '~/lib/types/strava';
 
 interface StravaActivityState {
   athleteStats: StravaAthleteStats | null; 

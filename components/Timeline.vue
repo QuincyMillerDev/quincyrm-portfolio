@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-// import { Icon } from '@iconify/vue' // Removed as it's no longer used directly here
 import TimelineItem from './TimelineItem.vue'
-import type { TimelineItemData, TypeConfigMap, SkillColorMap } from '@/types/timeline'
+import type { TimelineItemData, TypeConfigMap, SkillColorMap } from '~/lib/types/timeline'
 
 defineOptions({ name: 'AboutTimeline' })
 
@@ -112,12 +111,3 @@ const getSkillColors = (skillName: string) => {
     </div>
   </section>
 </template>
-
-<style scoped>
-/* Removed .animate-timeline-header as it's now handled by Tailwind classes on h2 */
-/* .animate-timeline-header {
-  transition-property: opacity, transform;
-  transition-duration: 0.5s;
-  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1); 
-} */
-</style>

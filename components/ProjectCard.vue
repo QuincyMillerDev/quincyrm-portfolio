@@ -1,12 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { Github, Globe } from 'lucide-vue-next'
-
-interface Project {
-  title: string
-  description: string
-  link: string
-}
+import type { Project } from '~/lib/types/projects'
 
 const props = defineProps<{ 
   project: Project,

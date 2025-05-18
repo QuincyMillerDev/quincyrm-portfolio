@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { computed, ref, onMounted } from 'vue'
 import { Icon } from '@iconify/vue'
-import { Button } from '@/components/ui/button'
-import { Card } from '@/components/ui/card'
+import { Button } from '~/components/ui/button'
+import { Card } from '~/components/ui/card'
 import { NuxtImg } from '#components'
 
 // Define props for the component

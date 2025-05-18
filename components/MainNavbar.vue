@@ -1,11 +1,11 @@
 <script setup lang="ts">
 // Main navbar component for portfolio
-import { Button } from '@/components/ui/button'
+import { Button } from '~/components/ui/button'
 import { Icon } from '@iconify/vue'
 import { useDark, useToggle, useBreakpoints } from '@vueuse/core'
 import { useRoute } from 'vue-router'
-import ChatSheet from '@/components/chat/ChatSheet.vue'
-import { useChatStore } from '~/stores/chatStore'
+import ChatSheet from '~/components/chat/ChatSheet.vue'
+import { useChatStore } from '~~/stores/chatStore'
 
 const isDark = useDark()
 const toggleDark = useToggle(isDark)

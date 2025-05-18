@@ -2,7 +2,7 @@
 import { nextTick, ref, onMounted, computed } from 'vue'
 import ChatMessage from './ChatMessage.vue'
 import ChatInput from './ChatInput.vue'
-import { useChatStore } from '~/stores/chatStore'
+import { useChatStore } from '~~/stores/chatStore'
 import { Icon } from '@iconify/vue'
 import { useBreakpoints } from '@vueuse/core'
 

@@ -1,6 +1,6 @@
 import { defineEventHandler } from 'h3';
 import { kv } from '@vercel/kv';
-import type { StravaAthleteStats } from '~/types/strava';
+import type { StravaAthleteStats } from '~/../lib/types/strava';
 
 // Key for storing stats data in KV
 const getKvStatsKey = (ownerId: string) => `strava:stats:${ownerId}`;

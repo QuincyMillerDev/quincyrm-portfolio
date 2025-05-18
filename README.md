@@ -1,75 +1,36 @@
-# Nuxt Minimal Starter
+# My Portfolio Site
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+This is my personal portfolio website built with Nuxt.js, showcasing projects, skills, and an integrated AI-powered chatbot.
 
-## Setup
+## ✨ Production
 
-Make sure to install dependencies:
+See deployed application at [quincyrm.com](https://www.quincyrm.com)
 
-```bash
-# npm
-npm install
+## 🛠️ Technologies Used
 
-# pnpm
-pnpm install
+-   **Frontend:**
+    -   [Nuxt.js](https://nuxt.com/) (v3)
+    -   [Vue.js](https://vuejs.org/) (v3)
+    -   [Tailwind CSS](https://tailwindcss.com/) (v4)
+    -   [Shadcn UI (Nuxt)](https://www.shadcn-vue.com/docs/installation/nuxt.html)
+    -   [Pinia](https://pinia.vuejs.org/) (State Management)
+    -   [Lucide Icons](https://lucide.dev/)
+    -   [Marked](https://marked.js.org/) (Markdown Parser)
+    -   [DOMPurify](https://github.com/cure53/DOMPurify) (HTML Sanitizer)
+    -   [Typewriter Effect](https://www.npmjs.com/package/typewriter-effect)
+-   **AI & Backend:**
+    -   [Langchain](https://js.langchain.com/)
+    -   [OpenAI API](https://openai.com/api/)
+    -   [Pinecone](https://www.pinecone.io/) (Vector Database)
+    -   [Vercel KV](https://vercel.com/storage/kv) (Serverless Key-Value Store)
+-   **Development & Tooling:**
+    -   [TypeScript](https://www.typescriptlang.org/)
+    -   [ESLint](https://eslint.org/)
+    -   [Vite](https://vitejs.dev/)
+    -   [ts-node](https://typestrong.org/ts-node/)
 
-# yarn
-yarn install
+## 📄 License
 
-# bun
-bun install
-```
+Built by Quincy Miller
 
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+"All Rights Reserved".

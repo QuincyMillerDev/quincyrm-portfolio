@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref, nextTick } from 'vue'
 import type { ComponentPublicInstance } from 'vue'
-import { Button } from '@/components/ui/button'
-import { Textarea } from '@/components/ui/textarea'
+import { Button } from '~/components/ui/button'
+import { Textarea } from '~/components/ui/textarea'
 import { Icon } from '@iconify/vue'
 
 const message = ref('')
