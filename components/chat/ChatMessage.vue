@@ -1,9 +1,9 @@
-<!-- eslint-disable vue/no-v-html -->
 <script setup lang="ts">
 import { computed } from 'vue'
 import { marked } from 'marked'
 import DOMPurify from 'dompurify'
 import { Icon } from '@iconify/vue'
+import { useChatStore } from '~~/stores/chatStore'
 
 interface Props {
   content: string
@@ -12,6 +12,8 @@ interface Props {
 }
 
 const props = defineProps<Props>()
+
+const chatStore = useChatStore()
 
 // Parse markdown in messages
 const parsedContent = computed(() => {
@@ -35,7 +37,7 @@ const formattedTime = computed(() => {
   >
     <!-- AI Message -->
     <template v-if="!isUser">
-      <div class="flex max-w-[85%]">
+      <div class="flex max-w-[100%]">
         <!-- AI Avatar -->
         <div class="mr-2 mt-1 flex-shrink-0">
           <div class="w-6 h-6 rounded-full bg-blue-100 dark:bg-blue-950/40 flex items-center justify-center">
@@ -45,12 +47,19 @@ const formattedTime = computed(() => {
         
         <div>
           <div 
-            class="bg-muted/30 backdrop-blur-sm px-4 py-3 rounded-lg border border-border/30 shadow-sm text-sm text-foreground group-hover:border-border/50 transition-all duration-300"
+            class="bg-muted/30 backdrop-blur-sm px-4 py-3 rounded-lg border border-border/30 shadow-sm text-sm text-foreground group-hover:border-border/50 transition-all duration-300 min-h-[2.5rem] flex items-center"
           >
-            <ClientOnly>
+            <template v-if="!props.isUser && props.content === '' && chatStore.isTyping">
+              <div class="flex items-center space-x-1.5 text-muted-foreground">
+                <span class="w-1.5 h-1.5 rounded-full bg-current animate-bounce" style="animation-delay: 0ms;" />
+                <span class="w-1.5 h-1.5 rounded-full bg-current animate-bounce" style="animation-delay: 150ms;" />
+                <span class="w-1.5 h-1.5 rounded-full bg-current animate-bounce" style="animation-delay: 300ms;" />
+              </div>
+            </template>
+            <ClientOnly v-else>
               <!-- eslint-disable-next-line vue/no-v-html -->
               <div 
-                class="prose prose-sm dark:prose-invert max-w-none break-all"
+                class="prose prose-sm dark:prose-invert max-w-none break-words"
                 v-html="parsedContent"
               />
             </ClientOnly>
@@ -71,7 +80,7 @@ const formattedTime = computed(() => {
           <ClientOnly>
             <!-- eslint-disable-next-line vue/no-v-html -->
             <div 
-              class="prose prose-sm dark:prose-invert max-w-none break-all"
+              class="prose prose-sm dark:prose-invert max-w-none break-words"
               v-html="parsedContent"
             />
           </ClientOnly>

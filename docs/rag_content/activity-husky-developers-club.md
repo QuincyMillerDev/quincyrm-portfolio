@@ -7,8 +7,8 @@ During my sophomore through Junior years I was a member of the Husky Developers 
 
 ## My Role(s) & Duration
 
-*   **Role 1:** Member, 2022
-*   **Role 2:** Outreach Chair, 2023
+*   **Role 1:** Member (2022)
+*   **Role 2:** Outreach Chair (2023)
 
 ## Key Contributions & Initiatives
 

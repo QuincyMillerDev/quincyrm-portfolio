@@ -2,7 +2,7 @@
 
 ## Overview / Summary
 
-The Hiring Maps project, co-developed at the University of Connecticut's Digital Experience Group (DXG), is an interactive web application designed to provide users with insights into the job market and various industries within Connecticut. It leverages data collected by a UConn researcher to visualize job market trends and opportunities geographically. The project aimed to create a platform for job seekers and those interested in understanding the state's economic landscape. The public repository can be found at [github.com/uconndxlab/hiring-maps](https://github.com/uconndxlab/hiring-maps).
+The Hiring Maps project, co-developed at the University of Connecticut's Digital Experience Group (DXG), is an interactive web application designed to provide users with insights into the job market and various industries within Connecticut. It leverages data collected by a UConn researcher to visualize job market trends and opportunities geographically. The project aimed to create a platform for job seekers and those interested in understanding the state's economic landscape. The public repository can be found at [github.com/uconndxlab/hiring-maps](https://github.com/uconndxlab/hiring-maps). This project was completed in 2022.
 
 ## Problem Statement & Objectives
 

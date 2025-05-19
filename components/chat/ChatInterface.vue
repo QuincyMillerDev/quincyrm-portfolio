@@ -25,7 +25,6 @@ const closeChat = () => {
 }
 
 const messagesEndRef = ref<HTMLDivElement | null>(null)
-const headerVisible = ref(true)
 
 const scrollToBottom = async () => {
   await nextTick()
@@ -42,13 +41,7 @@ const handleSendMessage = (content: string) => {
   scrollToBottom()
 }
 
-// Toggle header visibility on scroll
-const messagesContainer = ref<HTMLDivElement | null>(null)
 const chatInputRef = ref<InstanceType<typeof ChatInput> | null>(null)
-const handleScroll = () => {
-  if (!messagesContainer.value) return
-  headerVisible.value = messagesContainer.value.scrollTop < 50
-}
 
 // Empty state
 const isEmptyChat = computed(() => chatStore.messages.length === 0)
@@ -59,9 +52,6 @@ const populateInputWithSuggestion = (suggestion: string) => {
 
 onMounted(() => {
   scrollToBottom()
-  if (messagesContainer.value) {
-    messagesContainer.value.addEventListener('scroll', handleScroll)
-  }
 })
 </script>
 
@@ -70,9 +60,6 @@ onMounted(() => {
     <!-- Chat header - animated and smaller -->
     <div 
       class="px-4 py-3 border-b border-border/30 flex justify-between items-center transition-all duration-300 backdrop-blur-sm bg-background/80 z-10"
-      :class="[
-        headerVisible ? 'opacity-100' : 'opacity-0 -translate-y-2',
-      ]"
     >
       <div class="flex items-center gap-2">
         <div class="relative">
@@ -114,9 +101,9 @@ onMounted(() => {
         v-if="isEmptyChat" 
         class="h-full flex flex-col items-center justify-center text-center px-6 py-10"
       >
-        <h3 class="text-base font-medium mb-1 text-foreground">Welcome to the Chat</h3>
+        <h3 class="text-base font-medium mb-1 text-foreground">Welcome :)</h3>
         <p class="text-sm text-muted-foreground mb-4 max-w-xs">
-          This feature is still under development.
+          Ask me anything about Quincy's work and experiences! I'll do my best to answer your questions.
         </p>
         <div class="grid grid-cols-2 gap-2 w-full max-w-xs">
           <button 
@@ -138,13 +125,6 @@ onMounted(() => {
         :is-user="message.isUser"
         :timestamp="message.timestamp"
       />
-      
-      <!-- Typing indicator -->
-      <div v-if="chatStore.isTyping" class="flex items-center space-x-2 opacity-70 ml-10">
-        <div class="w-2 h-2 rounded-full bg-primary/60 animate-bounce" style="animation-delay: 0ms;" />
-        <div class="w-2 h-2 rounded-full bg-primary/60 animate-bounce" style="animation-delay: 150ms;" />
-        <div class="w-2 h-2 rounded-full bg-primary/60 animate-bounce" style="animation-delay: 300ms;" />
-      </div>
       
       <!-- Invisible element to scroll to -->
       <div ref="messagesEndRef" />

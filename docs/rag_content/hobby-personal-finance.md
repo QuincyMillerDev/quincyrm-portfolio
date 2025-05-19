@@ -1,9 +1,5 @@
 # Hobby: Personal Finance
 
-<!-- 
-This template helps structure your portfolio information for the AI chatbot.
--->
-
 ## Overview / Summary
 
 Personal finance is a significant priority in my life, and I dedicate consistent effort to understanding and managing my financial well-being. My approach is centered on diligent saving habits and strategic long-term planning, with a strong emphasis on leveraging tax-advantaged retirement accounts to build a secure future. I also stay informed about and selectively engage with established cryptocurrencies as part of a diversified approach.

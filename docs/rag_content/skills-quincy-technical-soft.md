@@ -1,25 +1,10 @@
 # Skills: Quincy Miller - Technical & Soft Skills
 
-<!-- 
-This template helps structure your portfolio information for the AI chatbot.
-This document is for a more detailed breakdown of skills than what might be listed in individual project/experience files.
--->
-
 ## Overview / Summary
-
-<!-- 
-Provide a brief overview of your skillset.
-Example: "As a full-stack software engineer, I possess a diverse range of technical skills spanning frontend and backend development, cloud technologies, and database management, complemented by strong analytical, problem-solving, and collaborative soft skills."
--->
 
 As a software engineer, I have cultivated a robust skill set encompassing full-stack development, data engineering, cloud technologies, and generative AI. My experience is rooted in a strong academic foundation in computer science principles and significantly enhanced by practical application in diverse projects at UConn's Digital Experience Group, internships, and my role at Hubbell. I am particularly proficient in Vue.js and TypeScript for frontend development, and Python (FastAPI) and C# (.NET) for backend systems. I am passionate about leveraging technology to solve complex problems and am committed to continuous learning, especially in the rapidly evolving field of AI.
 
 ## Technical Skills
-
-<!--
-List your technical skills, perhaps categorized. Provide context or proficiency level if helpful, but keep it concise for this overview.
-More detailed examples of skill application should be in the respective project/experience documents.
--->
 
 ### Programming Languages
 *   **Python:** Proficient; extensive experience with FastAPI for web APIs (e.g., Senior Design), data analysis libraries (Pandas, NumPy), data engineering (Apache Spark, Databricks workflows at Hubbell), developing SDKs (Hubbell), and scripting.
@@ -90,10 +75,6 @@ More detailed examples of skill application should be in the respective project/
 *   **Project Ownership & Technical Leadership:** Took full ownership of features and infrastructure initiatives (Hubbell), demonstrating strategic thinking.
 
 ## Learnings / Reflection
-
-<!--
-Reflect on how you cultivate and apply your skills.
--->
 
 My journey in software engineering has been driven by a commitment to continuous learning and embracing challenging environments. From foundational CS principles in my coursework to leading complex projects like my Senior Design capstone and tackling enterprise-scale challenges at Hubbell, I've consistently sought opportunities to expand my technical toolkit and refine my problem-solving abilities. I thrive on dissecting complex problems, designing robust solutions, and collaborating with teams to bring ideas to life. My experiences at UConn DXG and Hubbell have instilled in me the importance of practical application, agile methodologies, robust testing, comprehensive documentation, and clear communication. I am particularly excited by the transformative potential of Generative AI and am dedicated to exploring its applications to create innovative and impactful software. I look forward to continuing to grow, tackle new challenges, and contribute to cutting-edge development in high-impact roles.
 

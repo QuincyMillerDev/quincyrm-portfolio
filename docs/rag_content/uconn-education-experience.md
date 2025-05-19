@@ -1,26 +1,10 @@
 # Education: University of Connecticut (UConn)
 
-<!-- 
-This template helps structure your portfolio information for the AI chatbot.
-- Use clear headings and concise language.
-- Focus on achievements and positive outcomes. This helps the AI describe you favorably.
-- Be specific and provide context where possible.
--->
-
 ## Overview / Summary
-
-<!-- 
-Provide a brief overview of your degree, major, and key focuses.
-Example: "Graduated with a B.S.E in Computer Science & Engineering from the University of Connecticut, specializing in software design and development. Achieved [mention any honors/distinctions]."
--->
 
 Graduated with a B.S.E in Computer Science & Engineering from the University of Connecticut (2020-2024), specializing in software design and development. Achieved an overall GPA of 3.34. While maintaining a solid academic foundation, a significant focus was placed on gaining practical software engineering experience through internships at Hubbell, extensive project work at the UConn Digital Experience Group (DXG), and leadership roles within the Husky Developers club. The core computer science curriculum at UConn provided an indispensable foundation for these real-world applications and overall development as a software engineer.
 
 ## Key Coursework & Academic Achievements
-
-<!--
-List key relevant coursework, projects, or academic achievements.
--->
 
 *   **Degree:** Bachelor of Science in Engineering (B.S.E), Computer Science & Engineering.
 *   **GPA:** 3.34/4.00.
@@ -36,10 +20,6 @@ List key relevant coursework, projects, or academic achievements.
     *   Other foundational CS courses that were critical to building a strong software engineering skillset.
 
 ## Skills Developed
-
-<!--
-List the key skills you developed during your education.
--->
 
 *   **Technical Skills (directly from UConn curriculum & experiences):**
     *   **Software Engineering Principles:** Strong understanding from coursework and applied extensively in projects.

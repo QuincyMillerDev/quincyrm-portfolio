@@ -1,18 +1,10 @@
 # Project: Personal Portfolio Website (This Website)
 
-<!-- 
-This template helps structure your portfolio information for the AI chatbot.
--->
-
 ## Overview / Summary
 
 This personal portfolio website ([quincyrm.com](https://www.quincyrm.com)) is a dynamic and interactive platform built to showcase my software engineering skills, projects, and professional experiences. Developed with Nuxt.js (Vue 3), it features a modern, responsive design. Key architectural components include an advanced AI-powered chatbot utilizing a Retrieval-Augmented Generation (RAG) architecture, and an automated Strava API integration for displaying fitness activities. The entire application is deployed and hosted on Vercel, leveraging its serverless functions, cron jobs, and Key-Value store (Vercel KV).
 
 ## Key Features & Functionality
-
-<!--
-List the key features of your portfolio website.
--->
 
 *   **Feature 1: Responsive Design:** Fully responsive layout adapting to desktop, tablet, and mobile devices, ensuring a seamless user experience across all platforms.
 *   **Feature 2: Interactive AI Chatbot (RAG based):**
@@ -40,6 +32,35 @@ List the key features of your portfolio website.
 
 ### AI Chatbot Architecture (RAG System)
 The chatbot uses a Retrieval-Augmented Generation (RAG) approach orchestrated by Langchain.js, ensuring answers are based on the specific content of this portfolio.
+
+```mermaid
+graph TD
+    subgraph Offline: Data Ingestion & Embedding (Langchain.js)
+        A[Data Sources: Markdown Files about Portfolio] --> B(Langchain: Document Loaders & Text Splitters);
+        B --> C{Langchain: Embedding Model};
+        C --> D[Pinecone (Cloud DB)];
+    end
+
+    subgraph Online: Query Processing (Langchain.js & Nuxt Server Route)
+        E[User via Chat UI] --> F(Nuxt Frontend);
+        F --> G(/api/chat Nuxt Server Route with Langchain.js);
+        G --> H{Langchain: Embedding Model};
+        G --> I[Pinecone (Cloud DB)];
+        H -- Query Embedding --> I;
+        I -- Relevant Chunks --> G;
+        G -- Augmented Prompt --> J{Langchain: LLM};
+        J -- Streamed Markdown Response --> G;
+        G -- Streamed Response --> F;
+        F -- Renders Markdown --> E;
+    end
+
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style D fill:#f9f,stroke:#333,stroke-width:2px
+    style I fill:#f9f,stroke:#333,stroke-width:2px
+    style J fill:#lightgreen,stroke:#333,stroke-width:2px
+    style C fill:#lightgreen,stroke:#333,stroke-width:2px
+    style H fill:#lightgreen,stroke:#333,stroke-width:2px
+```
 
 **1. Offline: Data Ingestion & Embedding Pipeline:**
    This process runs upfront and whenever portfolio information is updated.

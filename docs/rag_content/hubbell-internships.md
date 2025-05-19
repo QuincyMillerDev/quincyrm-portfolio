@@ -30,10 +30,6 @@ Completed two consecutive summer internships (Summer 2022 and Summer 2023) as a 
 
 ## Overall Positive Impact / Learnings / Reflection from Internships
 
-<!--
-Reflect on the overall positive impact of your internships or key learnings.
--->
-
 These internships at Hubbell were a peak experience in my early software engineering journey, providing a robust foundation alongside my role at the Digital Experience Group at UCONN. The opportunity to work directly with full-time engineers on impactful, business-critical projects was invaluable. Unlike many internships, I was integrated into full teams, contributing to live projects and experiencing the entire development lifecycle within an agile environment. This hands-on experience with technologies like C#, .NET, Java, Spring Boot, Angular, and Azure, coupled with direct contributions to product launches and a significant beta release, solidified my technical skills and understanding of real-world software engineering. The experience of working on products for power utility companies, contributing to successful sprints, and witnessing the impact of my work (such as the beta release to a major California utility provider) was incredibly motivating and affirmed my passion for building scalable and meaningful software solutions.
 
 --- 

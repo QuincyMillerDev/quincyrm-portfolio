@@ -1,24 +1,10 @@
 # Project: Grant Trails (UConn DXG)
 
-<!-- 
-This template helps structure your portfolio information for the AI chatbot.
-This is for a specific project completed at UConn Digital Experience Group.
--->
-
 ## Overview / Summary
 
-<!-- 
-Provide a brief overview of the Grant Trails project.
-Example: "The Grant Trails project, developed at UConn DXG, was a mobile-first web application designed to help users discover and navigate hiking trails within the UConn Grant forests. It featured interactive maps and trail information."
--->
-
-The Grant Trails project, developed at the University of Connecticut's Digital Experience Group (DXG) in 2022, is a web application designed to visualize the economic impact of research grants awarded to UConn faculty. It revived and modernized an older concept, providing an interactive map that displays where grant dollars were spent within Connecticut, thereby showcasing the university's contribution to the local economy. The application can be viewed at [granttrails.core.uconn.edu](https://granttrails.core.uconn.edu/).
+The Grant Trails project, developed at the University of Connecticut's Digital Experience Group (DXG) in 2022, is a web application designed to visualize the economic impact of research grants awarded to UConn faculty. It revived and modernized an older concept, providing an interactive map that displays where grant dollars were spent within Connecticut, thereby showcasing the university's contribution to the local economy. The application can be viewed at [granttrails.core.uconn.edu](https://granttrails.core.uconn.edu/). This project was completed in 2022.
 
 ## Problem Statement & Objectives
-
-<!--
-Describe the problem the project aimed to solve and the main objectives.
--->
 
 *   **Problem:** An existing, older web application for tracking and displaying university grant distributions was outdated and needed to be revived and modernized. There was a need to effectively communicate how research grant funding supports local economies, a aspect often overlooked.
 *   **Objective 1:** Develop a user-friendly, interactive web application to visualize the geographic distribution of UConn grant spending within Connecticut.
@@ -27,10 +13,6 @@ Describe the problem the project aimed to solve and the main objectives.
 *   **Objective 4:** Ensure the application was robust and could be hosted reliably on university infrastructure.
 
 ## My Role & Key Contributions
-
-<!--
-Describe your specific role and contributions to the Grant Trails project.
--->
 
 *   **Role:** Full-Stack Developer
 *   **Contribution 1:** Led the entire development of the Grant Trails web application using Vue.js for the frontend.
@@ -41,10 +23,6 @@ Describe your specific role and contributions to the Grant Trails project.
 
 ## Technical Stack & Implementation Details
 
-<!--
-List the key technologies used for Grant Trails.
--->
-
 *   **Frontend:** Vue.js, Mapbox GL JS
 *   **Backend & Data:** Supabase (PostgreSQL database, serverless functions)
 *   **Deployment:** On-premises Linux server, NGINX (reverse proxy and web server)
@@ -53,10 +31,6 @@ List the key technologies used for Grant Trails.
 
 ## Outcomes & Achievements
 
-<!--
-Highlight the final outcomes and any notable achievements for Grant Trails.
--->
-
 *   Successfully revived and launched a modernized Grant Trails web application ([granttrails.core.uconn.edu](https://granttrails.core.uconn.edu/)), showcasing UConn's economic impact.
 *   Delivered a fully functional application in a short timeframe (a few weeks).
 *   Provided an intuitive interface for users to explore complex grant data geographically.
@@ -64,10 +38,6 @@ Highlight the final outcomes and any notable achievements for Grant Trails.
 *   The project is open source and serves as a model for other universities.
 
 ## Positive Impact / Learnings / Reflection
-
-<!--
-Reflect on the Grant Trails project.
--->
 
 Developing Grant Trails was a rewarding full-stack experience at UConn DXG. It allowed me to take full ownership of a project, from conceptualization based on a previous iteration to deployment. Revitalizing the application to clearly demonstrate the economic benefits of university research grants was impactful. Working with Vue.js, Mapbox for geospatial visualization, and Supabase for a modern backend solution within a compressed timeframe significantly honed my rapid development and integration skills. Setting up the on-premise Linux server with NGINX provided valuable DevOps experience. This project highlighted the power of web technologies to make complex data accessible and understandable to a broader audience, and I'm proud to have delivered a tool that showcases UConn's positive influence on the state's economy.
 

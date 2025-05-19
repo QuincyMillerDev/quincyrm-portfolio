@@ -1,10 +1,14 @@
-import { Pinecone } from "@pinecone-database/pinecone";
 import { DirectoryLoader } from "langchain/document_loaders/fs/directory";
 import { TextLoader } from "langchain/document_loaders/fs/text";
 import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
-import { OpenAIEmbeddings } from "@langchain/openai";
 import { PineconeStore } from "@langchain/pinecone";
 import "dotenv/config";
+
+import {
+  initializePineconeClient,
+  getPineconeIndex,
+  initializeOpenAIEmbeddings,
+} from "../lib/langchain/initializeClients.js";
 
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 const PINECONE_API_KEY = process.env.PINECONE_API_KEY;
@@ -23,8 +27,8 @@ async function main() {
   }
 
   console.log(`Initializing Pinecone client for index: ${PINECONE_INDEX_NAME}`);
-  const pinecone = new Pinecone({ apiKey: PINECONE_API_KEY });
-  const pineconeIndex = pinecone.Index(PINECONE_INDEX_NAME);
+  const pineconeClient = initializePineconeClient();
+  const pineconeIndex = getPineconeIndex(pineconeClient, PINECONE_INDEX_NAME);
   console.log(`Successfully initialized Pinecone index client.`);
 
   // 1. Load documents
@@ -42,20 +46,16 @@ async function main() {
 
   // 2. Split documents
   console.log("Splitting documents into chunks...");
-  const splitter = new RecursiveCharacterTextSplitter({
+  const splitter = RecursiveCharacterTextSplitter.fromLanguage("markdown", {
     chunkSize: 1000,
     chunkOverlap: 100,
-    separators: ["\n\n", "\n", " ", ""],
   });
   const chunks = await splitter.splitDocuments(docs);
   console.log(`Split into ${chunks.length} chunks.`);
 
   // 3. Initialize embedding model
   console.log("Initializing OpenAI embedding model...");
-  const embeddings = new OpenAIEmbeddings({
-    openAIApiKey: OPENAI_API_KEY,
-    modelName: "text-embedding-3-small",
-  });
+  const embeddings = initializeOpenAIEmbeddings("text-embedding-3-large");
   console.log("OpenAI embedding model initialized.");
 
   // 4. Store in Pinecone

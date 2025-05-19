@@ -1,24 +1,10 @@
 # Project: Sourcery (UConn DXG)
 
-<!-- 
-This template helps structure your portfolio information for the AI chatbot.
-This is for a specific project completed at UConn Digital Experience Group.
--->
-
 ## Overview / Summary
 
-<!-- 
-Provide a brief overview of the Sourcery project.
-Example: "Sourcery was an internal developer tool built at UConn DXG to help streamline the creation of boilerplate code for new projects. It functioned as a command-line interface (CLI) tool and a web UI for generating project structures based on predefined templates."
--->
-
-Sourcery ([https://sourceryapp.org/](https://sourceryapp.org/)), developed at the UConn Digital Experience Group (DXG), is a web platform designed to simplify and streamline the process for researchers and academics to request, track, and manage access to primary source documents from archives, libraries, and special collections. It aims to replace cumbersome manual request processes with a centralized, user-friendly digital solution.
+Sourcery ([https://sourceryapp.org/](https://sourceryapp.org/)), developed at the UConn Digital Experience Group (DXG), is a web platform designed to simplify and streamline the process for researchers and academics to request, track, and manage access to primary source documents from archives, libraries, and special collections. It aims to replace cumbersome manual request processes with a centralized, user-friendly digital solution. My contributions to this project were primarily in 2023.
 
 ## Problem Statement & Objectives
-
-<!--
-Describe the problem the project aimed to solve and the main objectives.
--->
 
 *   **Problem:** Researchers often face a fragmented, time-consuming, and manual process when trying to access primary source documents from various archives and special collections. This includes discovering materials, submitting requests, tracking their status, and managing received documents, often involving disparate email chains and paper forms.
 *   **Objective 1:** Develop a centralized web platform for researchers to easily search for and request primary source materials from participating institutions.
@@ -29,10 +15,6 @@ Describe the problem the project aimed to solve and the main objectives.
 
 ## My Role & Key Contributions
 
-<!--
-Describe your specific role and contributions to the Sourcery project.
--->
-
 *   **Role:** Developer
 *   **Contribution 1:** Designed and developed the researcher onboarding user flow, ensuring a smooth and intuitive experience for new users signing up and learning to navigate the platform.
 *   **Contribution 2:** Developed the researcher dashboard, which served as the central hub for researchers to view and manage their document requests, track their status (e.g., pending, approved, digitized), and handle communications related to their requests.
@@ -40,10 +22,6 @@ Describe your specific role and contributions to the Sourcery project.
 *   **Contribution 4:** Integrated with the Supabase backend to fetch and display researcher-specific data for their dashboard and to manage user state during onboarding.
 
 ## Technical Stack & Implementation Details
-
-<!--
-List the key technologies used for Sourcery.
--->
 
 *   **Frontend:** Vue.js, Vuetify
 *   **Backend & Database:** Supabase (PostgreSQL, Authentication, Realtime features)

@@ -275,19 +275,40 @@ This occurs in real-time during user interaction.
 
 ## 8. Next Steps
 
-1.  **Data Source:** Create Markdown files in `content/portfolio_data/`.
+1.  **Data Source:** Create Markdown files in `content/portfolio_data/`. (Already completed and ingested via `scripts/ingest-data.ts` using `docs/rag_content/`)
 2.  **Pinecone Setup:**
     *   Sign up for Pinecone.
     *   Create a Pinecone project and an index (note index name, environment, and dimensions).
     *   Obtain your API Key.
     *   Set up environment variables: `PINECONE_API_KEY`, `PINECONE_ENVIRONMENT`, `PINECONE_INDEX_NAME`.
-3.  **Ingestion Script (`scripts/ingest-data.ts`):** Develop and test Langchain.js script for data loading, chunking, embedding, and storing in your Pinecone index.
-4.  **Nuxt Server Route (`/api/chat`):** Implement Langchain.js RAG pipeline (query embedding, Pinecone retrieval, prompt construction, LLM streaming). Ensure server streams text chunks.
+    (Assumed largely complete as data ingestion is done)
+3.  **Ingestion Script (`scripts/ingest-data.ts`):** Develop and test Langchain.js script for data loading, chunking, embedding, and storing in your Pinecone index. (Already completed)
+4.  **Nuxt Server Route (`server/api/chat.post.ts`):**
+    *   **Create File:** Establish the `server/api/chat.post.ts` file.
+    *   **Request Handling:** Configure the route to accept `POST` requests with `message` and `chat_history` in the body.
+    *   **LangChain Initializations:**
+        *   Initialize Pinecone client and index using abstractions from `lib/langchain/initializeClients.ts`.
+        *   Initialize `OpenAIEmbeddings` model using abstractions from `lib/langchain/initializeClients.ts`.
+        *   Initialize `ChatOpenAI` model
+        *   Instantiate `PineconeStore` with the initialized Pinecone index and embeddings model.
+    *   **RAG Pipeline Logic:**
+        *   **Query Embedding:** Generate an embedding for the incoming user `message`.
+        *   **Vector Search (Retrieval):** Use `PineconeStore.similaritySearch()` to retrieve relevant document chunks. Determine an appropriate `K` value.
+        *   **Prompt Construction:** Create a `ChatPromptTemplate` that incorporates the retrieved `context`, the user's `question`, and the `chat_history`.
+        *   **LLM Interaction & Streaming:** Invoke the chat model with the formatted prompt using its `.stream()` method. Pipe the streamed chunks to the HTTP response.
+        *   *(Optional but Recommended)*: Consider using LangChain Expression Language (LCEL) to structure the RAG pipeline.
 5.  **Frontend Integration (`ChatInterface.vue`, `chatStore.ts`):**
-    *   Call new API endpoint.
-    *   Process streamed response chunks in `chatStore.ts`, updating message content.
-    *   Ensure `ChatMessage.vue` reactively renders streamed Markdown.
-6.  **Testing:** Thoroughly test with diverse questions and chat flows.
-7.  **Refinement:** Adjust chunking, prompts, retrieval K-value, models based on tests.
+    *   **`chatStore.ts` Update:**
+        *   Modify/create an action to send the user's message and `chat_history` to the `/api/chat` endpoint.
+        *   Implement logic to handle the streamed response: create a new bot message and append incoming chunks to its `content` property.
+        *   Manage an `isTyping` state.
+    *   **`ChatInterface.vue` / `ChatInput.vue`:** Ensure these components correctly call the `chatStore` action.
+    *   **`ChatMessage.vue`:** Confirm reactive rendering of Markdown content as it streams into the `chatStore`.
+6.  **Testing:** Thoroughly test with diverse questions, chat flows, and edge cases.
+    *   Verify accuracy and completeness of answers.
+    *   Inspect retrieved chunks if answers are suboptimal.
+    *   Evaluate the relevance and focus of retrieved information.
+    *   Test streaming behavior and UI updates.
+7.  **Refinement:** Adjust chunking parameters (if necessary based on testing, though current approach is good), prompts, retrieval K-value, and potentially the LLM model based on test results and desired performance/cost balance.
 
 This architecture provides a foundation for the portfolio chatbot using **Pinecone** and Langchain. 

@@ -1,18 +1,8 @@
 # Project: Landscape Architecture - Kinetic Sand Topography Visualizer (UConn DXG)
 
-<!-- 
-This template helps structure your portfolio information for the AI chatbot.
-This is for a specific project completed at UConn Digital Experience Group.
--->
-
 ## Overview / Summary
 
-<!-- 
-Provide a brief overview of the Landscape Architecture project.
-Example: "This project for UConn's Landscape Architecture department involved creating a dynamic web platform for students to showcase their design portfolios. It replaced a manual process with an elegant, easy-to-update digital solution."
--->
-
-This project, developed at UConn DXG, was a proof-of-concept MVP (Minimum Viable Product) for a UConn researcher in the Landscape Architecture department. The goal was to create a tool for students to understand topographic maps by transforming 3D scans of kinetic sand landscapes (created in the classroom) into 2D topographic heatmaps. The project involved a complex pipeline utilizing iPhone LiDAR, C++, OpenGL, a Node.js with Express.js Web API, and a Vue.js web application with D3.js for visualization.
+This project, developed at UConn DXG, was a proof-of-concept MVP (Minimum Viable Product) for a UConn researcher in the Landscape Architecture department. The goal was to create a tool for students to understand topographic maps by transforming 3D scans of kinetic sand landscapes (created in the classroom) into 2D topographic heatmaps. The project involved a complex pipeline utilizing iPhone LiDAR, C++, OpenGL, a Node.js with Express.js Web API, and a Vue.js web application with D3.js for visualization. This MVP was completed in 2024.
 
 ## Problem Statement & Objectives
 

@@ -13,6 +13,31 @@ I am a passionate and driven Software Engineer with a strong foundation in compu
 *   **Value 5:** Commitment to Excellence (Bar-raising): "A job worth doing is worth doing right, as my dad always told me. I am committed to delivering high-quality work and consistently exceeding expectations."
 *   **Value 6:** Saying yes: "I think saying yes is the best thing you can do, especially when you dont feel like it. Being willing to new experiences and opportunities can take you far."
 
+## Timeline
+
+*   **2024 - Now:** Full-Stack Software Engineer at Hubbell Inc. (Avon, CT)
+    *   Working on enterprise products in Hubbell's high risk, high reward division.
+    *   *Skills: Python, TypeScript, Azure, Angular, C#, Databricks, PostgreSQL, Terraform, CI/CD*
+*   **2022 - 2024:** Associate Software Engineer at UConn Digital Experience Group (Storrs, CT)
+    *   Lead the development of diverse full-stack applications. Turned client ideas into functional, responsive applications.
+    *   *Key Projects Undertaken at DXG:*
+        *   Landscape Architecture Topography Visualizer (2024)
+        *   Sourcery Platform Contribution (2023)
+        *   ProteomeXchange Data Analysis Modernization (2023)
+        *   Grant Trails Visualization (2022)
+        *   Hiring Maps Application (2022)
+    *   *Skills: Vue.js, TypeScript, React, Node.js, Docker, NGINX, MySQL*
+*   **2020 - 2024:** B.S.E in Computer Science & Engineering from the University of Connecticut (Storrs, CT)
+    *   Concentrated in software design and development.
+    *   *Key Capstone Project:* Senior Design - Multimodal Care Coordinator (2024)
+*   **2022 & 2023 (Summers):** Software Engineering Intern at Hubbell Inc. (Avon, CT)
+    *   Worked in an agile environment over two consecutive summer internships.
+    *   *Internship 1 (2022 - .NET): C#, .NET, Angular, TypeScript, Azure, SQL, Postman, Docker*
+    *   *Internship 2 (2023 - Java): Java, Spring Boot, MySQL, Angular, TypeScript, Azure, Docker, Postman*
+*   **2022 - 2023:** Husky Developers Club (University of Connecticut)
+    *   Member (2022), Outreach Chair (2023)
+    *   Led workshops, consulted on student projects, and drove member growth.
+
 ## Career Aspirations & Goals
 
 *   **Short-Term Goals (1-3 years):** "To make significant contributions to a dynamic software engineering team, deepen my expertise in the rapidly evolving field of AI software engineering, and proactively take on increasing responsibility in project development and delivery. I am still unsure what specific niche I want to dive deep in, but I have a deep interest around generative AI technology and its applications. I also believe financial tech and healthcare software are highly interesting fields. A blend of these is a really cool place to be. I hope to find my role in one of these markets."
