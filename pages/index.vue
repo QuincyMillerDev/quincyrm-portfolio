@@ -27,37 +27,44 @@ const projects: Project[] = [
   {
     title: 'Personal Portfolio Website',
     description: 'This dynamic portfolio showcases software engineering skills with a Nuxt.js frontend, RAG AI chatbot, and Strava API integration, deployed on Vercel.',
-    link: 'https://github.com/QuincyMillerDev/quincyrm-portfolio'
+    link: 'https://github.com/QuincyMillerDev/quincyrm-portfolio',
+    chatSuggestion: 'Tell me about this portfolio project'
   },
   {
     title: 'Multimodal Care Coordinator (Senior Design)',
     description: 'Developed a multi-modal patient onboarding chatbot and a RAG system for medical professionals for Bastion Health, winning 3rd place in UConn\'s Senior Design Competition.',
-    link: 'https://github.com/QuincyMillerDev/Multimodal-Care-Coordinator'
+    link: 'https://github.com/QuincyMillerDev/Multimodal-Care-Coordinator',
+    chatSuggestion: 'What was the purpose of the Multimodal Care Coordinator project?'
   },
   {
     title: 'ProteomeX Data Analysis',
     description: 'Modernized a legacy application of proteomics data analysis with a Laravel backend, React UI, and Dockerized C algorithm.',
-    link: 'https://www.proteome-x.com/'
+    link: 'https://www.proteome-x.com/',
+    chatSuggestion: 'What is ProteomeX?'
   },
   {
     title: 'Grant Trails (UConn DXG)',
     description: 'A web application designed to visualize the economic impact of research grants awarded to UConn faculty, featuring an interactive map of spending within Connecticut.',
-    link: 'https://granttrails.core.uconn.edu/'
+    link: 'https://granttrails.core.uconn.edu/',
+    chatSuggestion: 'What is Grant Trails?'
   },
   {
     title: 'Sourcery (UConn DXG)',
     description: 'A web platform to streamline researcher access to primary source documents from archives, libraries, and special collections.',
-    link: 'https://sourceryapp.org/'
+    link: 'https://sourceryapp.org/',
+    chatSuggestion: 'What is Sourcery?'
   },
   {
     title: 'Kinetic Sand Topography Visualizer',
     description: 'An MVP to transform 3D LiDAR scans of kinetic sand landscapes into 2D topographic heatmaps for landscape architecture students.',
-    link: 'https://github.com/uconndxlab/landscape-AR'
+    link: 'https://github.com/uconndxlab/landscape-AR',
+    chatSuggestion: 'What is the Kinetic Sand Topography Visualizer?'
   },
   {
     title: 'Hiring Maps (UConn DXG)',
     description: 'An interactive web application visualizing Connecticut\'s job market trends and industry data, co-developed at UConn DXG.',
-    link: 'https://github.com/uconndxlab/hiring-maps'
+    link: 'https://github.com/uconndxlab/hiring-maps',
+    chatSuggestion: 'What is Hiring Maps?'
   }
 ]
 

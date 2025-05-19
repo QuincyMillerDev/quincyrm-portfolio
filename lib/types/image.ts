@@ -4,4 +4,5 @@ export interface ImageItem {
     shortDescription: string
     location?: string
     date?: string
+    chatSuggestion?: string
 }

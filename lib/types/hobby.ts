@@ -19,4 +19,5 @@ export interface Hobby {
   colorHue: number
   accentColorHex: string
   link?: HobbyLink
+  chatSuggestion?: string
 } 

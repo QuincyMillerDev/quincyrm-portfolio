@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
 import { computed } from 'vue'
-import type { TimelineItemData, TypeConfig, SkillColorConfig } from '~/../lib/types/timeline'
+import type { TimelineItemData, TypeConfig, SkillColorConfig } from '~/lib/types/timeline'
+import { useChatSuggestions } from '~/composables/useChatSuggestions'
 
 const props = defineProps<{
   item: TimelineItemData
@@ -11,6 +12,7 @@ const props = defineProps<{
   animationDelay: string
 }>()
 
+const { handleChatSuggestion } = useChatSuggestions()
 
 // Helper to safely access type configuration
 const currentTypeConfig = computed(() => {
@@ -36,9 +38,10 @@ const titleHoverColorClass = 'group-hover:text-[var(--item-accent-color)]';
 
 <template>
   <div
-    class="relative pl-10 group transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
+    class="relative pl-10 group transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] cursor-default"
     :class="{ 'opacity-100 translate-y-0 scale-100': isVisible, 'opacity-0 translate-y-[10px] scale-[0.98]': !isVisible }"
     :style="[itemStyle, { transitionDelay: animationDelay }]"
+    @click="handleChatSuggestion(item.chatSuggestion)"
   >
     <!-- Timeline dot with icon -->
     <div

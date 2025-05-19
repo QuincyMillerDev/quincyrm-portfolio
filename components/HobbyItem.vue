@@ -1,8 +1,14 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
 import { Button } from '~/components/ui/button'
-import type { Hobby } from '~/lib/types/hobby'
+import type { Hobby as HobbyType } from '~/lib/types/hobby'
 import { computed } from 'vue';
+import { useChatSuggestions } from '~/composables/useChatSuggestions';
+
+// Define a local interface that extends the imported HobbyType
+interface Hobby extends HobbyType {
+  chatSuggestion?: string;
+}
 
 const props = defineProps<{
   hobby: Hobby
@@ -15,8 +21,13 @@ const emit = defineEmits<{
   (e: 'toggle-active', id: string): void
 }>()
 
+const { handleChatSuggestion } = useChatSuggestions();
+
 const handleClick = () => {
   emit('toggle-active', props.hobby.id)
+  if (props.hobby.chatSuggestion) {
+    handleChatSuggestion(props.hobby.chatSuggestion);
+  }
 }
 
 const currentAccentHex = computed(() => props.hobby.accentColorHex || '#888888'); // Default hex
@@ -41,7 +52,7 @@ const buttonHoverTextColorClass = 'hover:text-[var(--item-accent-color)]';
 
 <template>
   <div
-    class="group block h-full transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
+    class="group block h-full transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] cursor-default"
     :style="[itemStyle, { transitionDelay: animationDelay }]"
     :class="{ 
       'opacity-100 translate-y-0 scale-100': isVisible, 

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, nextTick } from 'vue'
+import { ref, nextTick, onMounted, onUnmounted } from 'vue'
 import type { ComponentPublicInstance } from 'vue'
 import { Button } from '~/components/ui/button'
 import { Textarea } from '~/components/ui/textarea'
@@ -48,6 +48,25 @@ const setMessage = (newMessage: string) => {
     resizeTextarea()
   })
 }
+
+// Listen for chat suggestions
+const handleChatSuggestion = (event: CustomEvent) => {
+  if (message.value.trim() === '') {
+    setMessage(event.detail.message)
+  }
+  // Always focus the textarea after a suggestion attempt
+  if (textareaRef.value && textareaRef.value.$el) {
+    textareaRef.value.$el.focus();
+  }
+}
+
+onMounted(() => {
+  window.addEventListener('chat-suggestion', handleChatSuggestion as EventListener)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('chat-suggestion', handleChatSuggestion as EventListener)
+})
 
 defineExpose({ setMessage })
 </script>

@@ -3,4 +3,5 @@ export interface Project {
     description: string;
     link: string;
     chatQuery?: string;
+    chatSuggestion?: string;
 }

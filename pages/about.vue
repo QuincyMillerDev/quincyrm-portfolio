@@ -13,10 +13,10 @@ import { useStravaActivityStore } from '~/stores/stravaActivity';
 const stravaStore = useStravaActivityStore();
 
 const images: ImageItem[] = [
-  { src: '/images/IMG_1625_VSCO.JPG', alt: 'Backcountry Skiing', shortDescription: 'I need to go backcountry skiing again.', location: 'Alta, UT', date: 'Jan 2025' },
-  { src: '/images/IMG_1385.JPG', alt: 'Senior Design', shortDescription: 'Won 3rd place in Capstone Competition.', location: 'Storrs, CT', date: 'Apr 2024' },
-  { src: '/images/IMG_7864.JPG', alt: 'Japan', shortDescription: 'Exploring Japan.', location: 'Tokyo, Japan', date: 'Aug 2024' },
-  { src: '/images/IMG_3697.JPG', alt: 'Head of the Charles', shortDescription: 'Scout and I rowed in the HoTC.', location: 'Boston, MA', date: 'Oct 2024' },
+  { src: '/images/IMG_1625_VSCO.JPG', alt: 'Backcountry Skiing', shortDescription: 'I need to go backcountry skiing again.', location: 'Alta, UT', date: 'Jan 2025', chatSuggestion: 'Tell me about Quincy\'s backcountry skiing experience.' },
+  { src: '/images/IMG_1385.JPG', alt: 'Senior Design', shortDescription: 'Won 3rd place in Capstone Competition.', location: 'Storrs, CT', date: 'Apr 2024', chatSuggestion: 'Tell me about Quincy\'s senior design accomplishments.' },
+  { src: '/images/IMG_7864.JPG', alt: 'Japan', shortDescription: 'Exploring Japan.', location: 'Tokyo, Japan', date: 'Aug 2024', chatSuggestion: 'Tell me about Quincy\'s Japan trip.' },
+  { src: '/images/IMG_3697.JPG', alt: 'Head of the Charles', shortDescription: 'Scout and I rowed in the HoTC.', location: 'Boston, MA', date: 'Oct 2024', chatSuggestion: 'Tell me about Quincy\'s Head of the Charles experience.' },
 ]
 
 const timelineItems = ref<TimelineItemData[]>([
@@ -27,7 +27,8 @@ const timelineItems = ref<TimelineItemData[]>([
     location: 'Avon, CT',
     description: 'Working on enterprise products in Hubbell\'s high risk, high reward division.',
     skills: ['Python', 'TypeScript', 'Azure', 'Angular', 'C#', 'Databricks', 'PostgreSQL', 'Terraform', 'CI/CD'],
-    type: 'work'
+    type: 'work',
+    chatSuggestion: 'What was Quincy\'s role at Hubbell as a software engineer?'
   },
   {
     year: '2022 - 2024',
@@ -36,7 +37,8 @@ const timelineItems = ref<TimelineItemData[]>([
     location: 'Storrs, CT',
     description: 'Lead the development of diverse full-stack applications. Turned client ideas into functional, responsive applications.',
     skills: ['Vue.js', 'TypeScript', 'React', 'Node.js', 'Docker', 'NGINX', 'MySQL'],
-    type: 'work'
+    type: 'work',
+    chatSuggestion: 'What was Quincy\'s role at UConn Digital Experience Group?'
   },
   {
     year: '2020 - 2024',
@@ -44,7 +46,8 @@ const timelineItems = ref<TimelineItemData[]>([
     company: 'University of Connecticut',
     location: 'Storrs, CT',
     description: 'Made my parents proud. Concentrated in software design and development.',
-    type: 'education'
+    type: 'education',
+    chatSuggestion: 'What clubs was Quincy involved in at UConn?'
   },
   {
     year: '2022-2023',
@@ -53,7 +56,8 @@ const timelineItems = ref<TimelineItemData[]>([
     location: 'Avon, CT',
     description: 'Worked in an agile environment over two consecutive summer internships.',
     skills: ['C#', '.NET', 'Java', 'Spring Boot', 'MySQL'],
-    type: 'work'
+    type: 'work',
+    chatSuggestion: 'What was Quincy\'s role at Hubbell Inc. as a software engineering intern?'
   }
 ])
 
@@ -66,7 +70,8 @@ const baseHobbies = ref<Hobby[]>([
     description: 'I track everything.',
     stats: [], // Stats will come from Pinia store via computed property
     colorHue: 150,
-    accentColorHex: '#4CAF50'
+    accentColorHex: '#4CAF50',
+    chatSuggestion: 'Where does this Strava Data come from?'
   },
   {
     id: 'skiing',
@@ -78,7 +83,8 @@ const baseHobbies = ref<Hobby[]>([
       { label: 'Favorite Mountain', value: 'Snowbird, UT', icon: 'lucide:mountain' }
     ],
     colorHue: 200,
-    accentColorHex: '#00BCD4'
+    accentColorHex: '#00BCD4',
+    chatSuggestion: 'Tell me more about Skiing.'
   },
   {
     id: 'finance',
@@ -90,7 +96,8 @@ const baseHobbies = ref<Hobby[]>([
       { label: 'Focus Areas', value: 'Index Funds, Stocks, Real Estate?', icon: 'lucide:landmark' }
     ],
     colorHue: 40,
-    accentColorHex: '#FFC107'
+    accentColorHex: '#FFC107',
+    chatSuggestion: 'What is Quincy\'s investment style?'
   },
   {
     id: 'content',
@@ -102,7 +109,8 @@ const baseHobbies = ref<Hobby[]>([
       { label: 'Topics', value: 'Gaming, Tech, Life', icon: 'lucide:layers' }
     ],
     colorHue: 270,
-    accentColorHex: '#9C27B0'
+    accentColorHex: '#9C27B0',
+    chatSuggestion: 'Tell me more about Quincy\'s content creation.'
   }
 ])
 

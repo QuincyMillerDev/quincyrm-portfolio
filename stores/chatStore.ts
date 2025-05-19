@@ -172,6 +172,13 @@ export const useChatStore = defineStore('chat', () => {
     messages.value = [];
   }
   
+  // Set a suggested message
+  function setSuggestedMessage(message: string) {
+    // Emit an event that the ChatInput component can listen to
+    const event = new CustomEvent('chat-suggestion', { detail: { message } });
+    window.dispatchEvent(event);
+  }
+  
   return {
     // State
     isOpen,
@@ -183,6 +190,7 @@ export const useChatStore = defineStore('chat', () => {
     toggleChat,
     toggleMobileSheet,
     addUserMessage,
-    clearMessages
+    clearMessages,
+    setSuggestedMessage
   };
 }); 

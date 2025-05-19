@@ -57,7 +57,11 @@ I am a passionate and driven Software Engineer with a strong foundation in compu
 
 ## Interests Outside of Tech
 
-Beyond my technical pursuits, I am a firm believer in maintaining an active and balanced lifestyle. I have been a dedicated gym-goer since 2017 and more recently have developed a passion for running, hiking, and skiing during the winter months. I also enjoy gaming with my friends from time-to-time.
+Beyond my technical pursuits, I am a firm believer in maintaining an active and balanced lifestyle. I have been a dedicated gym-goer since 2017 and more recently have developed a passion for running, hiking, and skiing during the winter months. I also enjoy gaming with my friends from time-to-time. My favorite genres of music include house/electronic and alternative rock. Some favorite bands are Daft Punk and Radiohead.
+
+## Fun Facts
+*   **Favorite Food:** I eat a ton of greek yogurt, but my favorite food is cold soba noodles. I tried them for the first time in Kyoto, Japan.
+*   **Favorite Video Game:** Skyrim, I love this game. Honorable mention is the indie game Valheim 
 
 ## Contact Information Summary
 

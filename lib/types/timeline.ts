@@ -8,6 +8,7 @@ export interface TimelineItemData {
   description: string
   skills?: string[]
   type: TimelineItemType
+  chatSuggestion?: string
 }
 
 export interface TypeConfig {
