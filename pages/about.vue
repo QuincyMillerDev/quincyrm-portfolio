@@ -28,7 +28,7 @@ const timelineItems = ref<TimelineItemData[]>([
     description: 'Working on enterprise products in Hubbell\'s high risk, high reward division.',
     skills: ['Python', 'TypeScript', 'Azure', 'Angular', 'C#', 'Databricks', 'PostgreSQL', 'Terraform', 'CI/CD'],
     type: 'work',
-    chatSuggestion: 'What was Quincy\'s role at Hubbell as a software engineer?'
+    chatSuggestion: 'Tell me about Quincy\'s work at Hubbell Inc.'
   },
   {
     year: '2022 - 2024',
