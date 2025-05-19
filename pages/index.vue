@@ -24,8 +24,41 @@ const links = [
 
 
 const projects: Project[] = [
-  { title: 'Project One', description: 'Description for project one.', link: 'https://github.com/username/project-one' },
-  { title: 'Project Two', description: 'Description for project two.', link: 'https://github.com/username/project-two' },
+  {
+    title: 'Personal Portfolio Website',
+    description: 'This dynamic portfolio showcases software engineering skills with a Nuxt.js frontend, RAG AI chatbot, and Strava API integration, deployed on Vercel.',
+    link: 'https://github.com/QuincyMillerDev/quincyrm-portfolio'
+  },
+  {
+    title: 'Multimodal Care Coordinator (Senior Design)',
+    description: 'Developed a multi-modal patient onboarding chatbot and a RAG system for medical professionals for Bastion Health, winning 3rd place in UConn\'s Senior Design Competition.',
+    link: 'https://github.com/QuincyMillerDev/Multimodal-Care-Coordinator'
+  },
+  {
+    title: 'ProteomeX Data Analysis',
+    description: 'Modernized a legacy application of proteomics data analysis with a Laravel backend, React UI, and Dockerized C algorithm.',
+    link: 'https://www.proteome-x.com/'
+  },
+  {
+    title: 'Grant Trails (UConn DXG)',
+    description: 'A web application designed to visualize the economic impact of research grants awarded to UConn faculty, featuring an interactive map of spending within Connecticut.',
+    link: 'https://granttrails.core.uconn.edu/'
+  },
+  {
+    title: 'Sourcery (UConn DXG)',
+    description: 'A web platform to streamline researcher access to primary source documents from archives, libraries, and special collections.',
+    link: 'https://sourceryapp.org/'
+  },
+  {
+    title: 'Kinetic Sand Topography Visualizer',
+    description: 'An MVP to transform 3D LiDAR scans of kinetic sand landscapes into 2D topographic heatmaps for landscape architecture students.',
+    link: 'https://github.com/uconndxlab/landscape-AR'
+  },
+  {
+    title: 'Hiring Maps (UConn DXG)',
+    description: 'An interactive web application visualizing Connecticut\'s job market trends and industry data, co-developed at UConn DXG.',
+    link: 'https://github.com/uconndxlab/hiring-maps'
+  }
 ]
 
 const activeSection = ref<string | null>(null)

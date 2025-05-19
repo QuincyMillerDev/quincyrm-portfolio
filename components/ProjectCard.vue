@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { Github, Globe } from 'lucide-vue-next'
+import { Github, Globe, ExternalLink } from 'lucide-vue-next'
 import type { Project } from '~/lib/types/projects'
 
 const props = defineProps<{ 
@@ -18,6 +18,7 @@ const itemStyle = computed(() => ({
   '--item-accent-color': currentAccentHex.value
 }));
 
+
 // Determine if it's a GitHub link
 const isGithubLink = computed(() => props.project.link.includes('github.com'))
 
@@ -26,10 +27,7 @@ const isGithubLink = computed(() => props.project.link.includes('github.com'))
 </script>
 
 <template>
-  <a 
-    :href="props.project.link" 
-    target="_blank" 
-    rel="noopener noreferrer"
+  <div 
     class="block h-full group transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
     :style="[itemStyle, { transitionDelay: props.animationDelay }]"
     :class="{ 
@@ -40,9 +38,18 @@ const isGithubLink = computed(() => props.project.link.includes('github.com'))
     <div 
       class="project-card relative flex flex-col h-full overflow-hidden rounded-lg border border-border/40 bg-background/50 backdrop-blur-sm transition-all duration-300 group-hover:shadow-md group-hover:ring-1"
       :class="['group-hover:ring-[var(--item-accent-color)]/30']" 
-      comment="Removed animation classes/styles from here as they are now on the root 'a' tag"
     >
-      <div class="p-5 flex-grow flex flex-col">
+      <div class="relative p-5 flex-grow flex flex-col">
+        <a 
+            :href="props.project.link" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="absolute top-3 right-3 p-1.5 text-muted-foreground hover:text-[var(--item-accent-color)] transition-colors duration-300 z-10 rounded-md hover:bg-background/70"
+            @click.stop 
+          >
+            <ExternalLink class="w-4 h-4" />
+            <span class="sr-only">View Project</span>
+          </a>
         <div class="flex items-center mb-3">
           <div 
             class="icon-container flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center mr-3 transition-all duration-300"
@@ -61,7 +68,7 @@ const isGithubLink = computed(() => props.project.link.includes('github.com'))
             />
           </div>
           <h3 
-            class="text-md font-medium tracking-tight transition-colors duration-300"
+            class="text-md font-medium tracking-tight transition-colors duration-300 pr-8"
             :class="['group-hover:text-[var(--item-accent-color)]']"
           >
             {{ props.project.title }}
@@ -69,13 +76,13 @@ const isGithubLink = computed(() => props.project.link.includes('github.com'))
         </div>
         
         <div class="flex-grow space-y-2">
-          <p class="text-sm text-muted-foreground line-clamp-3">
+          <p class="text-sm text-muted-foreground">
             {{ props.project.description }}
           </p>
         </div>
       </div>
     </div>
-  </a>
+  </div>
 </template>
 
 <style scoped>
