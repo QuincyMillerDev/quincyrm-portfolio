@@ -107,7 +107,7 @@ onMounted(() => {
         </p>
         <div class="grid grid-cols-2 gap-2 w-full max-w-xs">
           <button 
-          v-for="(suggestion, i) in ['How does this chatbot work?', 'What was Quincy\'s most recent job?', 'Provide a list of Quincy\'s skills', 'What is Quincy\'s favorite food?']" 
+          v-for="(suggestion, i) in ['How does this chatbot work?', 'Tell me about Quincy\'s projects.', 'Provide a list of Quincy\'s technical skills', 'What is Quincy\'s favorite food?']" 
             :key="i"
             class="text-xs px-3 py-2 rounded-lg border border-border/40 bg-muted/30 hover:bg-muted/50 transition-colors text-muted-foreground hover:text-foreground"
             @click="populateInputWithSuggestion(suggestion)"
