@@ -40,31 +40,31 @@ const projects: Project[] = [
     title: 'ProteomeX Data Analysis',
     description: 'Modernized a legacy application of proteomics data analysis with a Laravel backend, React UI, and Dockerized C algorithm.',
     link: 'https://www.proteome-x.com/',
-    chatSuggestion: 'What is ProteomeX?'
+    chatSuggestion: 'Tell me about ProteomeX.'
   },
   {
     title: 'Grant Trails (UConn DXG)',
     description: 'A web application designed to visualize the economic impact of research grants awarded to UConn faculty, featuring an interactive map of spending within Connecticut.',
     link: 'https://granttrails.core.uconn.edu/',
-    chatSuggestion: 'What is Grant Trails?'
+    chatSuggestion: 'Tell me about the Grant Trails project.'
   },
   {
     title: 'Sourcery (UConn DXG)',
     description: 'A web platform to streamline researcher access to primary source documents from archives, libraries, and special collections.',
     link: 'https://sourceryapp.org/',
-    chatSuggestion: 'What is Sourcery?'
+    chatSuggestion: 'Tell me about Sourcery.'
   },
   {
     title: 'Kinetic Sand Topography Visualizer',
     description: 'An MVP to transform 3D LiDAR scans of kinetic sand landscapes into 2D topographic heatmaps for landscape architecture students.',
     link: 'https://github.com/uconndxlab/landscape-AR',
-    chatSuggestion: 'What is the Kinetic Sand Topography Visualizer?'
+    chatSuggestion: 'Tell me about the Kinetic Sand Topography Visualizer.'
   },
   {
     title: 'Hiring Maps (UConn DXG)',
     description: 'An interactive web application visualizing Connecticut\'s job market trends and industry data, co-developed at UConn DXG.',
     link: 'https://github.com/uconndxlab/hiring-maps',
-    chatSuggestion: 'What is Hiring Maps?'
+    chatSuggestion: 'Tell me about the Hiring Maps project.'
   }
 ]
 

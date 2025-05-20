@@ -47,7 +47,7 @@ const timelineItems = ref<TimelineItemData[]>([
     location: 'Storrs, CT',
     description: 'Made my parents proud. Concentrated in software design and development.',
     type: 'education',
-    chatSuggestion: 'What clubs was Quincy involved in at UConn?'
+    chatSuggestion: 'Tell me about Quincy\'s academic experience at UConn.'
   },
   {
     year: '2022-2023',
@@ -71,7 +71,7 @@ const baseHobbies = ref<Hobby[]>([
     stats: [], // Stats will come from Pinia store via computed property
     colorHue: 150,
     accentColorHex: '#4CAF50',
-    chatSuggestion: 'Where does this Strava Data come from?'
+    chatSuggestion: 'How does this Strava integration work?'
   },
   {
     id: 'skiing',
@@ -84,7 +84,7 @@ const baseHobbies = ref<Hobby[]>([
     ],
     colorHue: 200,
     accentColorHex: '#00BCD4',
-    chatSuggestion: 'Tell me more about Skiing.'
+    chatSuggestion: 'Tell me more about Quincy\'s passion for skiing.'
   },
   {
     id: 'finance',
