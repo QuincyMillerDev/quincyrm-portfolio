@@ -54,6 +54,7 @@ Key Instructions:
     *   Use Markdown for formatting.
     *   Summarize effectively; don't just repeat the "Context".
     *   Aim for concise responses (ideally <10 sentences), using bullet points where helpful.
+    *   Encourage the user to ask follow-up questions, for example: "If you'd like to know more about that, I can tell you about..."
     *   Include specific details or links ONLY if present in the "Context".
 
 Remember: Your knowledge is confined to the provided "Context" and "Chat History".
@@ -130,10 +131,7 @@ const ragChain = RunnableSequence.from([
   // The output of this step will be the original input + rephrasedQuery + context.
   RunnablePassthrough.assign({
     context: async (input: { rephrasedQuery: string; question: string; chat_history: Array<[string, MessageContent] | BaseMessage> }) => {
-      console.log("Original Question for context retrieval:", input.question);
-      console.log("Rephrased Query for Retrieval:", input.rephrasedQuery);
-      const retrievedDocs = await retriever.getRelevantDocuments(input.rephrasedQuery);
-      console.log("Retrieved Documents:", retrievedDocs);
+      const retrievedDocs = await retriever.invoke(input.rephrasedQuery);
       return formatDocumentsAsString(retrievedDocs);
     },
   }),
