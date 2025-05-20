@@ -9,16 +9,19 @@ import {
   ChatPromptTemplate,
   MessagesPlaceholder,
 } from "@langchain/core/prompts";
-import { RunnableSequence } from "@langchain/core/runnables";
+import {
+  RunnableSequence,
+  RunnablePassthrough,
+} from "@langchain/core/runnables";
 import { StringOutputParser } from "@langchain/core/output_parsers";
 import { formatDocumentsAsString } from "langchain/util/document";
 import type { MessageContent, BaseMessage } from "@langchain/core/messages";
 import type { ChatHistoryItem } from "~/lib/types/chat";
 
-interface RagInput {
-  question: string;
-  chat_history: Array<[string, MessageContent] | BaseMessage>;
-}
+// interface RagInput { // This was the unused type
+//   question: string;
+//   chat_history: Array<[string, MessageContent] | BaseMessage>;
+// }
 
 const PINECONE_INDEX_NAME = process.env.PINECONE_INDEX_NAME;
 
@@ -33,27 +36,29 @@ if (!PINECONE_INDEX_NAME) {
 const pineconeClient = initializePineconeClient();
 const pineconeIndex = getPineconeIndex(pineconeClient, PINECONE_INDEX_NAME!);
 const embeddings = initializeOpenAIEmbeddings("text-embedding-3-large");
-const llm = initializeChatOpenAI("gpt-4.1-nano-2025-04-14", 0.7, true); // Ensure streaming is true
+const llm = initializeChatOpenAI("gpt-4.1-nano-2025-04-14", 0.7, true, 600); // Main LLM for generation, maxTokens: 300
+const rephrasingLlm = initializeChatOpenAI("gpt-3.5-turbo", 0.1, false, 30); // LLM for query rephrasing, maxTokens: 30
 const vectorStore = new PineconeStore(embeddings, { pineconeIndex });
-const retriever = vectorStore.asRetriever({ k: 4 });
+const retriever = vectorStore.asRetriever({ k: 6 });
 
-const systemPrompt = `You are a helpful AI assistant for Quincy's software engineering portfolio website.
-Your goal is to answer questions users may ask about Quincy's work and experiences. You will be provided with a context that contains information related to the users question.
-This context was taken from markdown documents written by Quincy. All of these documents are written in Quincy's first person perspective.
-Only answer questions based on the context provided or what you can infer from the context. Do NOT make up information or make assumptions about Quincy or the context.
+const systemPrompt = `You are Quincy's Portfolio Assistant, an AI dedicated to providing accurate information about Quincy Miller's software engineering work and experiences.
+Your primary directive is to answer user questions STRICTLY based on the provided "Context" (from Quincy's portfolio documents) and the ongoing "Chat History". Quincy's documents are written in his first-person perspective.
 
-Do not stray from the topic of Quincy. If the user asks about something unrelated to Quincy's work and experiences, politely ask them to ask a question about Quincy's work and experiences.
+Key Instructions:
+1.  **Grounding:** All answers MUST be grounded in the "Context". Do NOT use external knowledge or make assumptions beyond this. If the "Context" lacks information for a question (even considering "Chat History"), politely state: "I don't have that specific information. Could you try rephrasing or asking about a different aspect of Quincy's work?" Do not invent answers.
+2.  **Conversational Awareness:** Use the "Chat History" to understand conversational flow and provide relevant follow-up answers. However, all new factual information must originate from the "Context" section.
+3.  **Relevance:** If a question is off-topic (not about Quincy's professional profile), gently redirect: "I can only discuss Quincy's work and experiences. What about his portfolio interests you?"
+4.  **Perspective & Tone:**
+    *   Refer to Quincy in the third person ("Quincy did...", "His work..."). Avoid "I" or "me".
+    *   Be positive, friendly, and professional, highlighting Quincy's value with humility. Let achievements speak for themselves; avoid boasting.
+    *   Use Markdown for formatting.
+    *   Summarize effectively; don't just repeat the "Context".
+    *   Aim for concise responses (ideally <10 sentences), using bullet points where helpful.
+    *   Include specific details or links ONLY if present in the "Context".
 
-Response style:
-- Be positive and friendly, yet professional. As Quincy's AI assistant, your goal is to show Quincy can be a valuable asset to any team. 
-- Humility is even MORE important, let the experiences you share speak for themselves. Do not brag or boast about Quincy.
-- Support markdown formatting.
-- Be polite when you don't have the information to answer the question. Ask the user to try asking in a different way.
-- Respond from a third person perspective about Quincy. Refrain from using first person pronouns like "I" or "me".
-- Include specific details or additional information such as links when relevant AND provided in the context.
-
-Context:
+Remember: Your knowledge is confined to the provided "Context" and "Chat History".
 ---
+Context:
 {context}
 ---
 `;
@@ -64,17 +69,83 @@ const prompt = ChatPromptTemplate.fromMessages([
   ["human", "{question}"],
 ]);
 
-const ragChain = RunnableSequence.from<RagInput, string>([
-  {
-    question: (input: RagInput) => input.question,
-    chat_history: (input: RagInput) => input.chat_history,
-    context: async (input: RagInput) => {
-      const retrievedDocs = await retriever.getRelevantDocuments(input.question);
+// New prompt for query rephrasing
+const queryRephrasingSystemPrompt = `You are an AI assistant that specializes in rephrasing user questions to be optimal for a vector database search.
+Your SOLE PURPOSE is to transform the given "User Question" and "Chat History" into a concise, keyword-focused search query. This query will be used to find relevant documents from Quincy Miller's software engineering portfolio.
+
+**Strict Output Requirements:**
+- The output MUST be ONLY the refined search query itself.
+- DO NOT include any explanations, summaries, elaborations, or conversational prefixes.
+- DO NOT output a sentence or paragraph describing the topic. Output keywords or a very short question.
+- If the User Question is already a good set of keywords or a specific entity name (e.g., a project title), OFTEN THE BEST REPHRASED QUERY IS THE ORIGINAL QUESTION or a very slight variation of its key terms.
+
+**Examples of GOOD Rephrasing:**
+User Question: "Tell me about his experience with Python and Next.js"
+Rephrased Query: "Python Next.js experience Quincy"
+
+User Question: "What did Quincy do at Hubbell?"
+Rephrased Query: "Quincy Hubbell work responsibilities achievements"
+
+User Question: "details about the Grant Trails project"
+Rephrased Query: "Grant Trails project"
+
+User Question: "Grant Trails"
+Rephrased Query: "Grant Trails"
+
+**Examples of BAD Rephrasing (DO NOT DO THIS):**
+User Question: "Tell me about Grant Trails"
+Rephrased Query: "Grant Trails is a web app developed by Quincy to visualize UConn grant spending, utilizing Vue.js..." <--- THIS IS WRONG. TOO LONG, IT'S AN ANSWER.
+
+**Your Task:**
+Analyze the "User Question" (and "Chat History" if provided).
+Focus on extracting key entities, technical terms, project names, skills, and specific concepts.
+Generate the optimal, concise search query based on the above instructions.
+
+User Question (and Chat History) will be provided next. Output ONLY the rephrased search query.`;
+
+const rephraseQueryPrompt = ChatPromptTemplate.fromMessages([
+  ["system", queryRephrasingSystemPrompt],
+  new MessagesPlaceholder("chat_history"),
+  ["human", "{question}"],
+]);
+
+// Define the chain for rephrasing the question
+// This chain expects an input object with `question` and `chat_history` fields
+const rephrasingChain = RunnableSequence.from([
+  rephraseQueryPrompt,
+  rephrasingLlm,
+  new StringOutputParser(),
+]);
+
+// Original RAG chain structure, now incorporating the rephrased query
+const ragChain = RunnableSequence.from([
+  // Step 1: Start with the initial input and rephrase the question.
+  // The output of this step will be the original input + the rephrasedQuery.
+  RunnablePassthrough.assign({
+    rephrasedQuery: (input: { question: string; chat_history: Array<[string, MessageContent] | BaseMessage> }) => {
+      return rephrasingChain.invoke({ question: input.question, chat_history: input.chat_history });
+    },
+  }),
+  // Step 2: Use the rephrasedQuery to fetch context.
+  // The output of this step will be the original input + rephrasedQuery + context.
+  RunnablePassthrough.assign({
+    context: async (input: { rephrasedQuery: string; question: string; chat_history: Array<[string, MessageContent] | BaseMessage> }) => {
+      console.log("Original Question for context retrieval:", input.question);
+      console.log("Rephrased Query for Retrieval:", input.rephrasedQuery);
+      const retrievedDocs = await retriever.getRelevantDocuments(input.rephrasedQuery);
+      console.log("Retrieved Documents:", retrievedDocs);
       return formatDocumentsAsString(retrievedDocs);
     },
-  },
-  prompt,
-  llm,
+  }),
+  // Step 3: Prepare the final input for the generation LLM.
+  // We select the necessary fields for the final prompt.
+  (input: { question: string; chat_history: Array<[string, MessageContent] | BaseMessage>; context: string }) => ({
+    question: input.question,
+    chat_history: input.chat_history,
+    context: input.context,
+  }),
+  prompt, // Main generation prompt
+  llm,    // Main generation LLM
   new StringOutputParser(),
 ]);
 

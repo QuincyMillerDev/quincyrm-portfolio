@@ -75,36 +75,30 @@ graph TD
 
 **2. Online: Query Processing Pipeline (Nuxt Server Route `/api/chat`):**
    This occurs in real-time when a user interacts with the chatbot.
-   *   **User Query:** User inputs a question in the chat interface (Nuxt/Vue frontend).
-   *   **Frontend Request:** The Nuxt frontend sends the query and recent chat history to the `/api/chat` Nuxt server route.
-   *   **Langchain.js Orchestration (Server Route):**
-        *   **Initialization:** Initializes Langchain.js components:
-            *   LLM: OpenAI model (e.g., `gpt-4o-mini`, `gpt-3.5-turbo`, streaming enabled).
-            *   Embedding Model: OpenAI model (e.g., `text-embedding-3-small`).
-            *   Vector Store: `PineconeStore` connected to the Pinecone index.
-        *   **Chat History Integration:** Uses the provided chat history to create conversational context for the LLM.
-        *   **Query Embedding:** Generates an embedding for the user's query using the embedding model.
-        *   **Vector Search (Retrieval):** The `PineconeStore` instance performs a similarity search against the Pinecone index using the query embedding to find the top K relevant document chunks.
-        *   **Context Augmentation & Prompt Construction:** A `PromptTemplate` structures a prompt for the LLM, including the retrieved context, chat history, and the user's question. Example prompt structure:
-            ```
-            You are a helpful AI assistant for Quincy Miller's portfolio.
-            Answer the user's question based ONLY on the provided context.
-            If the context doesn't contain the answer, say "I'm sorry, I don't have that specific information in my knowledge base."
-            Format your answers in Markdown. Be concise and professional.
-
-            Context:
-            ---
-            {context} <!-- Retrieved chunks from Pinecone -->
-            ---
-            Chat History:
-            {chat_history}
-            ---
-            User Question: {question}
-            ```
-        *   **LLM Interaction (Generation):** A Langchain.js chain (e.g., `RetrievalQAChain` or `RunnableSequence`) manages the retrieval, prompt formatting, and calls the LLM. The LLM streams responses as text chunks.
-   *   **Response Streaming & Rendering (Nuxt Frontend with Pinia Store):**
-        *   The `/api/chat` server route streams LLM text chunks back to the frontend.
-        *   The `chatStore.ts` (Pinia) appends these chunks to the current bot message, which is reactively rendered in the `ChatMessage.vue` component, progressively displaying the Markdown-formatted response.
+   *   **User Input (`components/chat/ChatInput.vue`):** The user types a message into the `Textarea` within the `ChatInput.vue` component. Pressing Enter or clicking the Send button triggers the `handleSend` method.
+   *   **State Management (`stores/chatStore.ts`):**
+        *   The `handleSend` method in `ChatInput.vue` emits a `send` event with the message content.
+        *   The parent component (likely managing the chat interface) listens for this event and calls the `addUserMessage` action in the `chatStore.ts` (Pinia store).
+        *   `addUserMessage` adds the user's message to the `messages` array (for UI display) and then calls `fetchStreamedChatResponse`.
+   *   **API Request (`stores/chatStore.ts` to `server/api/chat.post.ts`):**
+        *   `fetchStreamedChatResponse` in `chatStore.ts` prepares a bot message placeholder for the UI and then makes a `POST` request to the `/api/chat` Nuxt server route. The request body includes the user's current message and a sanitized recent chat history.
+   *   **Server-Side Processing (`server/api/chat.post.ts`):**
+        *   The `defineEventHandler` in `server/api/chat.post.ts` receives the request.
+        *   It performs rate limiting based on the client's IP address.
+        *   It reads the `message` and `history` from the request body.
+        *   It calls `streamRagResponse` from `lib/langchain/ragChain.ts`, passing the user's message and chat history.
+   *   **RAG Chain Execution (`lib/langchain/ragChain.ts`):**
+        *   The `streamRagResponse` function orchestrates the RAG pipeline:
+            1.  **Query Rephrasing:** The user's `question` (and `chat_history`) is first passed to a `rephrasingChain`. This chain uses a dedicated LLM (`rephrasingLlm`, e.g., `gpt-3.5-turbo`) and a specialized prompt (`rephraseQueryPrompt`) to transform the input into an optimal search query for the vector database.
+            2.  **Context Retrieval:** The `rephrasedQuery` is used to retrieve relevant document chunks from the Pinecone vector store via `retriever.getRelevantDocuments()`.
+            3.  **Augmented Prompt Construction:** The original `question`, `chat_history`, and the retrieved `context` are formatted into a final prompt (`prompt`) for the main generation LLM.
+            4.  **LLM Generation:** The main LLM (`llm`, e.g., `gpt-4.1-nano`) generates the answer based on the augmented prompt.
+            5.  **Streaming Output:** The `ragChain.stream()` method returns a `ReadableStream` of text chunks.
+   *   **Response Streaming (`server/api/chat.post.ts` back to `stores/chatStore.ts`):**
+        *   `server/api/chat.post.ts` returns the `ReadableStream` obtained from `streamRagResponse` as the HTTP response.
+        *   Back in `fetchStreamedChatResponse` in `chatStore.ts`, the code reads chunks from this stream. As each chunk arrives, it's appended to the `content` of the bot message placeholder in the `messages` array.
+   *   **UI Update (`stores/chatStore.ts` to Vue Components):**
+        *   The `messages` array in `chatStore.ts` is reactive. Changes to a bot message's content (as new chunks stream in) automatically update the chat interface (e.g., `ChatMessage.vue`), progressively displaying the Markdown-formatted response to the user.
 
 ### Strava Integration Architecture
 This system fetches Strava activity data periodically, caches it, and displays it on the frontend.

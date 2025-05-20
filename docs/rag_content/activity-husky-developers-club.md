@@ -3,12 +3,7 @@
 
 ## Overview / Summary
 
-During my sophomore through Junior years I was a member of the Husky Developers club. Eventually becoming the head of outreach and even leading workshops on developing full-stack Vue applications. I worked directly with the rest of the student board to design workshops, develop projects, and share my experiences at the Digital Experience Group for creating applications and giving other computer science students an opportunity to get into software engineering outside of their classwork (because uconn cs classwork lacks a lot of real software engineering.)
-
-## My Role(s) & Duration
-
-*   **Role 1:** Member (2022)
-*   **Role 2:** Outreach Chair (2023)
+During my sophomore through Junior years I was a member of the Husky Developers club. Eventually becoming the head of outreach and even leading workshops on developing full-stack Vue applications. I worked directly with the rest of the student board to design workshops, develop projects, and share my experiences at the Digital Experience Group for creating applications and giving other computer science students an opportunity to get into software engineering outside of their classwork (because uconn cs classwork lacks a lot of real software engineering.) I was a member of the club in 2022 and the outreach chain in 2023.
 
 ## Key Contributions & Initiatives
 

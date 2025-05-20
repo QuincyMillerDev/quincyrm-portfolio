@@ -1,6 +1,6 @@
 import { DirectoryLoader } from "langchain/document_loaders/fs/directory";
 import { TextLoader } from "langchain/document_loaders/fs/text";
-import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
+import { MarkdownTextSplitter } from "langchain/text_splitter";
 import { PineconeStore } from "@langchain/pinecone";
 import "dotenv/config";
 
@@ -46,9 +46,9 @@ async function main() {
 
   // 2. Split documents
   console.log("Splitting documents into chunks...");
-  const splitter = RecursiveCharacterTextSplitter.fromLanguage("markdown", {
-    chunkSize: 1000,
-    chunkOverlap: 100,
+  const splitter = new MarkdownTextSplitter({
+    chunkSize: 1500,
+    chunkOverlap: 300,
   });
   const chunks = await splitter.splitDocuments(docs);
   console.log(`Split into ${chunks.length} chunks.`);

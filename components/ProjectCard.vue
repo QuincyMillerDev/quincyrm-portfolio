@@ -33,7 +33,7 @@ const handleLocalChatSuggestion = () => {
 
 <template>
   <div 
-    class="block h-full group transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] cursor-default"
+    class="block h-full group transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] cursor-default cursor-pointer"
     :style="[itemStyle, { transitionDelay: props.animationDelay }]"
     :class="{ 
       'opacity-100 translate-y-0 scale-100': props.isVisible, 

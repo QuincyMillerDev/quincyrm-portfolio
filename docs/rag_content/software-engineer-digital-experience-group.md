@@ -1,5 +1,10 @@
 # Work Experience: Software Engineer at UConn Digital Experience Group
 
+**Job Title:** Software Engineer
+**Organization:** University of Connecticut's Digital Experience Group (DXG)
+**Employment Period:** 2022 - 2024
+**Primary Role Focus:** Full-stack development of research-driven applications, project leadership, and delivering innovative digital solutions for UConn researchers and departments.
+
 ## Overview / Summary
 
 From 2022 to 2024, I worked as a Software Engineer at the University of Connecticut's Digital Experience Group (DXG) in Storrs, CT. DXG operates as a University service center, dedicated to "Supporting Research at UConn Through Digital Innovation" by providing high-quality app development, web design, UI/UX design, and other technology innovation services to the UConn research community ([https://dxgroup.core.uconn.edu/](https://dxgroup.core.uconn.edu/)). In this role, I contributed to a variety of impactful projects, often taking on full-stack development responsibilities and sometimes leading project development, to deliver innovative digital solutions for UConn researchers and departments.

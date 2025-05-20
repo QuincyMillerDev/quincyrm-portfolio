@@ -38,7 +38,7 @@ const titleHoverColorClass = 'group-hover:text-[var(--item-accent-color)]';
 
 <template>
   <div
-    class="relative pl-10 group transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] cursor-default"
+    class="relative pl-10 group transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] cursor-default cursor-pointer"
     :class="{ 'opacity-100 translate-y-0 scale-100': isVisible, 'opacity-0 translate-y-[10px] scale-[0.98]': !isVisible }"
     :style="[itemStyle, { transitionDelay: animationDelay }]"
     @click="handleChatSuggestion(item.chatSuggestion)"

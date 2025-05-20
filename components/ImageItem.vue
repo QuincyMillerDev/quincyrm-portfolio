@@ -31,7 +31,7 @@ const handleClick = () => {
 
 <template>
   <div
-    class="group image-item relative aspect-square rounded-lg overflow-hidden shadow-sm transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] cursor-default"
+    class="group image-item relative aspect-square rounded-lg overflow-hidden shadow-sm transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] cursor-default cursor-pointer"
     :class="{
       'is-active': isActive,
       'opacity-100 translate-y-0 scale-100': isVisible, 

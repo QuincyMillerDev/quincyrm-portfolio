@@ -60,12 +60,14 @@ export function initializeOpenAIEmbeddings(modelName: string = "text-embedding-3
 export function initializeChatOpenAI(
   modelName: string = "gpt-3.5-turbo",
   temperature: number = 0.7,
-  streaming: boolean = true
+  streaming: boolean = true,
+  maxTokens: number = 300
 ): ChatOpenAI {
   return new ChatOpenAI({
     openAIApiKey: OPENAI_API_KEY!,
     modelName,
     temperature,
     streaming,
+    maxTokens,
   });
 }

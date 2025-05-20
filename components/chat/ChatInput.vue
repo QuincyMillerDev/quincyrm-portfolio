@@ -51,9 +51,7 @@ const setMessage = (newMessage: string) => {
 
 // Listen for chat suggestions
 const handleChatSuggestion = (event: CustomEvent) => {
-  if (message.value.trim() === '') {
-    setMessage(event.detail.message)
-  }
+  setMessage(event.detail.message)
   // Always focus the textarea after a suggestion attempt
   if (textareaRef.value && textareaRef.value.$el) {
     textareaRef.value.$el.focus();

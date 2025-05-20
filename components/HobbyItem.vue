@@ -52,7 +52,7 @@ const buttonHoverTextColorClass = 'hover:text-[var(--item-accent-color)]';
 
 <template>
   <div
-    class="group block h-full transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] cursor-default"
+    class="group block h-full transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] cursor-default cursor-pointer"
     :style="[itemStyle, { transitionDelay: animationDelay }]"
     :class="{ 
       'opacity-100 translate-y-0 scale-100': isVisible, 
