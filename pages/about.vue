@@ -41,15 +41,6 @@ const timelineItems = ref<TimelineItemData[]>([
     chatSuggestion: 'What was Quincy\'s role at UConn Digital Experience Group?'
   },
   {
-    year: '2020 - 2024',
-    title: 'B.S.E in Computer Science & Engineering',
-    company: 'University of Connecticut',
-    location: 'Storrs, CT',
-    description: 'Made my parents proud. Concentrated in software design and development.',
-    type: 'education',
-    chatSuggestion: 'Tell me about Quincy\'s academic experience at UConn.'
-  },
-  {
     year: '2022-2023',
     title: 'Software Engineering Intern',
     company: 'Hubbell Inc.',
@@ -58,6 +49,22 @@ const timelineItems = ref<TimelineItemData[]>([
     skills: ['C#', '.NET', 'Java', 'Spring Boot', 'MySQL'],
     type: 'work',
     chatSuggestion: 'What was Quincy\'s role at Hubbell Inc. as a software engineering intern?'
+  },
+  {
+    year: '2022-2023',
+    title: 'Husky Developers Club',
+    description: 'Member and outreach chair. Lead events and workshops to promote software development skills.',
+    type: 'project',
+    chatSuggestion: 'Tell me about Quincy\'s involvement in the Husky Developers Club.'
+  },
+  {
+    year: '2020 - 2024',
+    title: 'B.S.E in Computer Science & Engineering',
+    company: 'University of Connecticut',
+    location: 'Storrs, CT',
+    description: 'Made my parents proud. Concentrated in software design and development.',
+    type: 'education',
+    chatSuggestion: 'Tell me about Quincy\'s academic experience at UConn.'
   }
 ])
 
