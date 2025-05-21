@@ -123,3 +123,16 @@
   }
 }
 
+/* Add this to ensure lists in prose are styled correctly */
+.prose ul {
+  @apply list-disc pl-5;
+}
+
+.prose ol {
+  @apply list-decimal pl-5;
+}
+
+.prose li {
+  @apply my-1;
+}
+

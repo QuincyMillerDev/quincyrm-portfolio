@@ -49,13 +49,13 @@ const projects: Project[] = [
     chatSuggestion: 'Tell me about the Grant Trails project.'
   },
   {
-    title: 'Sourcery (UConn DXG)',
+    title: 'Sourcery',
     description: 'A web platform to streamline researcher access to primary source documents from archives, libraries, and special collections.',
     link: 'https://sourceryapp.org/',
     chatSuggestion: 'Tell me about Sourcery.'
   },
   {
-    title: 'Kinetic Sand Topography Visualizer',
+    title: 'Kinetic Sand Topography Visualizer (UConn DXG)',
     description: 'An MVP to transform 3D LiDAR scans of kinetic sand landscapes into 2D topographic heatmaps for landscape architecture students.',
     link: 'https://github.com/uconndxlab/landscape-AR',
     chatSuggestion: 'Tell me about the Kinetic Sand Topography Visualizer.'
