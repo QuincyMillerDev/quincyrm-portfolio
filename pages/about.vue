@@ -53,7 +53,7 @@ const timelineItems = ref<TimelineItemData[]>([
   {
     year: '2022-2023',
     title: 'Husky Developers Club',
-    description: 'Member and outreach chair. Lead events and workshops to promote software development skills.',
+    description: 'Member and outreach chair. Lead events and workshops to promote software development skills among fellow students.',
     type: 'project',
     chatSuggestion: 'Tell me about Quincy\'s involvement in the Husky Developers Club.'
   },

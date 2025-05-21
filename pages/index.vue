@@ -28,7 +28,7 @@ const projects: Project[] = [
     title: 'Personal Portfolio Website',
     description: 'This dynamic portfolio showcases software engineering skills with a Nuxt.js frontend, RAG AI chatbot, and Strava API integration, deployed on Vercel.',
     link: 'https://github.com/QuincyMillerDev/quincyrm-portfolio',
-    chatSuggestion: 'Tell me about this portfolio project'
+    chatSuggestion: 'Tell me more about this portfolio website.'
   },
   {
     title: 'Multimodal Care Coordinator (Senior Design)',
