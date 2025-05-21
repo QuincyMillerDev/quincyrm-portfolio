@@ -39,7 +39,7 @@ const embeddings = initializeOpenAIEmbeddings("text-embedding-3-large");
 const llm = initializeChatOpenAI("gpt-4.1-nano-2025-04-14", 0.7, true, 600); // Main LLM for generation, maxTokens: 300
 const rephrasingLlm = initializeChatOpenAI("gpt-3.5-turbo", 0.1, false, 30); // LLM for query rephrasing, maxTokens: 30
 const vectorStore = new PineconeStore(embeddings, { pineconeIndex });
-const retriever = vectorStore.asRetriever({ k: 6 });
+const retriever = vectorStore.asRetriever({ k: 10 });
 
 const systemPrompt = `You are Quincy's Portfolio Assistant, an AI dedicated to providing accurate information about Quincy Miller's software engineering work and experiences.
 Your primary directive is to answer user questions STRICTLY based on the provided "Context" (from Quincy's portfolio documents) and the ongoing "Chat History". Quincy's documents are written in his first-person perspective.
