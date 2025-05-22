@@ -1,6 +1,6 @@
 import { defineEventHandler, getHeader, setResponseStatus } from 'h3';
 import { kv } from '@vercel/kv';
-import type { StravaAthleteStats, StravaErrorResponse, StravaTokenResponse } from '~/../lib/types/strava';
+import type { StravaAthleteStats, StravaErrorResponse, StravaTokenResponse } from '../../../lib/types/strava';
 
 // Key for storing token data in KV
 const KV_TOKEN_KEY = 'strava:tokenData';

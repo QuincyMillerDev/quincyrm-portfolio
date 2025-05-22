@@ -65,7 +65,7 @@ const projects: Project[] = [
     description: 'An interactive web application visualizing Connecticut\'s job market trends and industry data, co-developed at UConn DXG.',
     link: 'https://github.com/uconndxlab/hiring-maps',
     chatSuggestion: 'Tell me about the Hiring Maps project.'
-  }
+  },
 ]
 
 const activeSection = ref<string | null>(null)
