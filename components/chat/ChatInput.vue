@@ -5,6 +5,10 @@ import { Button } from '~/components/ui/button'
 import { Textarea } from '~/components/ui/textarea'
 import { Icon } from '@iconify/vue'
 
+const props = defineProps<{
+  isAiResponding?: boolean
+}>()
+
 const message = ref('')
 const textareaRef = ref<ComponentPublicInstance & { $el: HTMLTextAreaElement } | null>(null)
 
@@ -13,7 +17,7 @@ const emit = defineEmits(['send'])
 const isOverLimit = () => message.value.length > 400
 
 const handleSend = () => {
-  if (message.value.trim() && !isOverLimit()) {
+  if (message.value.trim() && !isOverLimit() && !props.isAiResponding) {
     emit('send', message.value)
     message.value = ''
     
@@ -91,7 +95,7 @@ defineExpose({ setMessage })
             variant="ghost" 
             size="icon" 
             class="h-9 w-9 rounded-lg flex-shrink-0 bg-primary/10 hover:bg-green-600/20 text-primary hover:text-green-600 transition-all duration-300 hover:scale-105"
-            :disabled="!message.trim() || isOverLimit()"
+            :disabled="!message.trim() || isOverLimit() || props.isAiResponding"
             @click="handleSend"
           >
             <Icon icon="lucide:send" class="h-4 w-4 transition-all duration-300 group-hover:scale-110" />

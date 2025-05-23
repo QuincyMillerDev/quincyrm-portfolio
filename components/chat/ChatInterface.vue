@@ -132,7 +132,11 @@ onMounted(() => {
     
     <!-- Input area -->
     <div class="mt-auto">
-      <ChatInput ref="chatInputRef" @send="handleSendMessage" />
+      <ChatInput 
+        ref="chatInputRef" 
+        :is-ai-responding="chatStore.isAiResponding" 
+        @send="handleSendMessage" 
+      />
     </div>
   </div>
 </template>

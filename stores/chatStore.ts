@@ -23,7 +23,7 @@ export const useChatStore = defineStore('chat', () => {
   
   // Messages state
   const messages = ref<Message[]>([]);
-  const isTyping = ref(false);
+  const isAiResponding = ref(false);
   
   // Toggle chat panel visibility (for desktop)
   function toggleChat() {
@@ -36,7 +36,7 @@ export const useChatStore = defineStore('chat', () => {
   }
   
   async function fetchStreamedChatResponse(userMessageContent: string) {
-    isTyping.value = true;
+    isAiResponding.value = true;
     const botMessageId = generateUniqueMessageId();
 
     // Add an initial empty bot message to the UI
@@ -81,7 +81,7 @@ export const useChatStore = defineStore('chat', () => {
           timestamp: new Date().toISOString(),
           isSystemMessage: true,
         });
-        isTyping.value = false;
+        isAiResponding.value = false;
         return; 
       }
 
@@ -102,7 +102,7 @@ export const useChatStore = defineStore('chat', () => {
               isSystemMessage: false, // Explicitly false for general errors handled this way
             });
         }
-        isTyping.value = false;
+        isAiResponding.value = false;
         return; 
       }
 
@@ -117,7 +117,7 @@ export const useChatStore = defineStore('chat', () => {
       const botMessageIndex = messages.value.findIndex(m => m.id === botMessageId);
       if (botMessageIndex === -1) {
         console.error('Bot message placeholder not found');
-        isTyping.value = false;
+        isAiResponding.value = false;
         return;
       }
 
@@ -146,7 +146,7 @@ export const useChatStore = defineStore('chat', () => {
         });
       }
     } finally {
-      isTyping.value = false;
+      isAiResponding.value = false;
     }
   }
   
@@ -184,7 +184,7 @@ export const useChatStore = defineStore('chat', () => {
     isOpen,
     isMobileSheetOpen,
     messages,
-    isTyping,
+    isAiResponding,
     
     // Actions
     toggleChat,
