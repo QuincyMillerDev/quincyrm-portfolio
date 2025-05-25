@@ -37,6 +37,12 @@ const projects: Project[] = [
     chatSuggestion: 'What was the purpose of the Multimodal Care Coordinator project?'
   },
   {
+    title: 'Fine-Tuned BERT model for Domain-Specific Named Entity Recognition',
+    description: 'Achieving 94.47% F1 Score Through Advanced BERT Fine-Tuning for Movie Domain Entity Extraction',
+    link: 'https://github.com/QuincyMillerDev/BERT-NLP',
+    chatSuggestion: 'Explain the high-level approach of the fine-tuning of the BERT model in Quincy\'s project.'
+  },
+  {
     title: 'ProteomeX Data Analysis',
     description: 'Modernized a legacy application of proteomics data analysis with a Laravel backend, React UI, and Dockerized C algorithm.',
     link: 'https://www.proteome-x.com/',
