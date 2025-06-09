@@ -4,8 +4,5 @@
       "path": "/api/strava/update-job",
       "schedule": "0 0 * * *"
     }
-  ],
-  "analytics": {
-    "enable": true
-  }
+  ]
 }
