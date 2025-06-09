@@ -5,6 +5,9 @@ import { Button } from '~/components/ui/button'
 import { Card } from '~/components/ui/card'
 import { NuxtImg } from '#components'
 
+// Analytics composable for tracking events
+const { trackInteraction } = useAnalytics()
+
 // Define props for the component
 const props = defineProps<{
   name: string
@@ -46,6 +49,15 @@ onMounted(() => {
 
 const handleImageLoad = () => {
   imageLoaded.value = true
+}
+
+// Track social link clicks
+const trackSocialClick = (socialName: string, url: string) => {
+  trackInteraction('click', 'social-link', {
+    social_platform: socialName,
+    link_url: url,
+    section: 'profile-header'
+  })
 }
 </script>
 
@@ -122,6 +134,7 @@ const handleImageLoad = () => {
               target="_blank" 
               rel="noopener noreferrer" 
               :aria-label="link.name"
+              @click="trackSocialClick(link.name, link.url)"
             >
               <Icon :icon="link.icon" class="w-3.5 h-3.5" />
             </a>
@@ -176,6 +189,7 @@ const handleImageLoad = () => {
                   target="_blank" 
                   rel="noopener noreferrer" 
                   :aria-label="link.name"
+                  @click="trackSocialClick(link.name, link.url)"
                 >
                   <Icon :icon="link.icon" class="w-4 h-4" />
                 </a>

@@ -4,6 +4,9 @@ import { Github, Globe, ExternalLink } from 'lucide-vue-next'
 import type { Project } from '~/lib/types/projects'
 import { useChatSuggestions } from '~/composables/useChatSuggestions'
 
+// Analytics composable for tracking events
+const { trackEvent, trackInteraction } = useAnalytics()
+
 const props = defineProps<{ 
   project: Project,
   index?: number,
@@ -26,8 +29,25 @@ const itemStyle = computed(() => ({
 const isGithubLink = computed(() => props.project.link?.includes('github.com') || false)
 
 const handleLocalChatSuggestion = () => {
+  // Track project interaction via chat suggestion
+  trackEvent('project_interaction', {
+    project_name: props.project.title,
+    interaction_type: 'chat_suggestion',
+    project_index: props.index || 0
+  })
   handleSuggestion(props.project.chatSuggestion)
 };
+
+// Track external link clicks
+const trackExternalLinkClick = (event: Event) => {
+  event.stopPropagation()
+  trackInteraction('click', 'project-external-link', {
+    project_name: props.project.title,
+    link_url: props.project.link,
+    link_type: isGithubLink.value ? 'github' : 'live_demo',
+    project_index: props.index || 0
+  })
+}
 
 </script>
 
@@ -76,7 +96,7 @@ const handleLocalChatSuggestion = () => {
             target="_blank" 
             rel="noopener noreferrer"
             class="p-1.5 text-muted-foreground hover:text-[var(--item-accent-color)] transition-colors duration-300 rounded-md hover:bg-background/70"
-            @click.stop
+            @click="trackExternalLinkClick"
           >
             <ExternalLink class="w-4 h-4" />
             <span class="sr-only">View Project</span>

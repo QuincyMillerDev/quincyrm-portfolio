@@ -2,6 +2,9 @@ import { defineStore } from 'pinia';
 import { ref } from 'vue';
 import type { ChatHistoryItem } from '~/lib/types/chat'; // Import the shared type
 
+// Analytics tracking for chat interactions
+const { trackEvent, trackInteraction } = useAnalytics()
+
 interface Message extends ChatHistoryItem { // Extend ChatHistoryItem for frontend-specific fields
   id: string;
   isUser: boolean;
@@ -24,9 +27,37 @@ export const useChatStore = defineStore('chat', () => {
   // Messages state
   const messages = ref<Message[]>([]);
   const isAiResponding = ref(false);
+
+  // Analytics tracking functions
+  const trackChatInteraction = (messageContent: string, responseType: 'success' | 'error' | 'rate_limit') => {
+    trackEvent('chat_interaction', {
+      message_length: messageContent.length,
+      response_type: responseType,
+      conversation_length: messages.value.length,
+      timestamp: new Date().toISOString()
+    })
+  }
+
+  const trackChatSessionStart = () => {
+    if (messages.value.length === 0) {
+      trackEvent('chat_session_started', {
+        timestamp: new Date().toISOString()
+      })
+    }
+  }
+
+  const trackChatOpen = () => {
+    trackInteraction('click', 'chat-interface', {
+      action: 'open',
+      timestamp: new Date().toISOString()
+    })
+  }
   
   // Toggle chat panel visibility (for desktop)
   function toggleChat() {
+    if (!isOpen.value) {
+      trackChatOpen()
+    }
     isOpen.value = !isOpen.value;
   }
   
@@ -67,6 +98,9 @@ export const useChatStore = defineStore('chat', () => {
         const errorData = await response.json().catch(() => ({ error: 'Rate limit exceeded. Please try again tomorrow.' }));
         const rateLimitMessage = errorData.error || "You have exceeded the daily request limit. Your limit will reset at the start of the next UTC day.";
         
+        // Track rate limit hit
+        trackChatInteraction(userMessageContent, 'rate_limit')
+        
         // Remove the temporary empty bot message
         const botMessageIndexToRemove = messages.value.findIndex(m => m.id === botMessageId);
         if (botMessageIndexToRemove !== -1) {
@@ -87,6 +121,10 @@ export const useChatStore = defineStore('chat', () => {
 
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({ error: 'Failed to parse error response' }));
+        
+        // Track error response
+        trackChatInteraction(userMessageContent, 'error')
+        
         // Fallback to the bot message placeholder for general errors
         const botMessageIndex = messages.value.findIndex(m => m.id === botMessageId);
         if (botMessageIndex !== -1) {
@@ -121,14 +159,17 @@ export const useChatStore = defineStore('chat', () => {
         return;
       }
 
-      while (!done) {
-        const { value, done: readerDone } = await reader.read();
-        done = readerDone;
-        const chunk = decoder.decode(value, { stream: !done });
-        if (chunk) {
-          messages.value[botMessageIndex].content += chunk;
+              while (!done) {
+          const { value, done: readerDone } = await reader.read();
+          done = readerDone;
+          const chunk = decoder.decode(value, { stream: !done });
+          if (chunk) {
+            messages.value[botMessageIndex].content += chunk;
+          }
         }
-      }
+        
+        // Track successful response completion
+        trackChatInteraction(userMessageContent, 'success')
     } catch (error) {
       console.error('Error fetching chat response:', error);
       const botMessageIndex = messages.value.findIndex(m => m.id === botMessageId);
@@ -153,6 +194,9 @@ export const useChatStore = defineStore('chat', () => {
   // Add a new user message
   function addUserMessage(content: string) {
     if (!content.trim()) return;
+    
+    // Track chat session start if this is the first message
+    trackChatSessionStart()
     
     const userMessageData: Message = {
       id: generateUniqueMessageId(),
