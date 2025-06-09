@@ -25,6 +25,12 @@ const links = [
 
 const projects: Project[] = [
   {
+    title: 'Ilograph MCP Server',
+    description: 'A comprehensive FastMCP-based server providing AI agents with real-time access to Ilograph documentation, diagram validation, and architectural guidance.',
+    link: 'https://github.com/QuincyMillerDev/ilograph-mcp-server',
+    chatSuggestion: 'Tell me about the Ilograph MCP Server and its technical architecture.'
+  },
+  {
     title: 'Personal Portfolio Website',
     description: 'This dynamic portfolio showcases software engineering skills with a Nuxt.js frontend, RAG AI chatbot, and Strava API integration, deployed on Vercel.',
     link: 'https://github.com/QuincyMillerDev/quincyrm-portfolio',
