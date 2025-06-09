@@ -49,7 +49,7 @@ const formattedTime = computed(() => {
           <div 
             class="bg-muted/30 backdrop-blur-sm px-4 py-3 rounded-lg border border-border/30 shadow-sm text-sm text-foreground group-hover:border-border/50 transition-all duration-300 min-h-[2.5rem] flex items-center"
           >
-            <template v-if="!props.isUser && props.content === '' && chatStore.isTyping">
+            <template v-if="!props.isUser && props.content === '' && chatStore.isAiResponding">
               <div class="flex items-center space-x-1.5 text-muted-foreground">
                 <span class="w-1.5 h-1.5 rounded-full bg-current animate-bounce" style="animation-delay: 0ms;" />
                 <span class="w-1.5 h-1.5 rounded-full bg-current animate-bounce" style="animation-delay: 150ms;" />
