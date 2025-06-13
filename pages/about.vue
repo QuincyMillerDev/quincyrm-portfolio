@@ -22,13 +22,13 @@ const images: ImageItem[] = [
 const timelineItems = ref<TimelineItemData[]>([
 {
     year: '2024 - Now',
-    title: 'Full-Stack Software Engineer',
+    title: 'Software Development Engineer',
     company: 'Hubbell Inc.',
     location: 'Avon, CT',
     description: 'Working on enterprise products in Hubbell\'s high risk, high reward division.',
     skills: ['Python', 'TypeScript', 'Azure', 'Angular', 'C#', 'Databricks', 'PostgreSQL', 'Terraform', 'CI/CD'],
     type: 'work',
-    chatSuggestion: 'What were Quincy\'s achievements and responsibilities as a full-stack software engineer at Hubbell Inc?'
+    chatSuggestion: 'What were Quincy\'s achievements and responsibilities as a software development engineer at Hubbell Inc?'
   },
   {
     year: '2022 - 2024',

@@ -1,8 +1,8 @@
-# Work Experience: Full-Stack Software Engineer at Hubbell Inc.
+# Work Experience: Software Development Engineer at Hubbell Inc.
 
 ## Overview / Summary At Hubbell Full-time
 
-My most recent job, starting in July 2024, my role as a Full-Stack Software Engineer at Hubbell Incorporated marked my first professional position post-graduation, laying a robust foundation for my software engineering career. I was dedicated to a singular, high-impact NPX (New Product Experimentation) project aimed at driving significant company growth. This role was heavily involved in data engineering, requiring the design and implementation of data processing pipelines and management of large datasets alongside full-stack feature development. Operating within an agile framework, I took full ownership of user stories and feature development, collaborating effectively with diverse stakeholders, including my immediate team and international research teams, such as the one based in Spain.
+My most recent job, starting in July 2024, my role as a Software Development Engineer at Hubbell Incorporated marked my first professional position post-graduation, laying a robust foundation for my software engineering career. I was dedicated to a singular, high-impact NPX (New Product Experimentation) project aimed at driving significant company growth. This role was heavily involved in data engineering, requiring the design and implementation of data processing pipelines and management of large datasets alongside full-stack feature development. Operating within an agile framework, I took full ownership of user stories and feature development, collaborating effectively with diverse stakeholders, including my immediate team and international research teams, such as the one based in Spain.
 
 ## Key Responsibilities & Achievements At Hubbell Full-time
 
