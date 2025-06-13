@@ -7,7 +7,7 @@ import type { Project } from '~/lib/types/projects'
 const name = "Quincy Miller"
 const desktopPictureUrl = '/images/portrait.jpg'
 const mobilePictureUrl = '/images/portrait_small.jpg'
-const subtitle = "Full-Stack Software Engineer"
+const subtitle = "Software Development Engineer"
 const descriptionMd = `
 (Open to relocation) \n
 SWE @ Hubbell, CS Alumni @ UConn
