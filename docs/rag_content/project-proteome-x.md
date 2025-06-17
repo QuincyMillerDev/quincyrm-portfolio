@@ -2,7 +2,7 @@
 
 ## Overview / Summary
 
-This project, undertaken at UConn DXG, involved modernizing a legacy application for ProteomeXchange data analysis. The original application utilized an older React frontend and a core C-based algorithm for analyzing over-represented proteomes or motifs, containerized with Ansible. The primary goal was to update the technology stack, improve maintainability, and streamline deployment. The modernized application, now deployed at [https://www.proteome-x.com/](https://www.proteome-x.com/), features a Laravel backend, a contemporary React UI, and the same C algorithm containerized with Docker, all running on an Ubuntu server. This modernization effort was completed in 2023.
+This project, undertaken at UConn I3, involved modernizing a legacy application for ProteomeXchange data analysis. The original application utilized an older React frontend and a core C-based algorithm for analyzing over-represented proteomes or motifs, containerized with Ansible. The primary goal was to update the technology stack, improve maintainability, and streamline deployment. The modernized application, now deployed at [https://www.proteome-x.com/](https://www.proteome-x.com/), features a Laravel backend, a contemporary React UI, and the same C algorithm containerized with Docker, all running on an Ubuntu server. This modernization effort was completed in 2023.
 
 ## Research Question / Objectives
 

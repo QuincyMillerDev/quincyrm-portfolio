@@ -33,12 +33,12 @@ const timelineItems = ref<TimelineItemData[]>([
   {
     year: '2022 - 2024',
     title: 'Associate Software Engineer',
-    company: 'UConn Digital Experience Group',
+    company: 'UConn Internal Insights & Innovation',
     location: 'Storrs, CT',
     description: 'Lead the development of diverse full-stack applications. Turned client ideas into functional, responsive applications.',
     skills: ['Vue.js', 'TypeScript', 'React', 'Node.js', 'Docker', 'NGINX', 'MySQL'],
     type: 'work',
-    chatSuggestion: 'What was Quincy\'s role at UConn Digital Experience Group?'
+    chatSuggestion: 'What was Quincy\'s role at UConn Internal Insights & Innovation?'
   },
   {
     year: '2022-2023',

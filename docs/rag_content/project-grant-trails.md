@@ -1,8 +1,8 @@
-# Project: Grant Trails (UConn DXG)
+# Project: Grant Trails (UConn I3)
 
 ## Overview / Summary
 
-The Grant Trails project, developed at the University of Connecticut's Digital Experience Group (DXG) in 2022, is a web application designed to visualize the economic impact of research grants awarded to UConn faculty. It revived and modernized an older concept, providing an interactive map that displays where grant dollars were spent within Connecticut, thereby showcasing the university's contribution to the local economy. The application can be viewed at [granttrails.core.uconn.edu](https://granttrails.core.uconn.edu/). This project was completed in 2022.
+The Grant Trails project, developed at the University of Connecticut's Internal Insights & Innovation (I3) in 2022, is a web application designed to visualize the economic impact of research grants awarded to UConn faculty. It revived and modernized an older concept, providing an interactive map that displays where grant dollars were spent within Connecticut, thereby showcasing the university's contribution to the local economy. The application can be viewed at [granttrails.core.uconn.edu](https://granttrails.core.uconn.edu/). This project was completed in 2022.
 
 ## Problem Statement & Objectives
 
@@ -39,6 +39,6 @@ The Grant Trails project, developed at the University of Connecticut's Digital E
 
 ## Positive Impact / Learnings / Reflection
 
-Developing Grant Trails was a rewarding full-stack experience at UConn DXG. It allowed me to take full ownership of a project, from conceptualization based on a previous iteration to deployment. Revitalizing the application to clearly demonstrate the economic benefits of university research grants was impactful. Working with Vue.js, Mapbox for geospatial visualization, and Supabase for a modern backend solution within a compressed timeframe significantly honed my rapid development and integration skills. Setting up the on-premise Linux server with NGINX provided valuable DevOps experience. This project highlighted the power of web technologies to make complex data accessible and understandable to a broader audience, and I'm proud to have delivered a tool that showcases UConn's positive influence on the state's economy.
+Developing Grant Trails was a rewarding full-stack experience at UConn I3. It allowed me to take full ownership of a project, from conceptualization based on a previous iteration to deployment. Revitalizing the application to clearly demonstrate the economic benefits of university research grants was impactful. Working with Vue.js, Mapbox for geospatial visualization, and Supabase for a modern backend solution within a compressed timeframe significantly honed my rapid development and integration skills. Setting up the on-premise Linux server with NGINX provided valuable DevOps experience. This project highlighted the power of web technologies to make complex data accessible and understandable to a broader audience, and I'm proud to have delivered a tool that showcases UConn's positive influence on the state's economy.
 
 --- 

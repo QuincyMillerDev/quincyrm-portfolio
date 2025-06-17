@@ -1,8 +1,8 @@
-# Project: Sourcery (UConn DXG)
+# Project: Sourcery (UConn I3)
 
 ## Overview / Summary
 
-Sourcery ([https://sourceryapp.org/](https://sourceryapp.org/)), developed at the UConn Digital Experience Group (DXG), is a web platform designed to simplify and streamline the process for researchers and academics to request, track, and manage access to primary source documents from archives, libraries, and special collections. It aims to replace cumbersome manual request processes with a centralized, user-friendly digital solution. My contributions to this project were primarily in 2023.
+Sourcery ([https://sourceryapp.org/](https://sourceryapp.org/)), developed at the UConn Internal Insights & Innovation (I3), is a web platform designed to simplify and streamline the process for researchers and academics to request, track, and manage access to primary source documents from archives, libraries, and special collections. It aims to replace cumbersome manual request processes with a centralized, user-friendly digital solution. My contributions to this project were primarily in 2023.
 
 ## Problem Statement & Objectives
 
@@ -43,6 +43,6 @@ Highlight the final outcomes and any notable achievements for Sourcery.
 Reflect on the Sourcery project.
 -->
 
-Working on Sourcery at UConn DXG was a valuable experience in developing a user-centric platform with a clear real-world application. Developing the onboarding flow and the researcher dashboard allowed me to focus on creating intuitive interfaces that address specific user needs within a larger application. It was rewarding to contribute to a tool aimed at simplifying complex academic research processes. This project further honed my skills in Vue.js, Vuetify, and Supabase, particularly in building dynamic user interfaces and managing user-specific data. The collaborative environment at DXG and the focus on solving practical problems for users made this an impactful project to be a part of.
+Working on Sourcery at UConn I3 was a valuable experience in developing a user-centric platform with a clear real-world application. Developing the onboarding flow and the researcher dashboard allowed me to focus on creating intuitive interfaces that address specific user needs within a larger application. It was rewarding to contribute to a tool aimed at simplifying complex academic research processes. This project further honed my skills in Vue.js, Vuetify, and Supabase, particularly in building dynamic user interfaces and managing user-specific data. The collaborative environment at I3 and the focus on solving practical problems for users made this an impactful project to be a part of.
 
 --- 
