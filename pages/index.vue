@@ -26,55 +26,55 @@ const links = [
 const projects: Project[] = [
   {
     title: 'Ilograph MCP Server',
-    description: 'A comprehensive FastMCP-based server providing AI agents with real-time access to Ilograph documentation, diagram validation, and architectural guidance.',
+    description: 'An intelligent server enabling AI agents to automate architectural diagramming and real-time validation with Ilograph.',
     link: 'https://github.com/QuincyMillerDev/ilograph-mcp-server',
     chatSuggestion: 'Tell me about the Ilograph MCP Server and its technical architecture.'
   },
   {
     title: 'Personal Portfolio Website',
-    description: 'This dynamic portfolio showcases software engineering skills with a Nuxt.js frontend, RAG AI chatbot, and Strava API integration, deployed on Vercel.',
+    description: 'This dynamic Nuxt.js portfolio, featuring a RAG AI chatbot and automated Strava integration, is the very site you\'re on.',
     link: 'https://github.com/QuincyMillerDev/quincyrm-portfolio',
     chatSuggestion: 'Tell me more about this portfolio website.'
   },
   {
     title: 'Multimodal Care Coordinator (Senior Design)',
-    description: 'Developed a multi-modal patient onboarding chatbot and a RAG system for medical professionals for Bastion Health, winning 3rd place in UConn\'s Senior Design Competition.',
+    description: 'An award-winning AI system for Bastion Health that streamlines patient onboarding and empowers medical professionals.',
     link: 'https://github.com/QuincyMillerDev/Multimodal-Care-Coordinator',
     chatSuggestion: 'What was the purpose of the Multimodal Care Coordinator project?'
   },
   {
     title: 'Fine-Tuned BERT model for Domain-Specific Named Entity Recognition',
-    description: 'Achieving 94.47% F1 Score Through Advanced BERT Fine-Tuning for Movie Domain Entity Extraction',
+    description: 'Achieved a 94.47% F1 score by fine-tuning a BERT model for highly accurate movie-domain named entity recognition.',
     link: 'https://github.com/QuincyMillerDev/BERT-NLP',
     chatSuggestion: 'Explain the high-level approach of the fine-tuning of the BERT model in Quincy\'s project.'
   },
   {
     title: 'ProteomeX Data Analysis',
-    description: 'Modernized a legacy application of proteomics data analysis with a Laravel backend, React UI, and Dockerized C algorithm.',
+    description: 'Revitalized a legacy proteomics data analysis application with a modern stack including Laravel, React, and Docker.',
     link: 'https://www.proteome-x.com/',
     chatSuggestion: 'Tell me about ProteomeX.'
   },
   {
     title: 'Grant Trails (UConn DXG)',
-    description: 'A web application designed to visualize the economic impact of research grants awarded to UConn faculty, featuring an interactive map of spending within Connecticut.',
+    description: 'An interactive web app visualizing the economic impact of UConn research grants across Connecticut.',
     link: 'https://granttrails.core.uconn.edu/',
     chatSuggestion: 'Tell me about the Grant Trails project.'
   },
   {
     title: 'Sourcery',
-    description: 'A web platform to streamline researcher access to primary source documents from archives, libraries, and special collections.',
+    description: 'A web platform that streamlines how researchers access primary source documents from archives and special collections.',
     link: 'https://sourceryapp.org/',
     chatSuggestion: 'Tell me about Sourcery.'
   },
   {
     title: 'Kinetic Sand Topography Visualizer (UConn DXG)',
-    description: 'An MVP to transform 3D LiDAR scans of kinetic sand landscapes into 2D topographic heatmaps for landscape architecture students.',
+    description: 'An MVP that transforms 3D LiDAR scans of kinetic sand into 2D topographic heatmaps for landscape architecture students.',
     link: 'https://github.com/uconndxlab/landscape-AR',
     chatSuggestion: 'Tell me about the Kinetic Sand Topography Visualizer.'
   },
   {
     title: 'Hiring Maps (UConn DXG)',
-    description: 'An interactive web application visualizing Connecticut\'s job market trends and industry data, co-developed at UConn DXG.',
+    description: 'An interactive web app, co-developed at UConn DXG, that visualizes Connecticut\'s job market trends and industry data.',
     link: 'https://github.com/uconndxlab/hiring-maps',
     chatSuggestion: 'Tell me about the Hiring Maps project.'
   },
