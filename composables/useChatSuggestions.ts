@@ -13,6 +13,21 @@ export function useChatSuggestions() {
       const chatSheetIsOpen = isMobile.value && chatStore.isMobileSheetOpen;
       const isChatCurrentlyOpen = chatPanelIsOpen || chatSheetIsOpen;
 
+      // If this is the first suggestion, we need to open chat before sending
+      if (!chatStore.isAiResponding) {
+        if (!isChatCurrentlyOpen) {
+          if (isMobile.value) {
+            chatStore.toggleMobileSheet();
+          } else {
+            chatStore.toggleChat();
+          }
+        }
+        // The suggestion will be sent immediately by setSuggestedMessage
+        chatStore.setSuggestedMessage(suggestion);
+        return;
+      }
+
+      // Original behavior for subsequent suggestions
       if (isChatCurrentlyOpen) {
         chatStore.setSuggestedMessage(suggestion);
       } else {

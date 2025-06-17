@@ -27,7 +27,6 @@ export const useChatStore = defineStore('chat', () => {
   // Messages state
   const messages = ref<Message[]>([]);
   const isAiResponding = ref(false);
-
   // Analytics tracking functions
   const trackChatInteraction = (messageContent: string, responseType: 'success' | 'error' | 'rate_limit') => {
     trackEvent('chat_interaction', {
@@ -218,9 +217,11 @@ export const useChatStore = defineStore('chat', () => {
   
   // Set a suggested message
   function setSuggestedMessage(message: string) {
-    // Emit an event that the ChatInput component can listen to
-    const event = new CustomEvent('chat-suggestion', { detail: { message } });
-    window.dispatchEvent(event);
+    // Only send if AI is not responding, otherwise do nothing
+    if (!isAiResponding.value) {
+      addUserMessage(message); // Send the message immediately
+    }
+    // If AI is responding, do nothing at all
   }
   
   return {
