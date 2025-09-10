@@ -85,7 +85,7 @@ const handleImageLoad = () => {
           <h1 class="text-2xl font-bold text-foreground">{{ name }}</h1>
           <p class="text-muted-foreground mt-1">Entrepreneur & content creator</p>
           <p class="text-muted-foreground text-sm">Head of Product @ Invested Inc.</p>
-          <p class="text-muted-foreground text-sm">Engineer @ PocketBuddy App.</p>
+          <p class="text-muted-foreground text-sm">Building @ PocketBuddy App.</p>
           <p class="text-muted-foreground mt-2">Get in touch with me👇</p>
         </div>
       </div>
