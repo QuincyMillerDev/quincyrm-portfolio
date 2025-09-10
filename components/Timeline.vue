@@ -71,6 +71,14 @@ const skillColorMap: SkillColorMap = {
   'java': { bg: 'bg-orange-500/10', text: 'text-orange-600', border: 'border-orange-500/30' },
   'spring boot': { bg: 'bg-green-600/10', text: 'text-green-700', border: 'border-green-600/30' },
   'react': { bg: 'bg-cyan-500/10', text: 'text-cyan-600', border: 'border-cyan-500/30' },
+  // New tags
+  'aws': { bg: 'bg-amber-600/10', text: 'text-amber-700', border: 'border-amber-600/30' },
+  'ai': { bg: 'bg-fuchsia-500/10', text: 'text-fuchsia-600', border: 'border-fuchsia-500/30' },
+  'llms': { bg: 'bg-pink-500/10', text: 'text-pink-600', border: 'border-pink-500/30' },
+  'product strategy': { bg: 'bg-stone-500/10', text: 'text-stone-700', border: 'border-stone-500/30' },
+  'growth': { bg: 'bg-green-500/10', text: 'text-green-600', border: 'border-green-500/30' },
+  'creator marketing': { bg: 'bg-orange-500/10', text: 'text-orange-600', border: 'border-orange-500/30' },
+  'entrepreneurship': { bg: 'bg-yellow-500/10', text: 'text-yellow-600', border: 'border-yellow-500/30' },
   'default': { bg: 'bg-slate-500/10', text: 'text-slate-600', border: 'border-slate-500/30' }
 };
 

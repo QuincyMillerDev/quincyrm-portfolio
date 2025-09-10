@@ -4,26 +4,30 @@ import ProfileContainer from '~/components/ProfileContainer.vue'
 import ProjectsContainer from '~/components/ProjectsContainer.vue'
 import type { Project } from '~/lib/types/projects'
 // Keep the data definition
-const name = "Quincy Miller"
+const name = "Hi, I'm Quincy"
 const desktopPictureUrl = '/images/portrait.jpg'
 const mobilePictureUrl = '/images/portrait_small.jpg'
-const subtitle = "Software Engineer"
+const subtitle = "Building Internet Businesses"
 const descriptionMd = `
-(Open to relocation) \n
-SWE @ Hubbell, CS Alumni @ UConn
+Computer Science @ UConn Alumni
 `
 // Social links and icons
 const links = [
   { name: 'GitHub', url: 'https://github.com/quincymillerdev', icon: 'lucide:github' },
   { name: 'LinkedIn', url: 'https://www.linkedin.com/in/qrm111/', icon: 'lucide:linkedin' },
   { name: 'X.com', url: 'https://x.com/_quincyrm/', icon: 'lucide:twitter' },
-  { name: 'Instagram', url: 'https://www.instagram.com/quincy._miller/', icon: 'lucide:instagram' },
-  { name: 'Twitch', url: 'https://www.twitch.tv/cooliobeans', icon: 'lucide:twitch' },
+  { name: 'Instagram', url: 'https://www.instagram.com/quincyrm_/', icon: 'lucide:instagram' },
   { name: 'Email', url: 'mailto:quincymiller6589@gmail.com', icon: 'lucide:mail' }
 ]
 
 
 const projects: Project[] = [
+  {
+    title: 'ATS Resume Optimizer',
+    description: 'B2C SaaS product that optimizes resumes for ethically passing ATS systems.',
+    link: 'https://atsresumeoptimizer.com',
+    chatSuggestion: 'What was the purpose of the ATS Resume Optimizer project?'
+  },
   {
     title: 'Ilograph MCP Server',
     description: 'An intelligent server enabling AI agents to automate architectural diagramming and real-time validation with Ilograph.',

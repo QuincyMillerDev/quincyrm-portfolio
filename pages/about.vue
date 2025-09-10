@@ -20,8 +20,17 @@ const images: ImageItem[] = [
 ]
 
 const timelineItems = ref<TimelineItemData[]>([
-{
-    year: '2024 - Now',
+  {
+    year: '2025 - Now',
+    title: 'Head of Product & Engineering',
+    company: 'Invested Inc.',
+    location: 'Remote',
+    description: 'Helping a generation of investors make more confident decisions.',
+    skills: ['TypeScript', 'Python', 'Node.js', 'AWS', 'PostgreSQL', 'AI', 'LLMs', 'Product Strategy', 'Growth', 'Creator Marketing', 'Entrepreneurship'],
+    type: 'work',
+  },
+  {
+    year: '2024 - 2025',
     title: 'Software Development Engineer',
     company: 'Hubbell Inc.',
     location: 'Avon, CT',
@@ -122,8 +131,8 @@ const baseHobbies = ref<Hobby[]>([
 ])
 
 // Computed property to merge base hobbies with dynamic fitness stats from Pinia
-const hobbies = computed(() => {
-  return baseHobbies.value.map(hobby => {
+const hobbies = computed<Hobby[]>(() => {
+  return baseHobbies.value.map((hobby: Hobby) => {
     if (hobby.id === 'fitness') {
       return { ...hobby, stats: stravaStore.fitnessStats };
     }

@@ -34,12 +34,15 @@ const itemStyle = computed(() => ({
 const cardRingClass = 'group-hover:ring-[var(--item-accent-color)]/30';
 const titleHoverColorClass = 'group-hover:text-[var(--item-accent-color)]';
 
+// Only show pointer cursor when a chat suggestion exists
+const isClickable = computed(() => !!props.item.chatSuggestion);
+
 </script>
 
 <template>
   <div
-    class="relative pl-10 group transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] cursor-default cursor-pointer"
-    :class="{ 'opacity-100 translate-y-0 scale-100': isVisible, 'opacity-0 translate-y-[10px] scale-[0.98]': !isVisible }"
+    class="relative pl-10 group transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
+    :class="[{ 'opacity-100 translate-y-0 scale-100': isVisible, 'opacity-0 translate-y-[10px] scale-[0.98]': !isVisible }, isClickable ? 'cursor-pointer' : 'cursor-default']"
     :style="[itemStyle, { transitionDelay: animationDelay }]"
     @click="handleChatSuggestion(item.chatSuggestion)"
   >

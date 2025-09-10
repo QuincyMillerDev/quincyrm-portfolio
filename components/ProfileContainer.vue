@@ -20,11 +20,11 @@ const props = defineProps<{
 }>()
 
 // Split markdown text into paragraphs
-const paragraphs = computed(() =>
+const paragraphs = computed<string[]>(() =>
   props.descriptionMd
     .trim()
     .split(/\n\s*\n/)
-    .filter((p) => p.length)
+    .filter((p: string) => p.length)
 )
 
 // Brand color classes for social icons
@@ -33,7 +33,6 @@ const brandColorClasses: Record<string, string> = {
   LinkedIn: 'hover:text-[#0077B5]',
   'X.com': 'hover:text-[#1DA1F2]',
   Instagram: 'hover:text-[#E1306C]',
-  Twitch: 'hover:text-[#9146FF]',
   Email: 'hover:text-green-500'
 }
 
@@ -116,29 +115,42 @@ const trackSocialClick = (socialName: string, url: string) => {
         </div>
 
         <!-- Social Links -->
-        <div class="flex flex-wrap gap-1 mt-2 mb-1">
-          <Button
-            v-for="(link, index) in props.links"
-            :key="link.name"
-            as-child
-            variant="ghost"
-            size="icon"
-            class="w-7 h-7 rounded-md transition-all duration-300"
-            :class="[
-              brandColorClasses[link.name] || '',
-              { 'opacity-0': !isVisible, [`opacity-100 transition-opacity duration-500 delay-[${300 + index * 100}ms]`]: isVisible }
-            ]"
-          >
-            <a 
-              :href="link.url" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              :aria-label="link.name"
-              @click="trackSocialClick(link.name, link.url)"
+        <div class="flex items-center flex-wrap gap-1 mt-2 mb-1">
+          <div class="flex flex-wrap gap-1">
+            <Button
+              v-for="(link, index) in props.links"
+              :key="link.name"
+              as-child
+              variant="ghost"
+              size="icon"
+              class="w-7 h-7 rounded-md transition-all duration-300"
+              :class="[
+                brandColorClasses[link.name] || '',
+                { 'opacity-0': !isVisible, [`opacity-100 transition-opacity duration-500 delay-[${300 + index * 100}ms]`]: isVisible }
+              ]"
             >
-              <Icon :icon="link.icon" class="w-3.5 h-3.5" />
-            </a>
-          </Button>
+              <a 
+                :href="link.url" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                :aria-label="link.name"
+                @click="trackSocialClick(link.name, link.url)"
+              >
+                <Icon :icon="link.icon" class="w-3.5 h-3.5" />
+              </a>
+            </Button>
+          </div>
+          
+          <div class="h-3.5 w-px bg-border/40 mx-1.5" />
+          
+          <NuxtLink 
+            to="/links" 
+            class="text-xs text-muted-foreground hover:text-foreground transition-colors duration-200 flex items-center gap-0.5"
+            @click="trackInteraction('click', 'navigation', { link: 'all-links', section: 'profile-header' })"
+          >
+            <Icon icon="lucide:link" class="w-3 h-3" />
+            <span>All links</span>
+          </NuxtLink>
         </div>
 
       </div>
@@ -171,29 +183,42 @@ const trackSocialClick = (socialName: string, url: string) => {
             </div>
 
             <!-- Social Links -->
-            <div class="flex flex-wrap gap-2 mb-2">
-              <Button
-                v-for="(link, index) in props.links"
-                :key="link.name"
-                as-child
-                variant="ghost"
-                size="icon"
-                class="w-8 h-8 rounded-md transition-all duration-300"
-                :class="[
-                  brandColorClasses[link.name] || '',
-                  { 'opacity-0': !isVisible, [`opacity-100 transition-opacity duration-500 delay-[${300 + index * 100}ms]`]: isVisible }
-                ]"
-              >
-                <a 
-                  :href="link.url" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  :aria-label="link.name"
-                  @click="trackSocialClick(link.name, link.url)"
+            <div class="flex items-center gap-2 mb-2">
+              <div class="flex flex-wrap gap-2">
+                <Button
+                  v-for="(link, index) in props.links"
+                  :key="link.name"
+                  as-child
+                  variant="ghost"
+                  size="icon"
+                  class="w-8 h-8 rounded-md transition-all duration-300"
+                  :class="[
+                    brandColorClasses[link.name] || '',
+                    { 'opacity-0': !isVisible, [`opacity-100 transition-opacity duration-500 delay-[${300 + index * 100}ms]`]: isVisible }
+                  ]"
                 >
-                  <Icon :icon="link.icon" class="w-4 h-4" />
-                </a>
-              </Button>
+                  <a 
+                    :href="link.url" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    :aria-label="link.name"
+                    @click="trackSocialClick(link.name, link.url)"
+                  >
+                    <Icon :icon="link.icon" class="w-4 h-4" />
+                  </a>
+                </Button>
+              </div>
+              
+              <div class="h-4 w-px bg-border/40 mx-1" />
+              
+              <NuxtLink 
+                to="/links" 
+                class="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 flex items-center gap-1"
+                @click="trackInteraction('click', 'navigation', { link: 'all-links', section: 'profile-header' })"
+              >
+                <Icon icon="lucide:link" class="w-3.5 h-3.5" />
+                <span>All links</span>
+              </NuxtLink>
             </div>
             
 
