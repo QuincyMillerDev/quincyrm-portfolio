@@ -95,15 +95,14 @@ const handleImageLoad = () => {
         style="transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s"
       >
         <LinkCard
-          v-for="(link, index) in links"
+          v-for="link in links"
           :key="link.title"
           :title="link.title"
           :description="link.description"
           :url="link.url"
           :image="link.image"
           :image-bg="link.imageBg"
-          :style="`animation-delay: ${300 + index * 100}ms`"
-          :class="{ 'opacity-0': !isVisible, 'animate-fade-slide-up': isVisible }"
+          
         />
       </div>
 
