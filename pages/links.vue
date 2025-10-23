@@ -12,13 +12,13 @@ const links = ref([
   {
     title: 'AltIndex',
     description: '#1 Platform for Researching Stocks & Crypto with alternative data.',
-    url: 'https://altindex.com/?el=quincylinks&htrafficsource=quincylinks',
+    url: 'https://app.altindex.com/',
     image: '/images/altindex-logo-square-transparent.png'
   },
   {
     title: 'Stocks & Income',
     description: 'Beat the market before your morning coffee. Daily investor newsletter.',
-    url: 'https://stocks-income.beehiiv.com/?el=quincylinks&htrafficsource=quincylinks',
+    url: 'https://stocks-income.beehiiv.com/',
     image: '/images/stocksandincomeimg.avif',
     imageBg: 'bg-black'
   },
