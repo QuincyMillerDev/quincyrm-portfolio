@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted, computed } from 'vue'
+import { ref, onMounted } from 'vue'
 import { Icon } from '@iconify/vue'
 import { NuxtImg } from '#components'
 import LinkCard from '~/components/LinkCard.vue'
@@ -48,36 +48,26 @@ const showInAppBrowserBanner = ref(false)
 const browserName = ref('')
 const bannerDismissed = ref(false)
 
-// Detect if user is in an in-app browser
+// Detect if user is in TikTok's in-app browser
 const detectInAppBrowser = () => {
   if (process.client) {
     const ua = navigator.userAgent || navigator.vendor || (window as any).opera || ''
     
-    if (ua.includes('TikTok')) {
+    // Log for debugging
+    console.log('User Agent:', ua)
+    
+    // TikTok detection - check for multiple variations
+    if (ua.includes('TikTok') || 
+        ua.includes('musical_ly') || 
+        ua.includes('Bytedance') ||
+        ua.match(/\bTrill\b/i)) {
       browserName.value = 'TikTok'
-      return true
-    } else if (ua.includes('Instagram')) {
-      browserName.value = 'Instagram'
-      return true
-    } else if (ua.includes('FBAN') || ua.includes('FBAV')) {
-      browserName.value = 'Facebook'
-      return true
-    } else if (ua.includes('Snapchat')) {
-      browserName.value = 'Snapchat'
-      return true
-    } else if (ua.includes('Line')) {
-      browserName.value = 'Line'
-      return true
-    } else if (ua.includes('MicroMessenger')) {
-      browserName.value = 'WeChat'
-      return true
-    } else if (ua.includes('Twitter') && !ua.includes('Safari')) {
-      browserName.value = 'Twitter/X'
-      return true
-    } else if (ua.includes('LinkedIn')) {
-      browserName.value = 'LinkedIn'
+      console.log('✓ TikTok detected!')
       return true
     }
+    
+    // Not in TikTok
+    console.log('Not in TikTok browser')
   }
   return false
 }
@@ -86,22 +76,7 @@ const dismissBanner = () => {
   bannerDismissed.value = true
 }
 
-const instructionText = computed(() => {
-  if (browserName.value === 'TikTok') {
-    return 'Tap the three dots (•••) at the bottom right and select "Open in browser"'
-  } else if (browserName.value === 'Instagram') {
-    return 'Tap the three dots (•••) at the top right and select "Open in Safari/Chrome"'
-  } else {
-    return `Tap the menu button and select "Open in ${isIOS() ? 'Safari' : 'Chrome'}"`
-  }
-})
-
-const isIOS = () => {
-  if (process.client) {
-    return /iPad|iPhone|iPod/.test(navigator.userAgent) && !(window as any).MSStream
-  }
-  return false
-}
+const instructionText = 'Tap the three dots (•••) at the bottom right and select "Open in browser"'
 
 onMounted(() => {
   setTimeout(() => {
@@ -135,7 +110,7 @@ const handleImageLoad = () => {
           />
           <div class="flex-1 space-y-2">
             <p class="text-sm font-semibold text-amber-900 dark:text-amber-100">
-              You're viewing this in {{ browserName }}
+              You're viewing this in TikTok
             </p>
             <p class="text-xs text-amber-800 dark:text-amber-200">
               For the best experience and to open links properly:
