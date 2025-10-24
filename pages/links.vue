@@ -76,7 +76,7 @@ const dismissBanner = () => {
   bannerDismissed.value = true
 }
 
-const instructionText = 'Tap the three dots (•••) at the bottom right and select "Open in browser"'
+const instructionText = 'Tap the three dots (•••) at the top right and select "Open in browser"'
 
 onMounted(() => {
   setTimeout(() => {
