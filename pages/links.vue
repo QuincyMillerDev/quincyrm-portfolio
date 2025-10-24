@@ -11,7 +11,7 @@ const profilePicture = '/images/portrait_small.jpg'
 const links = ref([
   {
     title: 'AltIndex',
-    description: '#1 Platform for Researching Stocks & Crypto with alternative data.',
+    description: 'Turn alternative data into alpa.',
     url: 'https://app.altindex.com/',
     image: '/images/altindex-logo-square-transparent.png'
   },
@@ -177,8 +177,7 @@ const handleImageLoad = () => {
         
         <div>
           <h1 class="text-2xl font-bold text-foreground">{{ name }}</h1>
-          <p class="text-muted-foreground mt-1">Entrepreneur & content creator</p>
-          <p class="text-muted-foreground text-sm">Head of Product &Engineering @ Invested Inc.</p>
+          <p class="text-muted-foreground text-sm">Head of Product @ Invested Inc.</p>
           <p class="text-muted-foreground mt-2">See all of it here 👇</p>
         </div>
       </div>
