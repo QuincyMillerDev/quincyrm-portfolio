@@ -11,7 +11,7 @@ const profilePicture = '/images/portrait_small.jpg'
 const links = ref([
   {
     title: 'AltIndex',
-    description: 'Turn alternative data into alpa.',
+    description: 'Turn alternative data into alpha.',
     url: 'https://app.altindex.com/',
     image: '/images/altindex-logo-square-transparent.png'
   },
