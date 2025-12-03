@@ -10,14 +10,20 @@ const profilePicture = '/images/portrait_small.jpg'
 
 const links = ref([
   {
+    title: 'My Stock Portfolio',
+    description: 'See what I own on the road to $100k.',
+    url: 'https://m1.finance/OktFUqdC26Ts',
+    image: '/images/m1-logo.png'
+  },
+  {
     title: 'AltIndex',
-    description: 'Turn alternative data into alpha.',
+    description: 'The app I built too help research stocks.',
     url: 'https://app.altindex.com/',
     image: '/images/altindex-logo-square-transparent.png'
   },
   {
     title: 'Stocks & Income',
-    description: 'Beat the market before your morning coffee. Daily investor newsletter.',
+    description: 'A daily investor newsletter that my team and I run.',
     url: 'https://stocks-income.beehiiv.com/',
     image: '/images/stocksandincomeimg.avif',
     imageBg: 'bg-black'
