@@ -18,13 +18,13 @@ const links = ref([
   {
     title: 'AltIndex',
     description: 'The app I built too help research stocks.',
-    url: 'https://app.altindex.com/',
+    url: 'https://altindex.com?utm_source=quincyrm&utm_medium=referral&utm_campaign=linkspage',
     image: '/images/altindex-logo-square-transparent.png'
   },
   {
     title: 'Stocks & Income',
     description: 'A daily investor newsletter that my team and I run.',
-    url: 'https://stocks-income.beehiiv.com/',
+    url: 'https://stocks-income.beehiiv.com/?utm_source=quincyrm&utm_medium=referral&utm_campaign=linkspage',
     image: '/images/stocksandincomeimg.avif',
     imageBg: 'bg-black'
   },
