@@ -7,7 +7,7 @@ import type { Project } from '~/lib/types/projects'
 const name = "Hi, I'm Quincy"
 const desktopPictureUrl = '/images/portrait.jpg'
 const mobilePictureUrl = '/images/portrait_small.jpg'
-const subtitle = "Building Internet Businesses"
+const subtitle = "AI Engineer, Product Builder, Creator, & Investor"
 const descriptionMd = `
 Computer Science @ UConn Alumni
 `
