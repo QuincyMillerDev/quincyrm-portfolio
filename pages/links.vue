@@ -37,7 +37,7 @@ const links = ref([
   {
     title: 'TikTok',
     description: 'Also more content.',
-    url: 'https://www.tiktok.com/@quincyrm?is_from_webapp=1&sender_device=pc',
+    url: 'https://www.tiktok.com/@quincyrm_?is_from_webapp=1&sender_device=pc',
     image: '/images/Tiktok-Logo-2016-410079205.png'
   },
   {
