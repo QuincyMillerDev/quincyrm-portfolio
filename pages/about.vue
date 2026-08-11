@@ -25,16 +25,17 @@ const timelineItems = ref<TimelineItemData[]>([
     title: 'Head of Product & Engineering',
     company: 'Invested Inc.',
     location: 'Remote',
-    description: 'Helping a generation of investors make more confident decisions.',
-    skills: ['TypeScript', 'Python', 'Node.js', 'AWS', 'PostgreSQL', 'AI', 'LLMs', 'Product Strategy', 'Growth', 'Creator Marketing', 'Entrepreneurship'],
+    description: 'Running product and engineering for AltIndex, an alternative data platform serving tens of thousands of investors.',
+    skills: ['Python', 'FastAPI', 'TypeScript', 'React', 'Expo', 'MySQL', 'LLMs', 'MCP', 'Product Strategy'],
     type: 'work',
+    chatSuggestion: 'What does Quincy do at Invested Inc.?'
   },
   {
     year: '2024 - 2025',
     title: 'Software Development Engineer',
     company: 'Hubbell Inc.',
     location: 'Avon, CT',
-    description: 'Working on enterprise products in Hubbell\'s high risk, high reward division.',
+    description: 'Built a grid-analytics data platform in Hubbell\'s high risk, high reward division.',
     skills: ['Python', 'TypeScript', 'Azure', 'Angular', 'C#', 'Databricks', 'PostgreSQL', 'Terraform', 'CI/CD'],
     type: 'work',
     chatSuggestion: 'What were Quincy\'s achievements and responsibilities as a software development engineer at Hubbell Inc?'
@@ -116,17 +117,17 @@ const baseHobbies = ref<Hobby[]>([
     chatSuggestion: 'What is Quincy\'s investment style?'
   },
   {
-    id: 'content',
-    name: 'Content Creation',
-    icon: 'lucide:video',
-    description: 'Built a community on Twitch during the pandemic.',
+    id: 'coaching',
+    name: 'Coaching & Leadership',
+    icon: 'lucide:users',
+    description: 'Adaptive rowing coach, workshop instructor, recovering team captain.',
     stats: [
-      { label: 'Medium', value: 'Twitch & TikTok', icon: 'lucide:pen-tool' },
-      { label: 'Topics', value: 'Gaming, Tech, Life', icon: 'lucide:layers' }
+      { label: 'Proudest Moment', value: 'Head of the Charles, PR3 Doubles', icon: 'lucide:award' },
+      { label: 'Also', value: 'AI workshops, mentoring engineers', icon: 'lucide:graduation-cap' }
     ],
     colorHue: 270,
     accentColorHex: '#9C27B0',
-    chatSuggestion: 'Tell me more about Quincy\'s content creation.'
+    chatSuggestion: 'Tell me about Quincy\'s adaptive rowing coaching and leadership experience.'
   }
 ])
 

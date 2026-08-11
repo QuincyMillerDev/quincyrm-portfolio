@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref, watch, nextTick } from 'vue'
 import { Github, Globe, ExternalLink } from 'lucide-vue-next'
 import type { Project } from '~/lib/types/projects'
 import { useChatSuggestions } from '~/composables/useChatSuggestions'
+import ProjectDetailDialog from '~/components/ProjectDetailDialog.vue'
 
 // Analytics composable for tracking events
 const { trackEvent, trackInteraction } = useAnalytics()
@@ -28,6 +29,17 @@ const itemStyle = computed(() => ({
 // Determine if it's a GitHub link
 const isGithubLink = computed(() => props.project.link?.includes('github.com') || false)
 
+const detailsOpen = ref(false)
+const cardRef = ref<HTMLElement | null>(null)
+
+// The dialog has no in-DOM trigger element (the whole card opens it), so
+// restore focus to the card ourselves when the dialog closes.
+watch(detailsOpen, (isOpen) => {
+  if (!isOpen) {
+    nextTick(() => cardRef.value?.focus())
+  }
+})
+
 const handleLocalChatSuggestion = () => {
   // Track project interaction via chat suggestion
   trackEvent('project_interaction', {
@@ -36,6 +48,21 @@ const handleLocalChatSuggestion = () => {
     project_index: props.index || 0
   })
   handleSuggestion(props.project.chatSuggestion)
+};
+
+// Card click opens the detail dialog when the project has details;
+// falls back to the chat suggestion for projects without them.
+const handleCardClick = () => {
+  if (props.project.details) {
+    trackEvent('project_interaction', {
+      project_name: props.project.title,
+      interaction_type: 'details_open',
+      project_index: props.index || 0
+    })
+    detailsOpen.value = true
+  } else {
+    handleLocalChatSuggestion()
+  }
 };
 
 // Track external link clicks
@@ -52,14 +79,20 @@ const trackExternalLinkClick = (event: Event) => {
 </script>
 
 <template>
-  <div 
-    class="block h-full group transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] cursor-default cursor-pointer"
+  <div
+    ref="cardRef"
+    role="button"
+    tabindex="0"
+    :aria-label="`${props.project.title}: view details`"
+    class="block h-full group transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--item-accent-color)]/50 rounded-lg"
     :style="[itemStyle, { transitionDelay: props.animationDelay }]"
-    :class="{ 
-      'opacity-100 translate-y-0 scale-100': props.isVisible, 
-      'opacity-0 translate-y-[10px] scale-[0.98]': !props.isVisible 
+    :class="{
+      'opacity-100 translate-y-0 scale-100': props.isVisible,
+      'opacity-0 translate-y-[10px] scale-[0.98]': !props.isVisible
     }"
-    @click="handleLocalChatSuggestion"
+    @click="handleCardClick"
+    @keydown.enter.prevent="handleCardClick"
+    @keydown.space.prevent="handleCardClick"
   >
     <div 
       class="project-card relative flex flex-col h-full overflow-hidden rounded-lg border border-border/40 bg-background/50 backdrop-blur-sm transition-all duration-300 group-hover:shadow-md group-hover:ring-1"
@@ -91,9 +124,10 @@ const trackExternalLinkClick = (event: Event) => {
               {{ props.project.title }}
             </h3>
           </div>
-          <a 
-            :href="props.project.link" 
-            target="_blank" 
+          <a
+            v-if="props.project.link"
+            :href="props.project.link"
+            target="_blank"
             rel="noopener noreferrer"
             class="p-1.5 text-muted-foreground hover:text-[var(--item-accent-color)] transition-colors duration-300 rounded-md hover:bg-background/70"
             @click="trackExternalLinkClick"
@@ -108,8 +142,24 @@ const trackExternalLinkClick = (event: Event) => {
             {{ props.project.description }}
           </p>
         </div>
+
+        <!-- Always visible on mobile (no hover there); hover-revealed on desktop -->
+        <div
+          v-if="props.project.details"
+          class="mt-3 flex items-center text-xs text-muted-foreground opacity-70 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300"
+        >
+          <span class="text-[var(--item-accent-color)]">Details</span>
+        </div>
       </div>
     </div>
+
+    <ProjectDetailDialog
+      v-if="props.project.details"
+      v-model:open="detailsOpen"
+      :project="props.project"
+      :accent-hex="currentAccentHex"
+      @chat="handleLocalChatSuggestion"
+    />
   </div>
 </template>
 

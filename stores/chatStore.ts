@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
 import type { ChatHistoryItem } from '~/lib/types/chat'; // Import the shared type
+import { CHAT_SOURCES_MARKER } from '~/lib/types/chat';
 
 // Analytics tracking for chat interactions
 const { trackEvent, trackInteraction } = useAnalytics()
@@ -10,6 +11,7 @@ interface Message extends ChatHistoryItem { // Extend ChatHistoryItem for fronte
   isUser: boolean;
   timestamp: string;
   isSystemMessage?: boolean; // Added for system messages
+  sources?: string[]; // Retrieval sources the answer drew from (parsed from the stream prefix)
   // role and content are inherited from ChatHistoryItem
 }
 
@@ -80,8 +82,13 @@ export const useChatStore = defineStore('chat', () => {
     });
 
     try {
+      // Exclude the current user message and the bot placeholder (both are
+      // sent/templated separately server-side) and drop UI-only system
+      // messages (e.g. rate-limit notices) from the model-facing history.
       const historyToSubmit: ChatHistoryItem[] = messages.value
-        .slice(-6, -1) 
+        .slice(0, -2)
+        .filter(m => !m.isSystemMessage)
+        .slice(-6)
         .map(m => ({ role: m.role, content: m.content }));
 
       const response = await fetch('/api/chat', {
@@ -158,12 +165,59 @@ export const useChatStore = defineStore('chat', () => {
         return;
       }
 
-              while (!done) {
+        // The server prefixes the stream with a single sources line:
+        //   @@SOURCES@@["Case Study AltIndex", ...]\n
+        // Buffer until that line is complete, parse it off, then stream the
+        // rest as content.
+        let sourcesParsed = false;
+        let pending = '';
+
+        while (!done) {
           const { value, done: readerDone } = await reader.read();
           done = readerDone;
           const chunk = decoder.decode(value, { stream: !done });
-          if (chunk) {
-            messages.value[botMessageIndex].content += chunk;
+          if (!chunk && !done) continue;
+
+          if (sourcesParsed) {
+            if (chunk) {
+              messages.value[botMessageIndex].content += chunk;
+            }
+            continue;
+          }
+
+          pending += chunk;
+
+          if (pending.startsWith(CHAT_SOURCES_MARKER)) {
+            const newlineIndex = pending.indexOf('\n');
+            if (newlineIndex === -1) {
+              if (!done) continue; // wait for the rest of the sources line
+              // Broken stream: the sources line never completed. These are
+              // protocol bytes, not user content; drop them rather than
+              // rendering the raw marker.
+              pending = '';
+            } else {
+              try {
+                const parsed = JSON.parse(
+                  pending.slice(CHAT_SOURCES_MARKER.length, newlineIndex)
+                );
+                if (Array.isArray(parsed) && parsed.length > 0) {
+                  messages.value[botMessageIndex].sources = parsed.filter(
+                    (s): s is string => typeof s === 'string'
+                  );
+                }
+              } catch {
+                // Malformed sources line; drop it and continue with content.
+              }
+              pending = pending.slice(newlineIndex + 1);
+            }
+          } else if (CHAT_SOURCES_MARKER.startsWith(pending) && !done) {
+            continue; // could still be a partial marker; keep buffering
+          }
+
+          sourcesParsed = true;
+          if (pending) {
+            messages.value[botMessageIndex].content += pending;
+            pending = '';
           }
         }
         
@@ -174,6 +228,9 @@ export const useChatStore = defineStore('chat', () => {
       const botMessageIndex = messages.value.findIndex(m => m.id === botMessageId);
       if (botMessageIndex !== -1 && !messages.value[botMessageIndex].isSystemMessage) { // Don't overwrite system message
         messages.value[botMessageIndex].content = "Sorry, I encountered an error. Please try again.";
+        // Sources may already have been parsed from the stream prefix before
+        // the failure; an error message must not carry citations.
+        messages.value[botMessageIndex].sources = undefined;
       } else if (botMessageIndex === -1) {
         // If placeholder wasn't added or was removed, add a new error message
         messages.value.push({

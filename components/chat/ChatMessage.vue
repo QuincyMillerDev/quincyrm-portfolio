@@ -9,6 +9,7 @@ interface Props {
   content: string
   isUser: boolean
   timestamp?: string
+  sources?: string[]
 }
 
 const props = defineProps<Props>()
@@ -63,6 +64,19 @@ const formattedTime = computed(() => {
                 v-html="parsedContent"
               />
             </ClientOnly>
+          </div>
+          <div
+            v-if="props.sources?.length && props.content"
+            class="flex flex-wrap items-center gap-1 mt-1.5 ml-1"
+          >
+            <Icon icon="lucide:file-search" class="w-3 h-3 text-muted-foreground/70" />
+            <span
+              v-for="source in props.sources"
+              :key="source"
+              class="text-[10px] px-1.5 py-0.5 rounded-full bg-muted/40 border border-border/30 text-muted-foreground"
+            >
+              {{ source }}
+            </span>
           </div>
           <div class="text-xs text-muted-foreground mt-1 ml-1 opacity-0 group-hover:opacity-70 transition-opacity">
             {{ formattedTime }}

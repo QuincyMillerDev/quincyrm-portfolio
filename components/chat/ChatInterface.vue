@@ -118,12 +118,13 @@ onMounted(() => {
       </div>
       
       <!-- Messages -->
-      <ChatMessage 
-        v-for="message in chatStore.messages" 
+      <ChatMessage
+        v-for="message in chatStore.messages"
         :key="message.id"
         :content="message.content"
         :is-user="message.isUser"
         :timestamp="message.timestamp"
+        :sources="message.sources"
       />
       
       <!-- Invisible element to scroll to -->

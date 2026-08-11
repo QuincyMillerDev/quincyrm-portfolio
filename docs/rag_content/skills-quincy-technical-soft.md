@@ -2,80 +2,65 @@
 
 ## Overview / Summary
 
-As a software engineer, I have cultivated a robust skill set encompassing full-stack development, data engineering, cloud technologies, and generative AI. My experience is rooted in a strong academic foundation in computer science principles and significantly enhanced by practical application in diverse projects at UConn's Digital Experience Group, internships, and my role at Hubbell. I am particularly proficient in Vue.js and TypeScript for frontend development, and Python (FastAPI) and C# (.NET) for backend systems. I am passionate about leveraging technology to solve complex problems and am committed to continuous learning, especially in the rapidly evolving field of AI.
+I am an AI engineer and full-stack product builder. My current work running AltIndex at Invested Inc. spans data engineering (23 daily pipelines), backend systems (Python, FastAPI, async SQLAlchemy), web and mobile front ends (React 19, Expo), billing, and LLM-powered product features. Before that I built enterprise data platforms at Hubbell on Azure and Databricks. My strongest belief about skills is that they compound: the same discipline that makes a data pipeline reliable makes an AI system trustworthy.
 
 ## Technical Skills
 
 ### Programming Languages
-*   **Python:** Proficient; extensive experience with FastAPI for web APIs (e.g., Senior Design), data analysis libraries (Pandas, NumPy), data engineering (Apache Spark, Databricks workflows at Hubbell), developing SDKs (Hubbell), and scripting.
-*   **TypeScript/JavaScript:** Proficient; primary language for frontend development with Vue.js (Senior Design, Sourcery, Grant Trails, Hiring Maps, ProteomeX), Angular (Hubbell), and experience with Node.js (Express.js for Landscape Architecture backend). Dabbled in React for smaller projects.
-*   **C#:** Proficient; experience with .NET Core/ASP.NET for building enterprise-grade web APIs (Hubbell).
-*   **Java:** Familiar; experience in Spring Boot environments (coursework, some enterprise exposure).
-*   **SQL:** Proficient; extensive work with PostgreSQL (Azure-hosted, Supabase in DXG projects like Grant Trails, Hiring Maps, Sourcery; Prisma) and MySQL.
-*   **C/C++:** Familiar; experience with C for a core algorithm (ProteomeX) and C++ for systems programming, data structures, algorithms, OpenGL (Landscape Architecture, coursework), and embedded systems (e.g., Raspberry Pi).
-*   **PHP:** Familiar; experience with Laravel for backend development (ProteomeX).
-*   **Lisp:** Familiar; functional programming concepts (coursework).
-*   **RISC-V Assembly:** Familiar; computer architecture fundamentals (coursework).
-*   **Bash:** Comfortable with simple scripting for Linux environments.
+*   **Python:** Primary backend language. Production use with FastAPI and async SQLAlchemy (AltIndex), PySpark and Databricks pipelines (Hubbell), SDK development, MCP servers, and LLM orchestration.
+*   **TypeScript/JavaScript:** Primary frontend language. Production use with React 19 and Expo/React Native (AltIndex), Vue.js and Nuxt (this portfolio, UConn projects), Angular (Hubbell), and Node.js.
+*   **C#:** Production experience with .NET web APIs in enterprise settings (Hubbell).
+*   **SQL:** Extensive production work with MySQL/MariaDB (AltIndex) and PostgreSQL (Hubbell, UConn projects), including query optimization against tables in the tens of millions of rows.
+*   **Java:** Experience with Spring Boot (Hubbell internship, coursework).
+*   **C/C++:** Systems programming, OpenGL, containerizing legacy analysis algorithms (ProteomeX), coursework in data structures and embedded systems.
+*   **PHP:** Working knowledge from maintaining and ultimately replacing a legacy PHP monolith at AltIndex.
+*   **Bash:** Comfortable with scripting for Linux environments and CI.
 
-### Frontend Development
-*   **Frameworks/Libraries:** Vue.js (most proficient; Senior Design, Sourcery, Grant Trails, Hiring Maps, ProteomeX), Angular (enterprise settings at Hubbell, Kendo UI), React (personal/smaller projects), Vuetify (Sourcery, Hiring Maps).
-*   **Core Technologies:** HTML5, CSS3.
-*   **State Management:** Pinia (preferred with Vue 3), Vuex.
-*   **Build Tools:** Vite, Webpack (familiar).
-*   **Visualization:** Mapbox GL JS (Grant Trails, Hiring Maps), D3.js (Landscape Architecture).
+### AI Engineering
+*   **LLM orchestration:** LangChain (this portfolio's RAG chatbot), custom deterministic pipelines around model calls (SponsorBridge's compile, locate, check, verify QC pipeline), OpenAI and Anthropic APIs.
+*   **RAG systems:** Full lifecycle: document preparation, chunking, embeddings (OpenAI text-embedding-3), vector storage (Pinecone), query rephrasing, retrieval, provenance-cited generation, and decline-when-ungrounded behavior.
+*   **MCP (Model Context Protocol):** Built MCP servers in Python (secure documentation access at Hubbell) and open source (Ilograph MCP Server with FastMCP and asyncio).
+*   **Design principles I apply:** decomposition for recall, factored verification for precision, evidence before verdicts, bounded and reproducible runs over open-ended agent loops, and human approval gates where a wrong answer is expensive.
+*   **AI-assisted development:** Daily agentic coding workflows; I have also taught this, running a hands-on Copilot and prompt-engineering workshop for professional engineers.
+*   **ML foundations:** Fine-tuned BERT for domain-specific named entity recognition (94.47% F1 on the MIT Movie Corpus) with PyTorch and Hugging Face Transformers.
 
 ### Backend Development
-*   **Frameworks/Libraries:** FastAPI (Python; Senior Design), .NET Core/ASP.NET (C#; Hubbell), Express.js (Node.js; Landscape Architecture), Spring Boot (Java; familiar), Laravel (PHP; ProteomeX).
-*   **API Design:** RESTful APIs (extensive experience).
-*   **Authentication/Authorization:** JWT, OAuth.
-*   **Software Design Patterns:** MVC, Decorator, Observer, Singleton, Factory (applied in various projects and coursework).
+*   **Frameworks:** FastAPI with async SQLAlchemy (AltIndex production), .NET Core/ASP.NET (Hubbell), Django REST Framework (ProteomeX), Express.js, Spring Boot (familiar).
+*   **API design:** RESTful APIs at production scale, webhook pipelines (Stripe and RevenueCat billing events), server-sent events for streaming, versioning discipline.
+*   **Auth:** JWT, OAuth, session management, API key issuance and entitlement gating.
 
 ### Data Engineering & Analytics
-*   **Platforms & Tools:** Databricks (designing workflows, managing workspaces; Hubbell), Apache Spark (efficient data processing for complex algorithms; Hubbell).
-*   **Libraries:** Pandas, NumPy (data manipulation and analysis).
-*   **Data Management:** Experience in designing and implementing Python SDKs for data management (e.g., topology data at Hubbell).
-*   **Workflow Productionalization:** Successfully productionalized complex data algorithms, including data ingestion, processing, and integration with backend APIs and frontend systems (Meter-to-Transformer algorithm at Hubbell).
-
-### Generative AI
-*   **LLM Orchestration:** Langchain (Senior Design project for RAG chatbot).
-*   **Vector Databases:** Pinecone (Senior Design project for RAG embeddings).
-*   **Foundation Models:** OpenAI (used in Senior Design).
-*   **Passion:** Keen interest in the benefits and ethical implications of GenAI in software engineering.
+*   **AltIndex:** 23 daily ingestion pipelines aggregating social sentiment, job postings, insider trading, congressional trading, app-store metrics, news, and more, producing 104 signals per company across 4,600+ equities, plus an alerting engine delivering roughly 15,800 alerts a month across 16 signal types.
+*   **Hubbell:** Databricks and Apache Spark pipelines over hundreds of millions of grid records, Delta Lake, workflow orchestration.
+*   **Libraries:** Pandas, NumPy, PySpark.
 
 ### Cloud & DevOps
-*   **Cloud Platforms:** Microsoft Azure (primary; Hubbell), AWS (familiar).
-*   **Azure Services:** Azure DevOps (CI/CD, YML pipelines, optimizing PyTest execution with VM Scale-sets), Azure-hosted PostgreSQL, other services utilized at Hubbell.
-*   **Infrastructure as Code (IaC):** Terraform (refactoring repositories, modular design, resolving deployment issues; Hubbell).
-*   **CI/CD:** Azure DevOps (extensive), GitHub Actions (YML).
-*   **Containerization:** Docker (comfortable; Senior Design, ProteomeX).
-*   **Networking/Proxy:** NGINX (ProteomeX, Grant Trails, Hiring Maps).
+*   **Cloud platforms:** Microsoft Azure (primary at Hubbell), AWS (EC2 deployments at UConn), Vercel (this portfolio: serverless functions, cron jobs, KV).
+*   **Infrastructure as Code:** Terraform, including refactoring a monolithic state into scoped modules across four environments.
+*   **CI/CD:** Azure DevOps (including an 80% build-time reduction via parallel self-hosted agents and coverage gates), GitHub Actions.
+*   **Containerization:** Docker across many projects.
+
+### Frontend Development
+*   **Frameworks:** React 19 and Expo/React Native (AltIndex production), Vue.js and Nuxt 3 (this portfolio), Angular (Hubbell), TanStack Start (Karrow).
+*   **Styling and state:** Tailwind CSS, shadcn component systems, Pinia, TanStack Query.
+*   **Visualization:** Mapbox GL JS, D3.js, charting for financial data.
 
 ### Databases
-*   **Relational:** PostgreSQL (most proficient; used with Supabase, Azure, Prisma), MySQL.
-*   **Database Theory & Design:** Strong understanding from dedicated coursework covering conceptual (ERDs), logical (relational schemas, normalization up to BCNF), and physical database design, query languages (SQL, relational algebra), transaction management, and concurrency control.
-
-### Other Tools & Technologies
-*   **Version Control:** Git, GitHub (extensive use across all projects).
-*   **Operating Systems:** Windows, Linux (comfortable, including server management e.g., Ubuntu for ProteomeX), macOS.
-*   **Technical Documentation:** Authored onboarding guides, architecture diagrams (UML, Sequence), operational procedures (Hubbell).
-*   **Low-Level Graphics:** OpenGL (Landscape Architecture).
-*   **Hardware & Embedded Systems:** Familiar with Raspberry Pi, electrical circuits, breadboarding, and programming microcontrollers with C++ (coursework).
+*   **Relational:** MySQL/MariaDB (AltIndex production, including working safely against eight-figure-row tables), PostgreSQL, Supabase.
+*   **Vector:** Pinecone.
+*   **Other:** Convex (Karrow), Vercel KV (this portfolio).
 
 ## Soft Skills & Methodologies
 
-*   **Problem Solving & Analytical Thinking:** Demonstrated in tackling complex legacy code (ProteomeX), designing novel systems (Senior Design), and resolving critical infrastructure issues (Terraform refactor at Hubbell).
-*   **Communication (Written & Verbal):** Effective in team settings, sponsor interactions (Senior Design CTO meetings), cross-functional collaboration (international research teams at Hubbell), and technical documentation.
-*   **Teamwork & Collaboration:** Proven ability to work effectively in diverse teams and mentor colleagues (Hubbell, Senior Design).
-*   **Agile Development (Scrum):** Implemented and led Agile workflows, including sprint planning, stand-ups, task delegation (Senior Design), and full ownership of user stories (Hubbell).
-*   **Adaptability & Quick Learning:** Rapidly onboarded to new codebases, technologies, and project requirements throughout DXG and Hubbell experiences.
-*   **Leadership & Mentoring:** Stepped up as Lead Developer for Senior Design, guided and mentored teammates; actively mentored colleagues at Hubbell and participated in formal mentorship programs.
-*   **Time Management & Organization:** Successfully balanced multiple projects (DXG, Senior Design) and coursework; managed feature development within agile sprints.
-*   **Attention to Detail:** Crucial for debugging, system design, infrastructure management, and ensuring quality deliverables.
-*   **Project Ownership & Technical Leadership:** Took full ownership of features and infrastructure initiatives (Hubbell), demonstrating strategic thinking.
+*   **Problem solving on inherited systems:** My defining pattern is taking over undocumented systems (a legacy PHP monolith, a drifted cloud environment, a dead research codebase) and making them reliable. I map how things actually run before changing them.
+*   **Communication (written and verbal):** Architecture decision records for every significant design choice across my projects, onboarding guides, runbooks, and the ability to explain technical work to non-technical stakeholders. I have presented to executives, sponsors, and research teams.
+*   **Teaching and mentorship:** Ran a hands-on AI development workshop for professional engineers, onboarded and mentored teammates including a senior developer new to my project, trained four student developers as I transitioned projects at UConn, and led workshops for the Husky Developers Club as Outreach Chair.
+*   **Coaching under real constraints:** Volunteer adaptive rowing coach for a blind athlete who went on to compete at the Head of the Charles Regatta. Communicating rowing technique to someone who cannot see you demonstrate it is the hardest communication problem I have solved.
+*   **Product ownership:** At Invested I own the roadmap as well as the code: prioritization, customer feedback loops, release management, and the judgment calls about what not to build.
+*   **Agile delivery:** Sprint planning, stand-ups, and full ownership of user stories in professional settings; led Agile ceremonies for my senior design team.
 
 ## Learnings / Reflection
 
-My journey in software engineering has been driven by a commitment to continuous learning and embracing challenging environments. From foundational CS principles in my coursework to leading complex projects like my Senior Design capstone and tackling enterprise-scale challenges at Hubbell, I've consistently sought opportunities to expand my technical toolkit and refine my problem-solving abilities. I thrive on dissecting complex problems, designing robust solutions, and collaborating with teams to bring ideas to life. My experiences at UConn DXG and Hubbell have instilled in me the importance of practical application, agile methodologies, robust testing, comprehensive documentation, and clear communication. I am particularly excited by the transformative potential of Generative AI and am dedicated to exploring its applications to create innovative and impactful software. I look forward to continuing to grow, tackle new challenges, and contribute to cutting-edge development in high-impact roles.
+My path has run from research software to enterprise data platforms to running a consumer fintech product, and each stage sharpened the same instinct: reliability is a feature, and the person who understands the whole system is the person who can be trusted with the important parts of it. I am most at home where engineering depth meets a real user with a real problem, and my current work applying AI under production constraints is the most interesting version of that I have found.
 
---- 
+---

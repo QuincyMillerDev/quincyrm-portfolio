@@ -23,7 +23,7 @@ onMounted(() => {
     <h2 
       class="text-xl font-medium mb-4 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
       :class="{ 'opacity-100 translate-y-0 scale-100': isVisible, 'opacity-0 translate-y-[10px] scale-[0.98]': !isVisible }"
-    >Side Projects</h2>
+    >Work</h2>
     
     <!-- Standard grid layout -->
     <div 
