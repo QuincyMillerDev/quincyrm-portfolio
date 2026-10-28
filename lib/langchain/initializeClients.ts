@@ -51,14 +51,14 @@ export function initializeOpenAIEmbeddings(modelName: string = "text-embedding-3
 
 /**
  * Initializes and returns a ChatOpenAI (LLM) model instance.
- * @param {string} [modelName="gpt-3.5-turbo"] - The name of the OpenAI chat model to use.
+ * @param {string} [modelName="gpt-5.6-luna"] - The name of the OpenAI chat model to use.
  * @param {number} [temperature=0.7] - The sampling temperature for the model.
  * @param {boolean} [streaming=true] - Whether to enable streaming responses.
  * @throws Error if OpenAI API key is not set.
  * @returns {ChatOpenAI} The ChatOpenAI model instance.
  */
 export function initializeChatOpenAI(
-  modelName: string = "gpt-3.5-turbo",
+  modelName: string = "gpt-5.6-luna",
   temperature: number = 0.7,
   streaming: boolean = true,
   maxTokens: number = 300
@@ -68,6 +68,12 @@ export function initializeChatOpenAI(
     modelName,
     temperature,
     streaming,
-    maxTokens,
+    // GPT-5.x rejects max_tokens and only accepts a custom temperature when reasoning is off.
+    // This LangChain version only maps those params for o-series models, so pass them directly.
+    maxTokens: -1,
+    modelKwargs: {
+      max_completion_tokens: maxTokens,
+      reasoning_effort: "none",
+    },
   });
 }

@@ -29,8 +29,8 @@ if (!PINECONE_INDEX_NAME) {
 const pineconeClient = initializePineconeClient();
 const pineconeIndex = getPineconeIndex(pineconeClient, PINECONE_INDEX_NAME!);
 const embeddings = initializeOpenAIEmbeddings("text-embedding-3-large");
-const llm = initializeChatOpenAI("gpt-4.1-nano-2025-04-14", 0.7, true, 600); // Main LLM for generation
-const rephrasingLlm = initializeChatOpenAI("gpt-3.5-turbo", 0.1, false, 60); // LLM for query rephrasing; 60 tokens so enhanced queries don't truncate mid-word
+const llm = initializeChatOpenAI("gpt-5.6-luna", 0.7, true, 600); // Main LLM for generation
+const rephrasingLlm = initializeChatOpenAI("gpt-5.6-luna", 0.1, false, 60); // LLM for query rephrasing; 60 tokens so enhanced queries don't truncate mid-word
 const vectorStore = new PineconeStore(embeddings, { pineconeIndex });
 const retriever = vectorStore.asRetriever({ k: 10 });
 

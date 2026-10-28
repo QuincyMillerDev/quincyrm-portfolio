@@ -62,14 +62,14 @@ PINECONE_INDEX_NAME=your_index_name
 
 The chatbot uses a sophisticated RAG pipeline:
 
-1. **Query Rephrasing**: User questions are rephrased using GPT-3.5-turbo for optimal vector search
+1. **Query Rephrasing**: User questions are rephrased using GPT-5.6 Luna for optimal vector search
 2. **Vector Retrieval**: Pinecone searches for relevant content chunks (k=10)
-3. **Response Generation**: GPT-4.1-nano generates responses using retrieved context
+3. **Response Generation**: GPT-5.6 Luna generates responses using retrieved context
 4. **Streaming**: Responses stream in real-time to the frontend
 
 Key files for RAG system:
-- `lib/langchain/ragChain.ts:39` - Main LLM configuration (GPT-4.1-nano)
-- `lib/langchain/ragChain.ts:40` - Query rephrasing LLM (GPT-3.5-turbo)
+- `lib/langchain/ragChain.ts:32` - Main LLM configuration (GPT-5.6 Luna)
+- `lib/langchain/ragChain.ts:33` - Query rephrasing LLM (GPT-5.6 Luna)
 - `lib/langchain/ragChain.ts:44-65` - System prompt for portfolio assistant
 - `server/api/chat.post.ts:17-58` - Rate limiting implementation (30 requests/day per IP)
 
